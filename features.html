@@ -25,10 +25,23 @@
     <li><a href="features.html" class="active">Features</a></li>
     <li><a href="install.html">Install</a></li>
     <li><a href="terms.html">Legal</a></li>
-    <li><a href="install.html#download" class="nav-cta">Download APK</a></li>
   </ul>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+  <div class="nav-right">
+    <a href="install.html#download" class="nav-cta">Download APK</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="features.html" class="active">Features</a>
+  <a href="install.html">Install</a>
+  <a href="terms.html">Legal</a>
+  <a href="install.html#download" class="nav-cta">↓ Download APK</a>
+</div>
 
 <div class="page">
 
@@ -92,11 +105,9 @@
 
       <div class="reveal reveal-delay-2" style="position:relative;">
         <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
-          <!-- SCREENSHOT: Your checkout / sales screen -->
-          <!-- Suggested file: assets/checkout.png -->
           <img src="assets/checkout.png" alt="KezPos Checkout Screen" style="width:100%; display:block;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+          <div style="display:none; width:100%; height:340px; background:var(--navy3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
             <div style="font-size:2rem;">🛒</div>
             <div style="font-size:0.85rem;">Add assets/checkout.png</div>
           </div>
@@ -116,11 +127,9 @@
 
       <div class="reveal" style="position:relative; order:2;">
         <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
-          <!-- SCREENSHOT: Your reports / analytics screen with charts -->
-          <!-- Suggested file: assets/reports.png -->
           <img src="assets/reports.png" alt="KezPos Reports Screen" style="width:100%; display:block;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+          <div style="display:none; width:100%; height:340px; background:var(--navy3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
             <div style="font-size:2rem;">📊</div>
             <div style="font-size:0.85rem;">Add assets/reports.png</div>
           </div>
@@ -201,11 +210,9 @@
 
       <div class="reveal reveal-delay-2" style="position:relative;">
         <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
-          <!-- SCREENSHOT: Your inventory / stock management screen -->
-          <!-- Suggested file: assets/inventory.png -->
           <img src="assets/inventory.png" alt="KezPos Inventory Screen" style="width:100%; display:block;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+          <div style="display:none; width:100%; height:340px; background:var(--navy3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
             <div style="font-size:2rem;">📦</div>
             <div style="font-size:0.85rem;">Add assets/inventory.png</div>
           </div>
@@ -243,12 +250,10 @@
     </div>
 
     <div class="reveal reveal-delay-3" style="margin-top:20px; position:relative;">
-      <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg); max-height:320px; overflow:hidden;">
-        <!-- SCREENSHOT: Your People / customers / debt screen -->
-        <!-- Suggested file: assets/people.png -->
+      <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg); max-height:320px;">
         <img src="assets/people.png" alt="KezPos People Screen" style="width:100%; display:block; object-fit:cover; object-position:top;"
              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div style="display:none; width:100%; height:220px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+        <div style="display:none; width:100%; height:220px; background:var(--navy3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
           <div style="font-size:2rem;">👥</div>
           <div style="font-size:0.85rem;">Add assets/people.png (the People / debt screen)</div>
         </div>
@@ -324,7 +329,8 @@
 <footer style="position:relative; z-index:1;">
   <div class="footer-wrap">
     <a href="index.html" class="footer-logo">
-      <img src="assets/kezpos.png" alt="KezPos"><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span>
+      <img src="assets/kezpos.png" alt="KezPos">
+      <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
     </a>
     <ul class="footer-links">
       <li><a href="features.html">Features</a></li>
@@ -346,32 +352,6 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
-<script>
-(function(){
-  const html = document.documentElement;
-  if (localStorage.getItem('kez-theme') === 'dark') {
-    html.classList.add('dark');
-  }
-  function updateBtn() {
-    const btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    const dark = html.classList.contains('dark');
-    btn.textContent = dark ? '☀️' : '🌙';
-    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-  }
-  document.addEventListener('DOMContentLoaded', function() {
-    updateBtn();
-    const btn = document.getElementById('themeToggle');
-    if (btn) {
-      btn.addEventListener('click', function() {
-        html.classList.toggle('dark');
-        localStorage.setItem('kez-theme', html.classList.contains('dark') ? 'dark' : 'light');
-        updateBtn();
-      });
-    }
-  });
-})();
-</script>
+<script src="assets/theme.js"></script>
 </body>
 </html>
