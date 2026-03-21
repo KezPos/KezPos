@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Features — KezPos</title>
+  <meta name="description" content="Explore KezPos features: smart sales, profit analytics, inventory control, debt tracking, Bluetooth printing, and cloud sync built for Kenyan retail.">
+  <link rel="icon" type="image/png" href="assets/kezpos.png">
+  <link rel="apple-touch-icon" href="assets/kezpos.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="mesh-bg" aria-hidden="true">
+  <span></span><span></span><span></span>
+</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/kezpos.png" alt="KezPos">
+    <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="features.html" class="active">Features</a></li>
+    <li><a href="install.html">Install</a></li>
+    <li><a href="terms.html">Legal</a></li>
+    <li><a href="install.html#download" class="nav-cta">Download APK</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+</nav>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════
+       HERO
+  ════════════════════════════════════════ -->
+  <section style="padding-top:160px; padding-bottom:80px; text-align:center;">
+    <div class="eyebrow anim-slide-down">About the App</div>
+    <h1 class="display-xl anim-fade-up d2" style="margin-bottom:24px; max-width:820px; margin-left:auto; margin-right:auto;">
+      Precision for<br><span class="text-blue">every transaction.</span>
+    </h1>
+    <p class="lead anim-fade-up d3" style="margin:0 auto; text-align:center; max-width:600px;">
+      KezPos was built to replace the dusty paper ledger. The speed of a modern mobile app combined with the reliability of a professional business suite — designed specifically for the pace of local retail.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       FEATURE 1 — Sales & Transactions
+  ════════════════════════════════════════ -->
+  <section>
+    <div class="grid-2" style="gap:80px; align-items:center;">
+      <div class="reveal">
+        <div class="eyebrow">Core Engine</div>
+        <h2 class="display-lg" style="margin-bottom:20px;">Smart Sales &amp;<br>Transaction Management</h2>
+        <p class="lead" style="margin-bottom:28px;">
+          The checkout is built for speed. Add items, handle quantities, and close a sale in seconds — whether it's a regular or a walk-in.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Dynamic Checkout</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Streamlined interface to add items, adjust quantities, and process payments in seconds.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Flexible Customer Attribution</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Auto-assigns "Customer #X" for walk-ins or lets you enter a name and number for regulars.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Transaction History</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Searchable, date-grouped ledger of every sale with Completed vs. Refunded status indicators.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Digital Receipts</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Professional summaries for every transaction including cash in and change out breakdown.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="position:relative;">
+        <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
+          <!-- SCREENSHOT: Your checkout / sales screen -->
+          <!-- Suggested file: assets/checkout.png -->
+          <img src="assets/checkout.png" alt="KezPos Checkout Screen" style="width:100%; display:block;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+            <div style="font-size:2rem;">🛒</div>
+            <div style="font-size:0.85rem;">Add assets/checkout.png</div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       FEATURE 2 — Financial Intelligence
+  ════════════════════════════════════════ -->
+  <section>
+    <div class="grid-2" style="gap:80px; align-items:center;">
+
+      <div class="reveal" style="position:relative; order:2;">
+        <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
+          <!-- SCREENSHOT: Your reports / analytics screen with charts -->
+          <!-- Suggested file: assets/reports.png -->
+          <img src="assets/reports.png" alt="KezPos Reports Screen" style="width:100%; display:block;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+            <div style="font-size:2rem;">📊</div>
+            <div style="font-size:0.85rem;">Add assets/reports.png</div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--amber-dim) 0%, transparent 70%);"></div>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="order:1;">
+        <div class="eyebrow">Growth Suite</div>
+        <h2 class="display-lg" style="margin-bottom:20px;">Deep Financial<br><span class="text-amber">Intelligence</span></h2>
+        <p class="lead" style="margin-bottom:28px;">
+          KezPos doesn't just record numbers — it interprets them. Know exactly how much you made, which hours are busiest, and which products are actually profitable.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Profit Margin Tracking</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Tracks buying price vs. selling price to calculate real profit — not just revenue.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Hourly Performance Analytics</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Visualizes your busiest hours so you can staff and stock up at the right times.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Comprehensive Reports</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Daily, weekly, and monthly breakdowns of total revenue, net profit, and sales volume.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       FEATURE 3 — Inventory
+  ════════════════════════════════════════ -->
+  <section>
+    <div class="grid-2" style="gap:80px; align-items:center;">
+      <div class="reveal">
+        <div class="eyebrow">Stock Control</div>
+        <h2 class="display-lg" style="margin-bottom:20px;">Inventory that<br>works for you.</h2>
+        <p class="lead" style="margin-bottom:28px;">
+          Never lose money to "out of stock" again. KezPos tracks every item, warns you before you run out, and lets you manage your whole catalogue in bulk.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Low Stock Alerts</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Set custom thresholds — get notified when stock drops below your chosen level.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Bulk CSV Import &amp; Export</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Import or export your entire product catalogue as a CSV file for fast bulk updates.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Category Organisation</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Group products by type for faster searching and cleaner reports.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="position:relative;">
+        <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg);">
+          <!-- SCREENSHOT: Your inventory / stock management screen -->
+          <!-- Suggested file: assets/inventory.png -->
+          <img src="assets/inventory.png" alt="KezPos Inventory Screen" style="width:100%; display:block;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div style="display:none; width:100%; height:340px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+            <div style="font-size:2rem;">📦</div>
+            <div style="font-size:0.85rem;">Add assets/inventory.png</div>
+          </div>
+        </div>
+        <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       FEATURE 4 — People / Debt Ledger
+  ════════════════════════════════════════ -->
+  <section>
+    <div style="text-align:center; margin-bottom:56px;" class="reveal">
+      <div class="eyebrow">Relationships</div>
+      <h2 class="display-lg">The People screen.<br>Your debt <span class="text-blue">sorted.</span></h2>
+      <p class="lead" style="margin:16px auto 0; text-align:center;">
+        Manage the most important group in your business — the customers who owe you. Track credit, see balances, and collect from within the app.
+      </p>
+    </div>
+
+    <div class="grid-2" style="gap:20px; align-items:stretch;">
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">👥</div>
+        <h3>Customer Credit Tracking</h3>
+        <p>A dedicated tab showing every customer who owes you, their outstanding balance, and their full purchase history — all in one place.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">💳</div>
+        <h3>Pay Debt Shortcut</h3>
+        <p>Record a debt payment directly from the customer's profile. No navigating around — settle balances in two taps.</p>
+      </div>
+    </div>
+
+    <div class="reveal reveal-delay-3" style="margin-top:20px; position:relative;">
+      <div style="border-radius:20px; overflow:hidden; border:1px solid var(--border); box-shadow:var(--shadow-lg); max-height:320px; overflow:hidden;">
+        <!-- SCREENSHOT: Your People / customers / debt screen -->
+        <!-- Suggested file: assets/people.png -->
+        <img src="assets/people.png" alt="KezPos People Screen" style="width:100%; display:block; object-fit:cover; object-position:top;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div style="display:none; width:100%; height:220px; background:var(--bg3); align-items:center; justify-content:center; flex-direction:column; gap:10px; color:var(--muted);">
+          <div style="font-size:2rem;">👥</div>
+          <div style="font-size:0.85rem;">Add assets/people.png (the People / debt screen)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════
+       FEATURE 5 — Infrastructure
+  ════════════════════════════════════════ -->
+  <section>
+    <div style="text-align:center; margin-bottom:56px;" class="reveal">
+      <div class="eyebrow">Infrastructure</div>
+      <h2 class="display-lg">Enterprise-grade tools.<br>Zero enterprise <span class="text-blue">price.</span></h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">🖨️</div>
+        <h3>Thermal Printer Support</h3>
+        <p>Bluetooth support for standard 58mm and 80mm receipt printers. Wireless, fast, no cables needed.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">📶</div>
+        <h3>Offline-First, Cloud-Always</h3>
+        <p>Works 100% offline during power or internet outages. Automatically syncs to Supabase cloud once you're back online. Zero data loss.</p>
+      </div>
+      <div class="card reveal reveal-delay-3">
+        <div class="card-icon">🔒</div>
+        <h3>Secure Authentication</h3>
+        <p>Supabase-powered secure login. Your password is never stored in plain text. Enterprise-grade auth on a shopkeeper's budget.</p>
+      </div>
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">💾</div>
+        <h3>SQLite Database Backup</h3>
+        <p>Manually back up and restore your full local database anytime from Settings → Backup &amp; Data. Your data, always in your hands.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">📤</div>
+        <h3>Full Data Portability</h3>
+        <p>Export your entire business history at any time. You own your data — KezPos makes it easy to take it with you.</p>
+      </div>
+      <div class="card reveal reveal-delay-3">
+        <div class="card-icon">📱</div>
+        <h3>Multi-Device Sync</h3>
+        <p>Sign in on any Android phone and your full business — products, customers, sales — restores automatically from the cloud.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CTA -->
+  <section style="text-align:center;" class="reveal">
+    <h2 class="display-lg" style="margin-bottom:16px;">
+      Seen enough?<br><span class="text-blue">Let's get you set up.</span>
+    </h2>
+    <p class="lead" style="margin:0 auto 36px;">
+      Get KezPos and have your shop running smarter today. Affordable plans, no hidden fees.
+    </p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="install.html#download" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
+        ↓ &nbsp;Download KezPos APK
+      </a>
+      <a href="install.html" class="btn btn-ghost">Installation guide →</a>
+    </div>
+  </section>
+
+</div>
+
+<footer style="position:relative; z-index:1;">
+  <div class="footer-wrap">
+    <a href="index.html" class="footer-logo">
+      <img src="assets/kezpos.png" alt="KezPos"><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="install.html">Install</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="mailto:kezposapp@gmail.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">
+      © 2025 KezPos · Built for Kenyan businesses · <a href="mailto:kezposapp@gmail.com" style="color:var(--muted);">kezposapp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+<script>
+(function(){
+  const html = document.documentElement;
+  if (localStorage.getItem('kez-theme') === 'dark') {
+    html.classList.add('dark');
+  }
+  function updateBtn() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    const dark = html.classList.contains('dark');
+    btn.textContent = dark ? '☀️' : '🌙';
+    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  document.addEventListener('DOMContentLoaded', function() {
+    updateBtn();
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        localStorage.setItem('kez-theme', html.classList.contains('dark') ? 'dark' : 'light');
+        updateBtn();
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

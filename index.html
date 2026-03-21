@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KezPos — Smart Business Management for Kenyan Retail</title>
+  <meta name="description" content="KezPos replaces the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
+  <link rel="icon" type="image/png" href="assets/kezpos.png">
+  <link rel="apple-touch-icon" href="assets/kezpos.png">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<!-- Animated mesh background -->
+<div class="mesh-bg" aria-hidden="true">
+  <span></span><span></span><span></span>
+</div>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/kezpos.png" alt="KezPos">
+    <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="install.html">Install</a></li>
+    <li><a href="terms.html">Legal</a></li>
+    <li><a href="install.html#download" class="nav-cta">Download APK</a></li>
+  </ul>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+</nav>
+
+<div class="page">
+
+  <!-- ═══════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════ -->
+  <section style="padding-top:160px; padding-bottom:80px;">
+    <div class="grid-2" style="gap:60px; align-items:center;">
+
+      <!-- Left: text -->
+      <div>
+        <div class="eyebrow anim-slide-down d1">Built for Kenyan Retail</div>
+        <h1 class="display-xl anim-fade-up d2" style="margin-bottom:24px;">
+          Take the<br>
+          <span class="text-blue">guesswork</span><br>
+          out of your<br>business.
+        </h1>
+        <p class="lead anim-fade-up d3" style="margin-bottom:36px;">
+          KezPos replaces your dusty paper ledger with a smart mobile business suite — track stock, record sales, manage debtors, and understand your profits. All offline. Always synced.
+        </p>
+        <div style="display:flex; gap:16px; flex-wrap:wrap;" class="anim-fade-up d4">
+          <a href="install.html#download" class="btn btn-primary">
+            ↓ &nbsp;Download APK
+          </a>
+          <a href="features.html" class="btn btn-ghost">See Features →</a>
+        </div>
+        <p style="color:var(--muted); font-size:0.8rem; margin-top:16px;" class="anim-fade-up d5">
+          Affordable · Works offline · Cloud included
+        </p>
+      </div>
+
+      <!-- Right: animated growth graph -->
+      <div class="anim-float-in d3" style="position:relative;">
+        <div class="anim-float" style="animation-delay:0.5s;">
+          <svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg"
+               style="width:100%; max-width:500px; display:block; margin:auto; filter:drop-shadow(0 0 60px rgba(26,110,245,0.15))">
+            <defs>
+              <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#1a6ef5" stop-opacity="0.35"/>
+                <stop offset="100%" stop-color="#1a6ef5" stop-opacity="0"/>
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+
+            <!-- Card background -->
+            <rect x="10" y="10" width="440" height="280" rx="16"
+                  fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
+
+            <!-- Grid lines -->
+            <line x1="40" y1="240" x2="420" y2="240" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="40" y1="195" x2="420" y2="195" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="40" y1="150" x2="420" y2="150" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="40" y1="105" x2="420" y2="105" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            <line x1="40" y1="60"  x2="420" y2="60"  stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+
+            <!-- X axis labels -->
+            <text x="60"  y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Mon</text>
+            <text x="135" y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Tue</text>
+            <text x="210" y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Wed</text>
+            <text x="285" y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Thu</text>
+            <text x="360" y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Fri</text>
+            <text x="415" y="258" fill="rgba(122,139,168,0.7)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Sat</text>
+
+            <!-- Filled area (fades in after line draws) -->
+            <path class="graph-fill"
+                  d="M60,220 C100,210 120,185 135,175 C160,155 185,145 210,130 C240,112 260,95 285,80 C310,65 340,55 360,48 L360,240 L60,240 Z"
+                  fill="url(#fillGrad)"/>
+
+            <!-- Main line -->
+            <path class="graph-line"
+                  d="M60,220 C100,210 120,185 135,175 C160,155 185,145 210,130 C240,112 260,95 285,80 C310,65 340,55 360,48"
+                  fill="none" stroke="#1a6ef5" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round"
+                  filter="url(#glow)"/>
+
+            <!-- Ping circle at peak -->
+            <circle class="graph-ping" cx="360" cy="48" r="4" fill="none" stroke="#1a6ef5" stroke-width="1.5"/>
+            <circle class="graph-dot" cx="360" cy="48" r="4" fill="#1a6ef5"/>
+
+            <!-- Tooltip at peak -->
+            <g style="opacity:0; animation:fade-fill 0.5s ease 3.2s forwards;">
+              <rect x="278" y="22" width="130" height="30" rx="8"
+                    fill="rgba(26,110,245,0.9)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+              <text x="343" y="41" fill="#fff" font-size="11" font-weight="600"
+                    font-family="Syne,sans-serif" text-anchor="middle">+24% profit this week</text>
+            </g>
+
+            <!-- Card title -->
+            <text x="30" y="36" fill="rgba(240,238,234,0.9)" font-size="12" font-weight="600"
+                  font-family="Syne,sans-serif">Weekly Profit</text>
+            <text x="30" y="50" fill="rgba(122,139,168,0.7)" font-size="10"
+                  font-family="DM Sans,sans-serif">KES · This Week</text>
+
+            <!-- Dot indicators on line -->
+            <circle cx="60" cy="220" r="3" fill="#1a6ef5" style="opacity:0;animation:fade-fill 0.3s ease 1s forwards"/>
+            <circle cx="135" cy="175" r="3" fill="#1a6ef5" style="opacity:0;animation:fade-fill 0.3s ease 1.4s forwards"/>
+            <circle cx="210" cy="130" r="3" fill="#1a6ef5" style="opacity:0;animation:fade-fill 0.3s ease 1.8s forwards"/>
+            <circle cx="285" cy="80" r="3" fill="#1a6ef5" style="opacity:0;animation:fade-fill 0.3s ease 2.1s forwards"/>
+          </svg>
+        </div>
+
+        <!-- Floating stat badges -->
+        <div style="
+          position:absolute; bottom:10px; left:-10px;
+          background:var(--bg2); border:1px solid var(--border);
+          border-radius:12px; padding:12px 16px;
+          backdrop-filter:blur(12px);
+          animation:float-in-right 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.2s both, float 6s ease-in-out 2.2s infinite;
+        ">
+          <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Today's Sales</div>
+          <div style="font-family:var(--font-display); font-weight:700; color:var(--white); font-size:1.1rem;">KES 12,450</div>
+        </div>
+        <div style="
+          position:absolute; top:20px; right:-10px;
+          background:var(--bg2); border:1px solid rgba(240,165,0,0.3);
+          border-radius:12px; padding:12px 16px;
+          backdrop-filter:blur(12px);
+          animation:fade-up 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.5s both, float 7s ease-in-out 2.5s infinite;
+        ">
+          <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Stock items tracked</div>
+          <div style="font-family:var(--font-display); font-weight:700; color:var(--amber); font-size:1.1rem;">847 items</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       POWER OF THREE
+  ════════════════════════════════════════════ -->
+  <section>
+    <div style="text-align:center; margin-bottom:60px;" class="reveal">
+      <div class="eyebrow">Why KezPos</div>
+      <h2 class="display-lg">The soul of the app</h2>
+    </div>
+
+    <div class="grid-3">
+      <div class="card reveal reveal-delay-1">
+        <div class="card-icon">🧠</div>
+        <h3>Intelligence, Not Just Records</h3>
+        <p>KezPos doesn't just log your sales — it calculates profit margins and stock health in real-time. Know exactly how much you made, not just how much you sold.</p>
+      </div>
+      <div class="card reveal reveal-delay-2">
+        <div class="card-icon">☁️</div>
+        <h3>Your Data, Everywhere</h3>
+        <p>Lost your phone? Your business isn't lost. Every sale, every customer, every transaction is securely synced to the cloud. Sign in on any device and carry on.</p>
+      </div>
+      <div class="card reveal reveal-delay-3">
+        <div class="card-icon">🇰🇪</div>
+        <h3>Built for Kenya</h3>
+        <p>Offline-first so the signal drop never stops you. 58mm and 80mm Bluetooth receipt printing. Full data export so your business history is always yours.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       VISUAL NARRATIVE — Reports side by side
+  ════════════════════════════════════════════ -->
+  <section>
+    <div class="grid-2" style="gap:80px; align-items:center;">
+
+      <!-- Screenshot left -->
+      <div class="reveal" style="position:relative;">
+        <div style="
+          border-radius:20px; overflow:hidden;
+          border:1px solid var(--border);
+          box-shadow:0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+        ">
+          <!-- SCREENSHOT: Place your Reports / pie chart screen here -->
+          <!-- Suggested file: assets/reports.png -->
+          <!-- This should show the profit/sales analytics screen -->
+          <img src="assets/reports.png" alt="KezPos Reports Screen"
+               style="width:100%; display:block;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div style="
+            display:none; width:100%; height:320px;
+            background:var(--navy3); border-radius:20px;
+            align-items:center; justify-content:center;
+            flex-direction:column; gap:12px; color:var(--muted);
+          ">
+            <div style="font-size:2rem;">📊</div>
+            <div style="font-size:0.85rem;">Add assets/reports.png</div>
+          </div>
+        </div>
+        <!-- Glow behind image -->
+        <div style="
+          position:absolute; inset:-20px; z-index:-1;
+          background:radial-gradient(ellipse at center, rgba(26,110,245,0.15) 0%, transparent 70%);
+        "></div>
+      </div>
+
+      <!-- Text right -->
+      <div class="reveal reveal-delay-2">
+        <div class="eyebrow">Analytics</div>
+        <h2 class="display-lg" style="margin-bottom:20px;">
+          Stop counting<br>coins at midnight.
+        </h2>
+        <p class="lead" style="margin-bottom:32px;">
+          Get daily, weekly, and monthly profit insights with one tap. KezPos tracks your margins automatically so you can make smarter buying decisions — not just record what sold.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
+          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
+            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
+            Real-time profit margin per product
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
+            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
+            Daily, weekly, monthly sales reports
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
+            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
+            Stock health & low-stock alerts
+          </li>
+          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
+            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
+            Exportable database backup anytime
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       BENTO FEATURE GRID
+  ════════════════════════════════════════════ -->
+  <section>
+    <div style="text-align:center; margin-bottom:48px;" class="reveal">
+      <div class="eyebrow">Features</div>
+      <h2 class="display-lg">Everything your shop needs,<br>in your pocket.</h2>
+    </div>
+
+    <div class="bento reveal">
+
+      <!-- Large card: Profit analytics (screenshot) -->
+      <div class="bento-item bento-lg" style="position:relative; min-height:280px;">
+        <!-- SCREENSHOT: Place your dashboard or profit analytics screen here -->
+        <!-- Suggested file: assets/dashboard.png -->
+        <img src="assets/dashboard.png" alt="Daily Profit Analytics"
+             class="bento-img" style="height:100%; object-position:top;"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+        <div style="
+          display:none; width:100%; height:280px;
+          background:var(--navy3); align-items:center;
+          justify-content:center; flex-direction:column;
+          gap:8px; color:var(--muted);
+        ">
+          <div style="font-size:2rem;">📈</div>
+          <div style="font-size:0.85rem;">Add assets/dashboard.png</div>
+        </div>
+        <div style="
+          position:absolute; bottom:0; left:0; right:0;
+          padding:20px 24px;
+          background:linear-gradient(to top, rgba(5,13,26,0.95), transparent);
+        ">
+          <div class="bento-tag">Analytics</div>
+          <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:var(--white);">Daily Profit Analytics</div>
+          <div style="font-size:0.85rem; color:var(--muted);">See your margins, not just your totals.</div>
+        </div>
+      </div>
+
+      <!-- Small card: Bluetooth printing -->
+      <div class="bento-item bento-sm">
+        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
+          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">🖨️</div>
+          <div>
+            <div class="bento-tag">Hardware</div>
+            <h3>Bluetooth 58mm Printing</h3>
+            <p>Print professional receipts wirelessly — no cables, no fuss.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card: Cloud backup -->
+      <div class="bento-item bento-sm">
+        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px;">
+          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">🔒</div>
+          <div>
+            <div class="bento-tag">Security</div>
+            <h3>Instant Database Backups</h3>
+            <p>Your data exported and secured with one tap, anytime.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Small card: WhatsApp -->
+      <div class="bento-item bento-sm">
+        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px;">
+          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">💬</div>
+          <div>
+            <div class="bento-tag" style="color:var(--amber); background:var(--amber-dim);">Kenya-first</div>
+            <h3>Customer Debt Tracking</h3>
+            <p>See who owes you, their balance, and collect payments in two taps.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large card: Offline mode -->
+      <div class="bento-item bento-lg" style="
+        background:linear-gradient(135deg, var(--blue-pale), var(--bg2));
+        padding:36px;
+      ">
+        <div class="bento-content" style="padding:0;">
+          <div class="bento-tag">Core Strength</div>
+          <h3 style="font-size:1.4rem; margin-bottom:12px;">Offline-First.<br>Cloud-Always.</h3>
+          <p style="max-width:400px;">Business doesn't stop when the signal drops. Sell offline instantly — KezPos syncs everything to your secure Supabase cloud the moment you're back online. Zero data loss, guaranteed.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════
+       CTA STRIP
+  ════════════════════════════════════════════ -->
+  <section style="text-align:center;" class="reveal">
+    <div class="eyebrow">Get Started Today</div>
+    <h2 class="display-lg" style="margin-bottom:16px;">
+      Ready to run your shop<br>like a <span class="text-blue">pro</span>?
+    </h2>
+    <p class="lead" style="margin:0 auto 40px;">
+      KezPos is built to be accessible for every Kenyan shopkeeper. A small monthly plan, no hidden fees, no surprises.
+    </p>
+    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="install.html#download" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
+        ↓ &nbsp;Download KezPos APK
+      </a>
+      <a href="install.html" class="btn btn-ghost">Installation guide →</a>
+    </div>
+    <p style="color:var(--muted); font-size:0.8rem; margin-top:20px;">
+      Android · Works offline · Supabase cloud sync included
+    </p>
+  </section>
+
+</div><!-- end .page -->
+
+<!-- Footer -->
+<footer style="position:relative; z-index:1;">
+  <div class="footer-wrap">
+    <a href="index.html" class="footer-logo">
+      <img src="assets/kezpos.png" alt="KezPos"><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span>
+    </a>
+    <ul class="footer-links">
+      <li><a href="features.html">Features</a></li>
+      <li><a href="install.html">Install</a></li>
+      <li><a href="terms.html">Terms</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="mailto:kezposapp@gmail.com">Contact</a></li>
+    </ul>
+    <div class="footer-copy">
+      © 2025 KezPos · Built for Kenyan businesses · <a href="mailto:kezposapp@gmail.com" style="color:var(--muted);">kezposapp@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+<script>
+(function(){
+  const html = document.documentElement;
+  // Light is default. Only go dark if user explicitly chose dark before.
+  if (localStorage.getItem('kez-theme') === 'dark') {
+    html.classList.add('dark');
+  }
+  function updateBtn() {
+    const btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    const dark = html.classList.contains('dark');
+    btn.textContent = dark ? '☀️' : '🌙';
+    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+  }
+  // Run on DOMContentLoaded so button exists
+  document.addEventListener('DOMContentLoaded', function() {
+    updateBtn();
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+      btn.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        localStorage.setItem('kez-theme', html.classList.contains('dark') ? 'dark' : 'light');
+        updateBtn();
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
