@@ -24,11 +24,24 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="features.html">Features</a></li>
     <li><a href="install.html">Install</a></li>
-    <li><a href="terms.html" class="active">Terms</a></li>
-    <li><a href="install.html#download" class="nav-cta">Download APK</a></li>
+    <li><a href="terms.html" class="active">Legal</a></li>
   </ul>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+  <div class="nav-right">
+    <a href="install.html#download" class="nav-cta">Download APK</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="features.html">Features</a>
+  <a href="install.html">Install</a>
+  <a href="terms.html" class="active">Legal</a>
+  <a href="install.html#download" class="nav-cta">↓ Download APK</a>
+</div>
 
 <div class="page">
   <div class="legal-wrap">
@@ -64,7 +77,7 @@
       <div class="eyebrow">Legal</div>
       <h1 style="
         font-family:var(--font-display); font-size:2.2rem;
-        font-weight:800; color:var(--white); margin-bottom:12px;
+        font-weight:800; color:var(--text); margin-bottom:12px;
         letter-spacing:-0.03em; line-height:1.1;
       ">Terms of Service</h1>
 
@@ -76,13 +89,11 @@
 
       <p>By downloading, installing, or using KezPos, you agree to be bound by these Terms. Please read them carefully before using the app.</p>
 
-      <!-- 1 -->
       <div class="section-anchor" id="acceptance"></div>
       <h2>1. Acceptance of Terms</h2>
       <p>By downloading, installing, or using KezPos ("the App"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use the App.</p>
       <p>These Terms apply to all users of KezPos, including wholesalers, retailers, and any business owners using the App to manage their operations.</p>
 
-      <!-- 2 -->
       <div class="section-anchor" id="description"></div>
       <h2>2. Description of Service</h2>
       <p>KezPos is a mobile Business Management Tool designed for wholesalers and retailers. It enables users to:</p>
@@ -96,7 +107,6 @@
       </ul>
       <p>KezPos acts as a digital version of a traditional paper ledger and receipt book.</p>
 
-      <!-- 3 -->
       <div class="section-anchor" id="accounts"></div>
       <h2>3. User Accounts</h2>
       <p>To access KezPos, you must create an account using a valid email address. You are responsible for:</p>
@@ -109,7 +119,6 @@
         ⚠️ You must notify us immediately at <a href="mailto:kezposapp@gmail.com">kezposapp@gmail.com</a> if you suspect any unauthorised use of your account.
       </div>
 
-      <!-- 4 -->
       <div class="section-anchor" id="acceptable-use"></div>
       <h2>4. Acceptable Use</h2>
       <p>You agree to use KezPos only for lawful business purposes. You must not:</p>
@@ -120,13 +129,11 @@
         <li>Attempt to disrupt or interfere with the App's servers or security</li>
       </ul>
 
-      <!-- 5 -->
       <div class="section-anchor" id="data-ownership"></div>
       <h2>5. Data Ownership</h2>
       <p>You own all business data you enter into KezPos — including your inventory, customer records, and sales transactions. KezPos does not claim ownership over your business data.</p>
       <p>By using the App, you grant KezPos a limited licence to store and sync your data solely for the purpose of providing the service to you.</p>
 
-      <!-- 6 -->
       <div class="section-anchor" id="disclaimers"></div>
       <h2>6. Disclaimers &amp; Limitation of Liability</h2>
       <p>KezPos is provided "as is" without warranties of any kind. We do not guarantee that the App will be error-free or uninterrupted.</p>
@@ -135,18 +142,15 @@
         📦 We strongly recommend regularly exporting your data using the built-in <strong>Export Database</strong> feature (Settings → Backup &amp; Data) as a backup precaution.
       </div>
 
-      <!-- 7 -->
       <div class="section-anchor" id="modifications"></div>
       <h2>7. Modifications to the App &amp; Terms</h2>
       <p>KezPos reserves the right to modify, update, or discontinue any feature of the App at any time. We will notify users of significant changes through the App or via email.</p>
       <p>Your continued use of KezPos after changes are made constitutes acceptance of the updated Terms.</p>
 
-      <!-- 8 -->
       <div class="section-anchor" id="governing-law"></div>
       <h2>8. Governing Law</h2>
       <p>These Terms are governed by the laws of the Republic of Kenya. Any disputes arising from these Terms shall be subject to the jurisdiction of the courts of Kenya.</p>
 
-      <!-- 9 -->
       <div class="section-anchor" id="contact"></div>
       <h2>9. Contact Us</h2>
       <p>If you have any questions about these Terms, please contact us:</p>
@@ -166,7 +170,8 @@
 <footer style="position:relative; z-index:1;">
   <div class="footer-wrap">
     <a href="index.html" class="footer-logo">
-      <img src="assets/kezpos.png" alt="KezPos"><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span>
+      <img src="assets/kezpos.png" alt="KezPos">
+      <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
     </a>
     <ul class="footer-links">
       <li><a href="features.html">Features</a></li>
@@ -182,49 +187,19 @@
 </footer>
 
 <script>
-  // Highlight active sidebar link on scroll
   const sections = document.querySelectorAll('.section-anchor');
   const navLinks = document.querySelectorAll('.legal-sidebar a');
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         navLinks.forEach(a => a.classList.remove('active'));
-        const id = e.target.id;
-        const link = document.querySelector('.legal-sidebar a[href="#'+id+'"]');
+        const link = document.querySelector('.legal-sidebar a[href="#' + e.target.id + '"]');
         if (link) link.classList.add('active');
       }
     });
   }, { rootMargin: '-20% 0px -70% 0px' });
   sections.forEach(s => observer.observe(s));
 </script>
-
-<script>
-(function(){
-  const html = document.documentElement;
-  // Light is default. Only go dark if user explicitly chose dark before.
-  if (localStorage.getItem('kez-theme') === 'dark') {
-    html.classList.add('dark');
-  }
-  function updateBtn() {
-    const btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    const dark = html.classList.contains('dark');
-    btn.textContent = dark ? '☀️' : '🌙';
-    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-  }
-  // Run on DOMContentLoaded so button exists
-  document.addEventListener('DOMContentLoaded', function() {
-    updateBtn();
-    const btn = document.getElementById('themeToggle');
-    if (btn) {
-      btn.addEventListener('click', function() {
-        html.classList.toggle('dark');
-        localStorage.setItem('kez-theme', html.classList.contains('dark') ? 'dark' : 'light');
-        updateBtn();
-      });
-    }
-  });
-})();
-</script>
+<script src="assets/theme.js"></script>
 </body>
 </html>
