@@ -25,10 +25,23 @@
     <li><a href="features.html">Features</a></li>
     <li><a href="install.html" class="active">Install</a></li>
     <li><a href="terms.html">Legal</a></li>
-    <li><a href="#download" class="nav-cta">Download APK</a></li>
   </ul>
-  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+  <div class="nav-right">
+    <a href="#download" class="nav-cta">Download APK</a>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
+
+<div class="nav-mobile-drawer" id="navDrawer">
+  <a href="index.html">Home</a>
+  <a href="features.html">Features</a>
+  <a href="install.html" class="active">Install</a>
+  <a href="terms.html">Legal</a>
+  <a href="#download" class="nav-cta">↓ Download APK</a>
+</div>
 
 <div class="page">
 
@@ -47,11 +60,8 @@
           KezPos is a free Android app distributed as an APK. Follow the simple steps below and you'll be running your shop smarter by today.
         </p>
 
-        <!-- Download button -->
         <div class="anim-fade-up d4">
-          <!-- LINK: Replace href below with your GitHub APK release URL -->
-          <!-- Example: https://github.com/kezpos/KezPos-App/releases/latest/download/KezPos.apk -->
-          <a href="#" class="btn btn-primary" style="font-size:1.05rem; padding:16px 36px; margin-bottom:16px; display:inline-flex;">
+          <a href="https://github.com/KezPos/KezPos/releases/download/v1.0.0/KezPos-v1.0.0.apk" class="btn btn-primary" style="font-size:1.05rem; padding:16px 36px; margin-bottom:16px; display:inline-flex;">
             ↓ &nbsp;Download KezPos APK
           </a>
           <div style="color:var(--muted); font-size:0.82rem; margin-top:12px; display:flex; flex-direction:column; gap:4px;">
@@ -67,10 +77,8 @@
           <div style="
             border-radius:40px; overflow:hidden;
             border:2px solid var(--border);
-            box-shadow:0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+            box-shadow:var(--shadow-lg);
           ">
-            <!-- SCREENSHOT: Place your home/main screen of the app here -->
-            <!-- Suggested file: assets/app-home.png -->
             <img src="assets/app-home.png" alt="KezPos App"
                  style="width:100%; display:block;"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
@@ -84,10 +92,9 @@
               <div style="font-size:0.8rem; text-align:center; padding:0 20px;">Add assets/app-home.png<br>(app main screen)</div>
             </div>
           </div>
-          <!-- Glow -->
           <div style="
             position:absolute; inset:-30px; z-index:-1;
-            background:radial-gradient(ellipse at center, rgba(26,110,245,0.2) 0%, transparent 70%);
+            background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);
           "></div>
         </div>
       </div>
@@ -108,7 +115,6 @@
 
     <div class="grid-2" style="gap:80px; align-items:start;">
 
-      <!-- Steps -->
       <div class="step-list reveal">
 
         <div class="step-item">
@@ -116,7 +122,7 @@
           <div class="step-num">1</div>
           <div class="step-body">
             <h3>Download the APK</h3>
-            <p>Tap the "Download KezPos APK" button above. Your browser will download the <strong style="color:var(--white);">.apk</strong> file — check your Downloads folder once it's done.</p>
+            <p>Tap the "Download KezPos APK" button above. Your browser will download the <strong>.apk</strong> file — check your Downloads folder once it's done.</p>
           </div>
         </div>
 
@@ -125,7 +131,7 @@
           <div class="step-num">2</div>
           <div class="step-body">
             <h3>Allow installation from unknown sources</h3>
-            <p>Since KezPos isn't on the Play Store, Android needs your permission to install it. When prompted, tap <strong style="color:var(--white);">"Allow from this source"</strong> or go to:</p>
+            <p>Since KezPos isn't on the Play Store, Android needs your permission to install it. When prompted, tap <strong>"Allow from this source"</strong> or go to:</p>
             <div class="brand-box" style="margin-top:14px;">
               <h4>General path (most phones)</h4>
               <p>Settings → Apps → Special app access → Install unknown apps → Your browser → Allow</p>
@@ -139,7 +145,7 @@
           <div class="step-num">3</div>
           <div class="step-body">
             <h3>Open and install the APK file</h3>
-            <p>Open your Downloads folder, tap <strong style="color:var(--white);">KezPos.apk</strong>, then tap <strong style="color:var(--white);">"Install"</strong> on the prompt that appears. Takes about 10 seconds.</p>
+            <p>Open your Downloads folder, tap <strong>KezPos.apk</strong>, then tap <strong>"Install"</strong> on the prompt that appears. Takes about 10 seconds.</p>
           </div>
         </div>
 
@@ -153,11 +159,11 @@
         </div>
 
         <div class="step-item">
-          <div class="step-num" style="background:rgba(26,110,245,0.15); border-color:rgba(26,110,245,0.4); color:var(--blue-light);">✓</div>
+          <div class="step-num" style="background:var(--blue-pale); border-color:rgba(0,51,255,0.4); color:var(--blue-light);">✓</div>
           <div class="step-body">
             <h3>You're all set!</h3>
             <p>Add your first product, make your first sale, and watch your business data come alive. If you ever switch phones, sign in with the same email and everything restores automatically.</p>
-            <div class="tip">✨ Pro tip: Export your database from Settings → Backup & Data as an extra backup.</div>
+            <div class="tip">✨ Pro tip: Export your database from Settings → Backup &amp; Data as an extra backup.</div>
           </div>
         </div>
 
@@ -165,7 +171,7 @@
 
       <!-- Brand-specific tips -->
       <div class="reveal reveal-delay-2">
-        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--white); margin-bottom:20px; letter-spacing:-0.02em;">
+        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:20px; letter-spacing:-0.02em;">
           Brand-specific settings
         </h3>
         <p style="color:var(--muted); font-size:0.9rem; margin-bottom:20px;">
@@ -185,7 +191,7 @@
           <div class="brand-box">
             <h4>📱 Tecno / Infinix / itel (HiOS / XOS)</h4>
             <ul>
-              <li>Settings → Privacy & Safety → Install unknown apps</li>
+              <li>Settings → Privacy &amp; Safety → Install unknown apps</li>
               <li>→ Select your browser or Files app → Enable</li>
             </ul>
           </div>
@@ -201,7 +207,7 @@
           <div class="brand-box">
             <h4>📱 Nokia / Stock Android</h4>
             <ul>
-              <li>Settings → Apps & notifications → Advanced</li>
+              <li>Settings → Apps &amp; notifications → Advanced</li>
               <li>→ Special app access → Install unknown apps → Allow</li>
             </ul>
           </div>
@@ -273,7 +279,8 @@
 <footer style="position:relative; z-index:1;">
   <div class="footer-wrap">
     <a href="index.html" class="footer-logo">
-      <img src="assets/kezpos.png" alt="KezPos"><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span>
+      <img src="assets/kezpos.png" alt="KezPos">
+      <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
     </a>
     <ul class="footer-links">
       <li><a href="features.html">Features</a></li>
@@ -295,34 +302,6 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 </script>
-
-<script>
-(function(){
-  const html = document.documentElement;
-  // Light is default. Only go dark if user explicitly chose dark before.
-  if (localStorage.getItem('kez-theme') === 'dark') {
-    html.classList.add('dark');
-  }
-  function updateBtn() {
-    const btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    const dark = html.classList.contains('dark');
-    btn.textContent = dark ? '☀️' : '🌙';
-    btn.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
-  }
-  // Run on DOMContentLoaded so button exists
-  document.addEventListener('DOMContentLoaded', function() {
-    updateBtn();
-    const btn = document.getElementById('themeToggle');
-    if (btn) {
-      btn.addEventListener('click', function() {
-        html.classList.toggle('dark');
-        localStorage.setItem('kez-theme', html.classList.contains('dark') ? 'dark' : 'light');
-        updateBtn();
-      });
-    }
-  });
-})();
-</script>
+<script src="assets/theme.js"></script>
 </body>
 </html>
