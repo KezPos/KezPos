@@ -1,12 +1,10 @@
 /**
  * KezPos — Theme Manager
- * 
- * Logic:
+ *
  * - Default: light mode (matches the app)
- * - If device OS is dark AND user hasn't manually chosen: follow OS (media query in CSS handles visuals)
- * - If user manually toggles: save choice to localStorage, apply html.light or html.dark class
- *   (these override the media query)
- * - On next page load: restore saved choice if any
+ * - OS dark preference: auto-applied via CSS media query
+ * - Manual toggle: saves to localStorage, applies html.light or html.dark class
+ * - Two toggle buttons: #themeToggle (desktop nav) + #drawerThemeToggle (mobile drawer)
  */
 (function () {
   const html = document.documentElement;
@@ -16,33 +14,56 @@
     return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
   }
 
+  function isEffectiveDark() {
+    if (html.classList.contains('dark'))  return true;
+    if (html.classList.contains('light')) return false;
+    return getSystemPrefersDark();
+  }
+
   function applyTheme(theme) {
-    // theme: 'dark' | 'light' | null (null = follow OS)
     html.classList.remove('dark', 'light');
-    if (theme === 'dark') html.classList.add('dark');
+    if (theme === 'dark')  html.classList.add('dark');
     if (theme === 'light') html.classList.add('light');
   }
 
-  function updateToggleBtn() {
-    const btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    // Effective dark = explicit dark class, OR (no explicit light class AND OS is dark)
-    const explicitDark  = html.classList.contains('dark');
-    const explicitLight = html.classList.contains('light');
-    const effectiveDark = explicitDark || (!explicitLight && getSystemPrefersDark());
-    btn.textContent = effectiveDark ? '☀️' : '🌙';
-    btn.title = effectiveDark ? 'Switch to light mode' : 'Switch to dark mode';
+  function updateButtons() {
+    const dark  = isEffectiveDark();
+    const icon  = dark ? '☀️' : '🌙';
+    const label = dark ? 'Switch to light' : 'Switch to dark';
+
+    const navBtn = document.getElementById('themeToggle');
+    if (navBtn) {
+      navBtn.textContent = icon;
+      navBtn.title = label;
+    }
+
+    const drawerBtn = document.getElementById('drawerThemeToggle');
+    if (drawerBtn) {
+      drawerBtn.textContent = icon;
+      drawerBtn.setAttribute('data-label', label);
+      drawerBtn.title = label;
+    }
   }
 
-  // On load: restore saved preference
-  const saved = localStorage.getItem(STORAGE_KEY); // 'dark' | 'light' | null
+  function handleToggle() {
+    const theme = isEffectiveDark() ? 'light' : 'dark';
+    applyTheme(theme);
+    localStorage.setItem(STORAGE_KEY, theme);
+    updateButtons();
+  }
+
+  // Restore saved preference on load
+  const saved = localStorage.getItem(STORAGE_KEY);
   applyTheme(saved);
 
-  // Wire up toggle button once DOM is ready
   document.addEventListener('DOMContentLoaded', function () {
-    updateToggleBtn();
+    updateButtons();
 
-    // Also wire hamburger menu if present
+    ['themeToggle', 'drawerThemeToggle'].forEach(function (id) {
+      const btn = document.getElementById(id);
+      if (btn) btn.addEventListener('click', handleToggle);
+    });
+
     const hamburger = document.getElementById('navHamburger');
     const drawer    = document.getElementById('navDrawer');
     if (hamburger && drawer) {
@@ -51,7 +72,6 @@
         hamburger.classList.toggle('open', open);
         hamburger.setAttribute('aria-expanded', open);
       });
-      // Close drawer on link click
       drawer.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
           drawer.classList.remove('open');
@@ -61,30 +81,9 @@
       });
     }
 
-    const btn = document.getElementById('themeToggle');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      const explicitDark  = html.classList.contains('dark');
-      const explicitLight = html.classList.contains('light');
-      const effectiveDark = explicitDark || (!explicitLight && getSystemPrefersDark());
-
-      if (effectiveDark) {
-        // Switch to light
-        applyTheme('light');
-        localStorage.setItem(STORAGE_KEY, 'light');
-      } else {
-        // Switch to dark
-        applyTheme('dark');
-        localStorage.setItem(STORAGE_KEY, 'dark');
-      }
-      updateToggleBtn();
-    });
-
-    // Also listen for OS theme changes at runtime
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
-        const saved = localStorage.getItem(STORAGE_KEY);
-        if (!saved) updateToggleBtn(); // only update icon if user hasn't locked a preference
+        if (!localStorage.getItem(STORAGE_KEY)) updateButtons();
       });
     }
   });
