@@ -1,10 +1,5 @@
 /**
  * KezPos — Theme Manager
- *
- * - Default: light mode (matches the app)
- * - OS dark preference: auto-applied via CSS media query
- * - Manual toggle: saves to localStorage, applies html.light or html.dark class
- * - Two toggle buttons: #themeToggle (desktop nav) + #drawerThemeToggle (mobile drawer)
  */
 (function () {
   const html = document.documentElement;
@@ -45,42 +40,51 @@
     }
   }
 
-  function handleToggle() {
+  function handleToggle(e) {
+    // Prevent drawer from closing when theme toggle inside drawer is clicked
+    e.stopPropagation();
     const theme = isEffectiveDark() ? 'light' : 'dark';
     applyTheme(theme);
     localStorage.setItem(STORAGE_KEY, theme);
     updateButtons();
   }
 
-  // Restore saved preference on load
+  // Apply saved theme immediately (before DOM ready) to avoid flash
   const saved = localStorage.getItem(STORAGE_KEY);
   applyTheme(saved);
 
   document.addEventListener('DOMContentLoaded', function () {
+    // Update button icons now that DOM exists
     updateButtons();
 
-    ['themeToggle', 'drawerThemeToggle'].forEach(function (id) {
-      const btn = document.getElementById(id);
-      if (btn) btn.addEventListener('click', handleToggle);
-    });
+    // Wire theme toggles
+    var navBtn = document.getElementById('themeToggle');
+    if (navBtn) navBtn.addEventListener('click', handleToggle);
 
-    const hamburger = document.getElementById('navHamburger');
-    const drawer    = document.getElementById('navDrawer');
+    var drawerBtn = document.getElementById('drawerThemeToggle');
+    if (drawerBtn) drawerBtn.addEventListener('click', handleToggle);
+
+    // Hamburger menu
+    var hamburger = document.getElementById('navHamburger');
+    var drawer    = document.getElementById('navDrawer');
     if (hamburger && drawer) {
       hamburger.addEventListener('click', function () {
-        const open = drawer.classList.toggle('open');
+        var open = drawer.classList.toggle('open');
         hamburger.classList.toggle('open', open);
-        hamburger.setAttribute('aria-expanded', open);
+        hamburger.setAttribute('aria-expanded', String(open));
       });
+
+      // Close drawer on link click (but NOT on the theme toggle button)
       drawer.querySelectorAll('a').forEach(function (a) {
         a.addEventListener('click', function () {
           drawer.classList.remove('open');
           hamburger.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', false);
+          hamburger.setAttribute('aria-expanded', 'false');
         });
       });
     }
 
+    // React to OS theme change at runtime
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
         if (!localStorage.getItem(STORAGE_KEY)) updateButtons();
