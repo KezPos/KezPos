@@ -208,4 +208,26 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scr
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.05 });
+  reveals.forEach(el => revealObserver.observe(el));
+
+  const sections = document.querySelectorAll('.section-anchor');
+  const sideLinks = document.querySelectorAll('.legal-sidebar a');
+  const sectionObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        sideLinks.forEach(a => a.classList.remove('active'));
+        const link = document.querySelector('.legal-sidebar a[href="#' + e.target.id + '"]');
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+<script src="assets/theme.js"></script>
+</body>
+</html>
