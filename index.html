@@ -1,3 +1,6 @@
+<!-- reports.pngHome + FeaturesReports / analytics / charts screendashboard.pngHome (bento grid)Main dashboard or sales overviewcheckout.pngFeaturesCheckout / cart / sales screeninventory.pngFeaturesStock / inventory list screenpeople.pngFeaturesPeople / customers / debt screenapp-home.pngInstall pageApp's main home screen -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +10,23 @@
   <meta name="description" content="KezPos replaces the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <!-- Apply saved theme instantly before paint — prevents flash -->
+  <script>
+  (function() {
+    document.documentElement.style.visibility = 'hidden';
+    var t = localStorage.getItem('kez-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var link = document.getElementById('themeStylesheet');
+    link.href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
+    link.onload = function() {
+      document.documentElement.style.visibility = '';
+    };
+    setTimeout(function() {
+      document.documentElement.style.visibility = '';
+    }, 300);
+  })();
+</script>
 </head>
 <body>
 
@@ -29,8 +48,14 @@
     <li><a href="terms.html">Legal</a></li>
   </ul>
   <div class="nav-right">
-    <a href="features.html" class="nav-cta">Learn More</a>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+    <a href="install.html#download" class="nav-cta">↓ Download APK</a>
+    <div class="theme-switcher">
+      <button class="theme-switcher-btn" id="themeSwitcherBtn" aria-haspopup="true" aria-expanded="false">Light ▾</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <button class="theme-option" data-theme="light"><span class="dot"></span> Light</button>
+        <button class="theme-option" data-theme="dark"><span class="dot"></span> Dark</button>
+      </div>
+    </div>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -44,7 +69,6 @@
   <a href="install.html">Install</a>
   <a href="terms.html">Legal</a>
   <a href="install.html#download" class="nav-cta">↓ Download APK</a>
-  <button class="theme-toggle drawer-theme-toggle" id="drawerThemeToggle" aria-label="Toggle theme">🌙</button>
 </div>
 
 <div class="page">
@@ -401,18 +425,33 @@
       <li><a href="mailto:kezposapp@gmail.com">Contact</a></li>
     </ul>
     <div class="footer-copy">
-      © 2025 KezPos · Built for Kenyan businesses · <a href="mailto:kezposapp@gmail.com" style="color:var(--muted);">kezposapp@gmail.com</a>
+      © 2025 KezPos · Built for Kenyan businesses ·
+      <a href="mailto:kezposapp@gmail.com" style="color:var(--muted);">kezposapp@gmail.com</a>
     </div>
   </div>
 </footer>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.05 });
-  reveals.forEach(el => revealObserver.observe(el));
-</script>
+<!-- Theme switcher + hamburger + scroll reveal -->
 <script src="assets/theme.js"></script>
+<script>
+  /* Scroll reveal — only needed on pages with .reveal elements */
+  document.addEventListener('DOMContentLoaded', function () {
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      reveals.forEach(function (el) { observer.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
+    }
+  });
+</script>
+
 </body>
 </html>
