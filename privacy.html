@@ -7,7 +7,23 @@
   <meta name="description" content="KezPos Privacy Policy — what data we collect, how we use it, your rights under the Kenya Data Protection Act 2019.">
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
-  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <!-- Apply saved theme instantly before paint — prevents flash -->
+<script>
+  (function() {
+    document.documentElement.style.visibility = 'hidden';
+    var t = localStorage.getItem('kez-theme') ||
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var link = document.getElementById('themeStylesheet');
+    link.href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
+    link.onload = function() {
+      document.documentElement.style.visibility = '';
+    };
+    setTimeout(function() {
+      document.documentElement.style.visibility = '';
+    }, 300);
+  })();
+</script>
 </head>
 <body>
 
@@ -28,7 +44,13 @@
   </ul>
   <div class="nav-right">
     <a href="features.html" class="nav-cta">Learn More</a>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle light / dark">🌙</button>
+    <div class="theme-switcher">
+      <button class="theme-switcher-btn" id="themeSwitcherBtn" aria-haspopup="true" aria-expanded="false">Light ▾</button>
+      <div class="theme-dropdown" id="themeDropdown">
+        <button class="theme-option" data-theme="light"><span class="dot"></span> Light</button>
+        <button class="theme-option" data-theme="dark"><span class="dot"></span> Dark</button>
+      </div>
+    </div>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -41,7 +63,6 @@
   <a href="install.html">Install</a>
   <a href="terms.html" class="active">Legal</a>
   <a href="install.html#download" class="nav-cta">↓ Download APK</a>
-  <button class="theme-toggle drawer-theme-toggle" id="drawerThemeToggle" aria-label="Toggle theme">🌙</button>
 </div>
 
 <div class="page">
@@ -142,7 +163,7 @@
         <li>Go to <strong>Settings → Backup &amp; Data → Delete All Data</strong></li>
         <li>This permanently deletes all your data locally and from our cloud servers</li>
       </ul>
-    <p>You may also request account deletion by contacting us at <a href="mailto:kezposapp@gmail.com">kezposapp@gmail.com</a>. We will process deletion requests within <strong>30 days</strong>.</p>
+      <p>You may also request account deletion by contacting us at <a href="mailto:kezposapp@gmail.com">kezposapp@gmail.com</a>. We will process deletion requests within <strong>30 days</strong>.</p>
 
       <div class="section-anchor" id="your-rights"></div>
       <h2>6. Your Rights</h2>
@@ -177,7 +198,7 @@
       <p>For any privacy-related questions, data requests, or concerns, please contact:</p>
       <div class="legal-callout">
         <strong>KezPos Data Controller</strong><br>
-      <a href="mailto:kezposapp@gmail.com">kezposapp@gmail.com</a>
+        📧 <a href="mailto:kezposapp@gmail.com">kezposapp@gmail.com</a>
       </div>
 
       <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); display:flex; gap:16px; flex-wrap:wrap;">
@@ -208,26 +229,36 @@
   </div>
 </footer>
 
-<script>
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.05 });
-  reveals.forEach(el => revealObserver.observe(el));
-
-  const sections = document.querySelectorAll('.section-anchor');
-  const sideLinks = document.querySelectorAll('.legal-sidebar a');
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        sideLinks.forEach(a => a.classList.remove('active'));
-        const link = document.querySelector('.legal-sidebar a[href="#' + e.target.id + '"]');
-        if (link) link.classList.add('active');
-      }
-    });
-  }, { rootMargin: '-20% 0px -70% 0px' });
-  sections.forEach(s => sectionObserver.observe(s));
-</script>
+<!-- Theme switcher + hamburger menu logic -->
 <script src="assets/theme.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var links = document.querySelectorAll('.legal-sidebar a');
+    var anchors = document.querySelectorAll('.section-anchor');
+
+    function onScroll() {
+      var scrollY = window.scrollY + 100; // offset for fixed nav
+      var current = '';
+
+      anchors.forEach(function (anchor) {
+        if (anchor.offsetTop <= scrollY) {
+          current = anchor.id;
+        }
+      });
+
+      links.forEach(function (link) {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === '#' + current) {
+          link.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // run once on load
+  });
+</script>
+
 </body>
 </html>
