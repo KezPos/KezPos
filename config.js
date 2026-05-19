@@ -10,13 +10,13 @@
     apk: {
       label: 'Android APK',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.2/KezPos-v1.0.2.apk',
-      size: '76.4 MB',
+      size: '72.8 MB',
       badge: 'Android',
     },
     windows: {
       label: 'Windows App',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.2/KezPos-v1.0.2-setup.exe',
-      size: '33.4 MB',
+      size: '33.7 MB',
       badge: 'Windows',
     },
   },
