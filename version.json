@@ -1,10 +1,10 @@
 {
-  "versionCode": 3,
-  "versionName": "1.0.2",
+  "versionCode": 4,
+  "versionName": "1.0.3",
   "releaseDate": "2026-05-18",
   "whatsNew": "Initial release of KezPos",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.2/KezPos-v1.0.2.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.2/KezPos-v1.0.2-setup.exe",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.3/KezPos-v1.0.3.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.3/KezPos-v1.0.3-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false
