@@ -1,10 +1,10 @@
 {
-  "versionCode": 5,
-  "versionName": "1.0.4",
+  "versionCode": 6,
+  "versionName": "1.0.5",
   "releaseDate": "2026-05-20",
-  "whatsNew": "Update: Fixed update for windows",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.4/KezPos-v1.0.4.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.4/KezPos-v1.0.4-setup.exe",
+  "whatsNew": "-Fixed bugs and improved UI",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.5/KezPos-v1.0.5.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.5/KezPos-v1.0.5-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false
