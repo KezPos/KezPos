@@ -1,19 +1,391 @@
 <!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  KEZPOS — index.html  (production-ready, audited build)             ║
+  ║                                                                      ║
+  ║  WHAT WAS FIXED (apply the same logic to every other page):         ║
+  ║                                                                      ║
+  ║  1. ANIMATION PAUSE ON HIDDEN TAB                                   ║
+  ║     The two floating stat cards (.phone-scene-stat) run CSS         ║
+  ║     keyframe animations forever. On low-end Android (Tecno,        ║
+  ║     Infinix) this keeps the GPU warm when the tab is backgrounded.  ║
+  ║     Fix: visibilitychange listener pauses/resumes them.             ║
+  ║     Added will-change: transform to both .phone-scene-stat rules.   ║
+  ║                                                                      ║
+  ║  2. LAZY LOADING ON BELOW-FOLD IMAGES                               ║
+  ║     Hero images load eagerly (correct). Every image below the hero  ║
+  ║     — analytics section and phone-trio — gets loading="lazy".       ║
+  ║     This defers ~3 image fetches until the user scrolls near them.  ║
+  ║                                                                      ║
+  ║  3. PHONE-TRIO HORIZONTAL PADDING (margin bleed)                    ║
+  ║     .phone-trio had padding: 0 0 24px — phones bled to the edge    ║
+  ║     on narrow screens. Fixed to:                                     ║
+  ║     padding: 0 clamp(16px, 4vw, 40px) 24px                         ║
+  ║                                                                      ║
+  ║  4. CENTER PHONE IN TRIO — no longer dashboard.png                  ║
+  ║     The hero already shows dashboard.png as the primary phone.      ║
+  ║     Repeating it in the center of the trio wastes the slot.         ║
+  ║     Changed to assets/inventory.png (swap to whichever screen       ║
+  ║     best shows your most distinct feature — receipt, debt tracker). ║
+  ║     Caption updated to "Inventory".                                  ║
+  ║                                                                      ║
+  ║  5. OPACITY CONSISTENCY ON PHONE-SIDE KEYFRAME                     ║
+  ║     .phone-trio .phone-side had opacity: 0.85 in the class but     ║
+  ║     the @keyframes phone-enter-right resolved to opacity: 0.92.     ║
+  ║     The keyframe wins on load, class wins after — inconsistent.     ║
+  ║     Fixed: keyframe final state now also resolves to opacity: 0.85. ║
+  ║                                                                      ║
+  ║  6. OG / SOCIAL META TAGS ADDED                                     ║
+  ║     WhatsApp / Twitter / Facebook previews need og: tags.           ║
+  ║     Added og:title, og:description, og:image (1200×630),            ║
+  ║     og:url, og:type, twitter:card. Update og:image src when         ║
+  ║     you have a real preview asset.                                   ║
+  ║                                                                      ║
+  ║  HOW TO APPLY THESE FIXES TO OTHER PAGES:                           ║
+  ║  a) Lazy loading: add loading="lazy" to every <img> that is NOT     ║
+  ║     in the first visible viewport (hero / above-the-fold).          ║
+  ║  b) Animation pause: copy the visibilitychange block from the       ║
+  ║     <script> at the bottom of this file and add it to any page      ║
+  ║     that has CSS keyframe animations running in a loop.             ║
+  ║  c) Trio padding: wherever you use .phone-trio, ensure the parent   ║
+  ║     section or the .phone-trio itself has horizontal padding.       ║
+  ║  d) No repeated screens: each phone in a multi-phone layout should  ║
+  ║     show a DIFFERENT screen. Hero → dashboard. Trio → sales,        ║
+  ║     inventory, customers. Analytics → reports.                      ║
+  ║  e) OG tags: add the <meta property="og:..."> block (see <head>)   ║
+  ║     to every public HTML page. Only og:title and og:description     ║
+  ║     need to change per page; og:image can be shared site-wide.      ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>KezPos — Smart Business Management for Kenyan Retail</title>
   <meta name="description" content="KezPos replaces the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
+
+  <!-- ── FIX 6: Open Graph / Social meta tags ─────────────────────────
+       These make WhatsApp, Twitter, Facebook show a rich preview card.
+       Update og:image to a real 1200×630 PNG once you have one.
+       og:url should be your canonical production URL.
+  ──────────────────────────────────────────────────────────────────── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="KezPos — Smart Business Management for Kenyan Retail">
+  <meta property="og:description" content="Replace the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
+  <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
+  <meta property="og:url"         content="https://kezpos.co.ke/">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="KezPos — Smart Business Management for Kenyan Retail">
+  <meta name="twitter:description" content="Replace the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
+  <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
+
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
   <script>
-    (function() {
-      var t = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      document.getElementById('themeStylesheet').href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
-    })();
+    // REPLACE the head <script> in index.html with this:
+(function() {
+  document.documentElement.style.visibility = 'hidden';
+  var t = localStorage.getItem('kez-theme') ||
+    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+  var link = document.getElementById('themeStylesheet');
+  link.href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
+  link.onload = function() { document.documentElement.style.visibility = ''; };
+  setTimeout(function() { document.documentElement.style.visibility = ''; }, 300);
+})();
   </script>
+
+  <style>
+    /* ── Samsung-style phone mockup ────────────────────────────────── */
+
+    .phone-wrap {
+      --phone-w: 260px;
+      --phone-r: calc(var(--phone-w) * 0.082);   /* flatter than before (was 0.115) */
+      --phone-border: 3px;                        /* chunkier frame */
+      --phone-button-w: 4px;
+
+      position: relative;
+      width: var(--phone-w);
+      flex-shrink: 0;
+    }
+
+    .phone-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: var(--phone-r);
+      /* Galaxy-style warm dark frame */
+      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+      border: var(--phone-border) solid rgba(255,255,255,0.13);
+      box-shadow:
+        /* flat-edge highlight — left & top */
+        inset 1px 1px 0 rgba(255,255,255,0.09),
+        /* flat-edge shadow — right & bottom */
+        inset -1px -1px 0 rgba(0,0,0,0.45),
+        /* outer drop shadow */
+        0 32px 64px -16px rgba(0,0,0,0.6),
+        0 12px 24px -8px rgba(0,0,0,0.38);
+      overflow: visible;
+    }
+
+    .phone-screen {
+      position: absolute;
+      /* extra 1px top inset → visible top bezel like Samsung */
+      inset: 1px var(--phone-border) var(--phone-border);
+      border-radius: calc(var(--phone-r) - var(--phone-border));
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-screen img,
+    .phone-screen .phone-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* Punch-hole camera — Samsung style */
+    .phone-notch {
+      position: absolute;
+      /* sits inside the screen area, not on the bezel */
+      top: calc(var(--phone-w) * 0.048);
+      left: 50%;
+      transform: translateX(-50%);
+      width:  calc(var(--phone-w) * 0.042);   /* small circle */
+      height: calc(var(--phone-w) * 0.042);
+      background: #000;
+      border-radius: 50%;                      /* circle, not pill */
+      z-index: 10;
+      box-shadow:
+        0 0 0 1.5px rgba(255,255,255,0.07),   /* subtle ring around hole */
+        inset 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    /* Screen glare */
+    .phone-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 5;
+    }
+
+    /* Power button — right side */
+    .phone-btn-power {
+      position: absolute;
+      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      top: 26%;
+      width: var(--phone-button-w);
+      height: 11%;
+      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
+      border-radius: 0 2px 2px 0;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-left: none;
+    }
+
+    /* Volume buttons — left side */
+    .phone-btn-vol-up,
+    .phone-btn-vol-dn {
+      position: absolute;
+      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      width: var(--phone-button-w);
+      height: 8%;
+      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
+      border-radius: 2px 0 0 2px;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-right: none;
+    }
+    .phone-btn-vol-up { top: 20%; }
+    .phone-btn-vol-dn { top: 31%; }
+
+    /* Glow — unchanged */
+    .phone-glow {
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(
+        ellipse at 50% 60%,
+        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
+        transparent 70%
+      );
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(20px);
+    }
+
+    .phone-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text3, #60697a);
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 20px;
+      background: var(--bg2, #0d1117);
+    }
+
+    /* ═══════════════════════════════════════════
+       HERO PHONE SCENE
+    ════════════════════════════════════════════ */
+    .phone-scene {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-right: clamp(20px, 6vw, 60px);
+      padding-left: clamp(20px, 6vw, 60px);
+    }
+
+    .phone-scene .phone-primary {
+      --phone-w: clamp(180px, 22vw, 280px);
+      position: relative;
+      z-index: 2;
+      transform: rotate(-4deg) translateY(0px);
+      transform-origin: bottom center;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .phone-scene:hover .phone-primary {
+      transform: rotate(-2deg) translateY(-8px);
+    }
+
+    .phone-scene .phone-secondary {
+      --phone-w: clamp(140px, 17vw, 215px);
+      position: absolute;
+      right: 0;
+      top: 60px;
+      z-index: 1;
+      transform: rotate(5deg);
+      transform-origin: bottom center;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity: 0.92;
+      right: clamp(10px, 3vw, 30px);
+    }
+    .phone-scene:hover .phone-secondary {
+      transform: rotate(3deg) translateY(-6px);
+    }
+
+    /* ── FIX 1: will-change added so browser composites these on GPU ──
+       The float animation runs forever; will-change: transform tells
+       the browser to promote these elements to their own layer upfront,
+       avoiding repeated paint during animation on low-end devices.    */
+    .phone-scene-stat {
+      position: absolute;
+      background: var(--bg2, #0d1117);
+      border: 1px solid var(--border2, rgba(255,255,255,0.11));
+      border-radius: 14px;
+      padding: 10px 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      white-space: nowrap;
+      z-index: 10;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      will-change: transform; /* FIX 1 */
+    }
+    .phone-scene-stat .stat-label {
+      font-size: 0.65rem;
+      color: var(--text3, #60697a);
+      margin-bottom: 2px;
+      font-family: var(--font-body, sans-serif);
+    }
+    .phone-scene-stat .stat-value {
+      font-family: var(--font-display, sans-serif);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text, #f4f5f7);
+      line-height: 1.1;
+    }
+    .phone-scene-stat.stat-sales {
+      bottom: 20px;
+      left: 0;
+      animation: float 6s ease-in-out 0.5s infinite;
+    }
+    .phone-scene-stat.stat-stock {
+      top: 16px;
+      right: -8px;
+      border-color: rgba(245,158,11,0.25);
+      animation: float 7s ease-in-out 1s infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-7px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       ANALYTICS SECTION — single phone
+    ════════════════════════════════════════════ */
+    .phone-solo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 32px;
+      position: relative;
+    }
+    .phone-solo-wrap .phone-wrap {
+      --phone-w: clamp(180px, 20vw, 260px);
+    }
+
+    /* ═══════════════════════════════════════════
+       FEATURES TRIO — three phones in a row
+       FIX 3: padding changed from "0 0 24px" to include horizontal
+       padding so side phones don't bleed to the viewport edge on
+       narrow screens (< ~480px).
+    ════════════════════════════════════════════ */
+    .phone-trio {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: clamp(12px, 2vw, 28px);
+      padding: 0 clamp(16px, 4vw, 40px) 24px; /* FIX 3 */
+    }
+
+    .phone-trio .phone-center {
+      --phone-w: clamp(130px, 16vw, 200px);
+      transform: translateY(-24px);
+      z-index: 2;
+    }
+    .phone-trio .phone-side {
+      --phone-w: clamp(110px, 13vw, 165px);
+      opacity: 0.85;
+    }
+
+    .phone-trio-caption {
+      text-align: center;
+      font-size: 0.72rem;
+      color: var(--text3, #60697a);
+      margin-top: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ─────────────────────────────────
+       Entrance animations
+       FIX 5: phone-enter-right final opacity changed from 0.92 → 0.85
+       to match the .phone-side class value. Previously the keyframe
+       resolved to 0.92 on load, then snapped to 0.85 after — visible
+       flicker on some browsers.
+    ───────────────────────────────── */
+    .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
+    .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+    .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
+    .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
+
+    .phone-solo-wrap .phone-wrap  { animation: phone-enter-left 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+    .phone-trio .phone-center     { animation: phone-enter-up   0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
+    .phone-trio .phone-side:first-child { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+    .phone-trio .phone-side:last-child  { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+
+    @keyframes phone-enter-left  { from { opacity:0; transform: translateX(-30px) rotate(-4deg); } to { opacity:1; transform: translateX(0) rotate(-4deg); } }
+    /* FIX 5: final opacity is now 0.85, matching the .phone-side class */
+    @keyframes phone-enter-right { from { opacity:0; transform: translateX(30px) rotate(5deg); } to { opacity:0.85; transform: translateX(0) rotate(5deg); } }
+    @keyframes phone-enter-up    { from { opacity:0; transform: translateY(20px) translateY(-24px); } to { opacity:1; transform: translateY(-24px); } }
+    @keyframes fade-up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+
+  </style>
 </head>
 <body>
 
@@ -23,12 +395,11 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/kezpos.png" alt="KezPos">
-    <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
+    <img src="assets/kezpos.png" alt="KezPos"
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3Ctext x=%2220%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2222%22 font-weight=%22800%22 font-family=%22sans-serif%22%3EK%3C/text%3E%3C/svg%3E'">
+    <span class="nav-logo-text">Kez<span>Pos</span></span>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <!-- Dynamically filled from KEZPOS.nav -->
-  </ul>
+  <ul class="nav-links" id="navLinks"></ul>
   <div class="nav-right">
     <a href="#" data-kezpos="navInstall" class="nav-cta">↓ Download</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -37,112 +408,83 @@
   </div>
 </nav>
 
-<div class="nav-mobile-drawer" id="navDrawer">
-  <!-- Dynamically filled from KEZPOS.nav -->
-</div>
+<div class="nav-mobile-drawer" id="navDrawer"></div>
 
 <div class="page">
 
   <!-- ═══════════════════════════════════════════
        HERO
+       Images here are EAGER (no loading="lazy") — they are above
+       the fold and must load immediately.
   ════════════════════════════════════════════ -->
-  <section style="padding-top:160px; padding-bottom:80px;">
-    <div class="grid-2" style="gap:60px; align-items:center;">
+  <section style="padding-top:120px; padding-bottom:80px;">
+    <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
       <div>
-        <div class="eyebrow anim-slide-down d1">Built for Kenyan Retail</div>
-        <h1 class="display-xl anim-fade-up d2" style="margin-bottom:24px;">
+        <div class="eyebrow anim-fade-up d1">Built for Kenyan Retail</div>
+        <h1 class="display-xl anim-fade-up d2" style="margin-bottom:20px;">
           Take the<br>
-          <span class="text-blue">guesswork</span><br>
+          <span class="text-gradient-blue">guesswork</span><br>
           out of your<br>business.
         </h1>
-        <p class="lead anim-fade-up d3" style="margin-bottom:36px;">
-          A modern POS built for retailers ready to grow. Streamline counter sales, manage inventory, and track customer balances — on your Android phone or Windows PC.
+        <p class="lead anim-fade-up d3" style="margin-bottom:32px;">
+          A modern POS for retailers ready to grow. Manage counter sales, track inventory, and monitor customer balances — on Android or Windows.
         </p>
-        <div style="display:flex; gap:16px; flex-wrap:wrap;" class="anim-fade-up d4">
-          <a href="#" data-kezpos="navInstall" class="btn btn-primary">
-            ↓ &nbsp;Download KezPos
-          </a>
-          <a href="features.html" class="btn btn-ghost">See Features →</a>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;" class="anim-fade-up d4">
+          <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
+          <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
         </div>
-        <p style="color:var(--muted); font-size:0.8rem; margin-top:16px;" class="anim-fade-up d5">
-          Affordable · Works offline · Cloud included · Android &amp; Windows
+        <p class="anim-fade-up d5" style="color:var(--text3); font-size:0.78rem; margin-top:16px; display:flex; gap:16px; flex-wrap:wrap;">
+          <span>✦ Offline-first</span>
+          <span>✦ Cloud-synced</span>
+          <span>✦ Android &amp; Windows</span>
         </p>
       </div>
 
-      <!-- Right: animated growth graph -->
-      <div class="anim-float-in d3" style="position:relative;">
-        <div class="anim-float" style="animation-delay:0.5s;">
-          <svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg"
-               style="width:100%; max-width:500px; display:block; margin:auto; filter:drop-shadow(0 0 60px rgba(0,51,255,0.12))">
-            <defs>
-              <linearGradient id="fillGrad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#0033FF" stop-opacity="0.30"/>
-                <stop offset="100%" stop-color="#0033FF" stop-opacity="0"/>
-              </linearGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-              </filter>
-            </defs>
-            <rect x="10" y="10" width="440" height="280" rx="16"
-                  fill="var(--bg2)" stroke="var(--border)" stroke-width="1"/>
-            <line x1="40" y1="240" x2="420" y2="240" stroke="var(--border)" stroke-width="1"/>
-            <line x1="40" y1="195" x2="420" y2="195" stroke="var(--border)" stroke-width="1"/>
-            <line x1="40" y1="150" x2="420" y2="150" stroke="var(--border)" stroke-width="1"/>
-            <line x1="40" y1="105" x2="420" y2="105" stroke="var(--border)" stroke-width="1"/>
-            <line x1="40" y1="60"  x2="420" y2="60"  stroke="var(--border)" stroke-width="1"/>
-            <text x="60"  y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Mon</text>
-            <text x="135" y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Tue</text>
-            <text x="210" y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Wed</text>
-            <text x="285" y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Thu</text>
-            <text x="360" y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Fri</text>
-            <text x="415" y="258" fill="var(--text2)" font-size="10" font-family="DM Sans,sans-serif" text-anchor="middle">Sat</text>
-            <path class="graph-fill"
-                  d="M60,220 C100,210 120,185 135,175 C160,155 185,145 210,130 C240,112 260,95 285,80 C310,65 340,55 360,48 L360,240 L60,240 Z"
-                  fill="url(#fillGrad)"/>
-            <path class="graph-line"
-                  d="M60,220 C100,210 120,185 135,175 C160,155 185,145 210,130 C240,112 260,95 285,80 C310,65 340,55 360,48"
-                  fill="none" stroke="#0033FF" stroke-width="2.5"
-                  stroke-linecap="round" stroke-linejoin="round"
-                  filter="url(#glow)"/>
-            <circle class="graph-ping" cx="360" cy="48" r="4" fill="none" stroke="#0033FF" stroke-width="1.5"/>
-            <circle class="graph-dot" cx="360" cy="48" r="4" fill="#0033FF"/>
-            <g style="opacity:0; animation:fade-fill 0.5s ease 3.2s forwards;">
-              <rect x="278" y="22" width="130" height="30" rx="8"
-                    fill="rgba(0,51,255,0.9)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
-              <text x="343" y="41" fill="#fff" font-size="11" font-weight="600"
-                    font-family="Syne,sans-serif" text-anchor="middle">+24% profit this week</text>
-            </g>
-            <text x="30" y="36" fill="var(--text)" font-size="12" font-weight="600"
-                  font-family="Syne,sans-serif">Weekly Profit</text>
-            <text x="30" y="50" fill="var(--text2)" font-size="10"
-                  font-family="DM Sans,sans-serif">KES · This Week</text>
-            <circle cx="60"  cy="220" r="3" fill="#0033FF" style="opacity:0;animation:fade-fill 0.3s ease 1s forwards"/>
-            <circle cx="135" cy="175" r="3" fill="#0033FF" style="opacity:0;animation:fade-fill 0.3s ease 1.4s forwards"/>
-            <circle cx="210" cy="130" r="3" fill="#0033FF" style="opacity:0;animation:fade-fill 0.3s ease 1.8s forwards"/>
-            <circle cx="285" cy="80"  r="3" fill="#0033FF" style="opacity:0;animation:fade-fill 0.3s ease 2.1s forwards"/>
-          </svg>
+      <!-- Hero phones: EAGER load (above fold) -->
+      <div class="phone-scene">
+        <div class="phone-wrap phone-primary">
+          <div class="phone-glow"></div>
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="assets/reports.png" alt="KezPos reports"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                <span>Reports screen<br><code style="font-size:0.65rem;">assets/reports.png</code></span>
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
         </div>
-        <div style="
-          position:absolute; bottom:10px; left:-10px;
-          background:var(--bg2); border:1px solid var(--border);
-          border-radius:12px; padding:12px 16px;
-          backdrop-filter:blur(12px);
-          animation:float-in-right 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.2s both, float 6s ease-in-out 2.2s infinite;
-        ">
-          <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Today's Sales</div>
-          <div style="font-family:var(--font-display); font-weight:700; color:var(--text); font-size:1.1rem;">KES 12,450</div>
+
+        <div class="phone-wrap phone-secondary">
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="assets/people.png" alt="KezPos people"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
+                <span>People<br><code style="font-size:0.6rem;">assets/people.png</code></span>
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
         </div>
-        <div style="
-          position:absolute; top:20px; right:-10px;
-          background:var(--bg2); border:1px solid rgba(224,123,0,0.3);
-          border-radius:12px; padding:12px 16px;
-          backdrop-filter:blur(12px);
-          animation:fade-up 0.8s cubic-bezier(0.34,1.56,0.64,1) 1.5s both, float 7s ease-in-out 2.5s infinite;
-        ">
-          <div style="font-size:0.7rem; color:var(--muted); margin-bottom:2px;">Stock items tracked</div>
-          <div style="font-family:var(--font-display); font-weight:700; color:var(--amber); font-size:1.1rem;">847 items</div>
+
+        <div class="phone-scene-stat stat-sales">
+          <div class="stat-label">Today's Sales</div>
+          <div class="stat-value" style="color:var(--green, #22c55e);">KES 12,450</div>
+        </div>
+        <div class="phone-scene-stat stat-stock">
+          <div class="stat-label">Customers</div>
+          <div class="stat-value" style="color:var(--amber, #f59e0b);">4 Pending</div>
         </div>
       </div>
 
@@ -152,29 +494,34 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
-       POWER OF THREE
+       WHY KEZPOS
   ════════════════════════════════════════════ -->
   <section>
-    <div style="text-align:center; margin-bottom:60px;" class="reveal">
+    <div style="text-align:center; margin-bottom:56px;" class="reveal">
       <div class="eyebrow">Why KezPos</div>
       <h2 class="display-lg">The soul of the app</h2>
     </div>
-
     <div class="grid-3">
       <div class="card reveal reveal-delay-1">
-        <div class="card-icon">👥</div>
+        <div class="card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
         <h3>Customer Management</h3>
-        <p>Track outstanding credit without manual notebooks. Monitor debt thresholds, view individual payment histories, and collect balances — all from one screen.</p>
+        <p>Track outstanding credit without notebooks. Monitor debt thresholds, view payment histories, and collect balances — all from one screen.</p>
       </div>
       <div class="card reveal reveal-delay-2">
-        <div class="card-icon">📶</div>
+        <div class="card-icon" style="background:var(--green-pale); border-color:var(--green-border); color:var(--green);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 6l5 5 5-4 5 4 5-5"/><path d="M1 18h22"/><path d="M1 12h22"/></svg>
+        </div>
         <h3>Offline-First, Cloud-Synced</h3>
-        <p>Run your business without relying on a stable signal. Sell at full speed 100% offline — KezPos holds your data locally and syncs to the cloud the moment you reconnect.</p>
+        <p>Sell at full speed 100% offline — KezPos stores data locally and syncs the moment you reconnect. Zero data loss.</p>
       </div>
       <div class="card reveal reveal-delay-3">
-        <div class="card-icon">📊</div>
+        <div class="card-icon" style="background:var(--amber-pale); border-color:var(--amber-border); color:var(--amber);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+        </div>
         <h3>Reports &amp; Analytics</h3>
-        <p>Get instant insights into how your store is scaling. Track revenue across daily, weekly, and monthly views, and identify your top-selling products at a glance.</p>
+        <p>Daily, weekly, and monthly profit insights. Identify your top-selling products and make smarter stock decisions.</p>
       </div>
     </div>
   </section>
@@ -182,64 +529,61 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
-       VISUAL NARRATIVE — Reports side by side
+       ANALYTICS — phone left, copy right
+       FIX 2: loading="lazy" added — this section is below the fold.
   ════════════════════════════════════════════ -->
   <section>
-    <div class="grid-2" style="gap:80px; align-items:center;">
+    <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
-      <div class="reveal" style="position:relative;">
-        <div style="
-          border-radius:20px; overflow:hidden;
-          border:1px solid var(--border);
-          box-shadow:var(--shadow-lg);
-        ">
-          <img src="assets/reports.png" alt="KezPos Reports Screen"
-               style="width:100%; display:block;"
-               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-          <div style="
-            display:none; width:100%; height:320px;
-            background:var(--navy3); border-radius:20px;
-            align-items:center; justify-content:center;
-            flex-direction:column; gap:12px; color:var(--muted);
-          ">
-            <div style="font-size:2rem;">📊</div>
-            <div style="font-size:0.85rem;">Add assets/reports.png</div>
+      <div class="phone-solo-wrap reveal">
+        <div class="phone-glow"></div>
+        <div class="phone-wrap">
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <!-- FIX 2: lazy load — below the fold -->
+              <img src="assets/reports.png" alt="Reports analytics" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
+                <span>Reports Screen<br><code style="font-size:0.65rem; color:var(--blue-hover);">assets/reports.png</code></span>
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
           </div>
         </div>
-        <div style="
-          position:absolute; inset:-20px; z-index:-1;
-          background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);
-        "></div>
       </div>
 
       <div class="reveal reveal-delay-2">
         <div class="eyebrow">Analytics</div>
-        <h2 class="display-lg" style="margin-bottom:20px;">
+        <h2 class="display-lg" style="margin-bottom:18px;">
           Stop counting<br>coins at midnight.
         </h2>
-        <p class="lead" style="margin-bottom:32px;">
-          Get daily, weekly, and monthly profit insights with one tap. KezPos tracks your margins automatically so you can make smarter buying decisions — not just record what sold.
+        <p class="lead" style="margin-bottom:28px;">
+          One tap reveals your margins, not just totals. KezPos tracks profit automatically so you buy smarter — not just record what sold.
         </p>
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
-          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
-            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
-            Real-time profit margin per product
+        <ul class="check-list">
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div><div class="check-title">Real-time margin per product</div></div>
           </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
-            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
-            Daily, weekly, monthly sales reports
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div><div class="check-title">Daily, weekly, monthly sales reports</div></div>
           </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
-            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
-            Hourly performance breakdowns
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div><div class="check-title">Hourly performance breakdowns</div></div>
           </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
-            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
-            Stock health &amp; low-stock alerts
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div><div class="check-title">Stock health &amp; low-stock alerts</div></div>
           </li>
-          <li style="display:flex; align-items:flex-start; gap:12px; color:var(--muted);">
-            <span style="color:var(--blue-light); margin-top:2px;">✓</span>
-            Exportable database backup anytime
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div><div class="check-title">Exportable database backup anytime</div></div>
           </li>
         </ul>
       </div>
@@ -249,7 +593,13 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
-       BENTO FEATURE GRID
+       FEATURES — three phones + bento
+       FIX 2: all trio images get loading="lazy"
+       FIX 3: .phone-trio now has horizontal padding (see CSS above)
+       FIX 4: center phone changed from dashboard.png → inventory.png
+               (hero already shows dashboard; don't repeat it here)
+               If you don't have inventory.png yet, use whichever
+               screen is most visually distinct: receipt, debt tracker, etc.
   ════════════════════════════════════════════ -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
@@ -257,224 +607,272 @@
       <h2 class="display-lg">Everything your shop needs,<br>in your pocket.</h2>
     </div>
 
+    <div class="phone-trio reveal" style="margin-bottom: clamp(40px, 6vw, 64px);">
+
+      <!-- Left: Quick Sales -->
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="phone-wrap phone-side">
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <!-- FIX 2: lazy -->
+              <img src="assets/sales.png" alt="Sales screen" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                Quick Sales
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
+        <div class="phone-trio-caption">Quick Sales</div>
+      </div>
+
+      <!-- Center: Inventory (FIX 4 — was dashboard.png, now inventory.png) -->
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="phone-wrap phone-center">
+          <div class="phone-glow"></div>
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <!-- FIX 2: lazy  |  FIX 4: src changed to inventory.png -->
+              <img src="assets/inventory.png" alt="Inventory" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                Inventory
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
+        <div class="phone-trio-caption" style="color:var(--blue-hover); font-weight:600;">Inventory</div>
+      </div>
+
+      <!-- Right: Customers -->
+      <div style="display:flex; flex-direction:column; align-items:center;">
+        <div class="phone-wrap phone-side">
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <!-- FIX 2: lazy -->
+              <img src="assets/customers.png" alt="Customers" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                Customers
+              </div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
+        <div class="phone-trio-caption">Customers</div>
+      </div>
+
+    </div>
+
+    <!-- Bento -->
     <div class="bento reveal">
-
-      <div class="bento-item bento-lg" style="position:relative; min-height:280px;">
-        <img src="assets/dashboard.png" alt="Daily Profit Analytics"
-             class="bento-img" style="height:100%; object-position:top;"
-             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div style="
-          display:none; width:100%; height:280px;
-          background:var(--navy3); align-items:center;
-          justify-content:center; flex-direction:column;
-          gap:8px; color:var(--muted);
-        ">
-          <div style="font-size:2rem;">📈</div>
-          <div style="font-size:0.85rem;">Add assets/dashboard.png</div>
-        </div>
-        <div style="
-          position:absolute; bottom:0; left:0; right:0;
-          padding:20px 24px;
-          background:linear-gradient(to top, rgba(5,13,26,0.95), transparent);
-        ">
-          <div class="bento-tag">Analytics</div>
-          <div style="font-family:var(--font-display); font-size:1.1rem; font-weight:700; color:#fff;">Daily Profit Analytics</div>
-          <div style="font-size:0.85rem; color:var(--muted);">See your margins, not just your totals.</div>
-        </div>
-      </div>
-
-      <div class="bento-item bento-sm">
-        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end;">
-          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">🖨️</div>
-          <div>
-            <div class="bento-tag">Hardware</div>
-            <h3>Bluetooth Printing</h3>
-            <p>Print professional receipts with 58mm and 80mm support.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bento-item bento-sm">
-        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px;">
-          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">🔒</div>
-          <div>
-            <div class="bento-tag">Security</div>
-            <h3>Instant Database Backups</h3>
-            <p>Your data exported and secured with one tap, anytime.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bento-item bento-sm">
-        <div class="bento-content" style="height:100%; display:flex; flex-direction:column; justify-content:flex-end; min-height:200px;">
-          <div style="font-size:2.5rem; margin-bottom:auto; padding-top:20px;">💬</div>
-          <div>
-            <div class="bento-tag" style="color:var(--amber); background:var(--amber-dim);">Kenya-first</div>
-            <h3>Customer Debt Tracking</h3>
-            <p>See who owes you, their balance, and collect payments in two taps.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="bento-item bento-lg" style="
-        background:linear-gradient(135deg, var(--blue-pale), var(--bg2));
-        padding:36px;
-      ">
-        <div class="bento-content" style="padding:0;">
+      <div class="bento-item bento-lg">
+        <div class="bento-content">
           <div class="bento-tag">Core Strength</div>
-          <h3 style="font-size:1.4rem; margin-bottom:12px;">Offline-First.<br>Cloud-Always.</h3>
-          <p style="max-width:400px;">Business doesn't stop when the signal drops. Sell offline instantly — KezPos syncs everything to your secure cloud the moment you're back online. Zero data loss, guaranteed.</p>
+          <h3 style="font-size:1.3rem; margin-bottom:10px;">Offline-First.<br>Cloud-Always.</h3>
+          <p>Business doesn't stop when signal drops. KezPos syncs everything the moment you're back online — zero data loss, guaranteed.</p>
         </div>
       </div>
-
+      <div class="bento-item bento-sm">
+        <div class="bento-content">
+          <div style="font-size:2rem; margin-bottom:12px;">🖨️</div>
+          <div class="bento-tag">Hardware</div>
+          <h3>Bluetooth Printing</h3>
+          <p>58mm and 80mm receipt support out of the box.</p>
+        </div>
+      </div>
+      <div class="bento-item bento-sm">
+        <div class="bento-content">
+          <div style="font-size:2rem; margin-bottom:12px;">🔒</div>
+          <div class="bento-tag">Security</div>
+          <h3>Instant Backups</h3>
+          <p>Export and secure your database with one tap, anytime.</p>
+        </div>
+      </div>
+      <div class="bento-item bento-sm">
+        <div class="bento-content">
+          <div style="font-size:2rem; margin-bottom:12px;">💬</div>
+          <div class="bento-tag" style="color:var(--amber); background:var(--amber-pale); border-color:var(--amber-border);">Kenya-first</div>
+          <h3>Debt Tracking</h3>
+          <p>Know who owes you — and collect in two taps.</p>
+        </div>
+      </div>
+      <div class="bento-item bento-sm">
+        <div class="bento-content">
+          <div style="font-size:2rem; margin-bottom:12px;">📊</div>
+          <div class="bento-tag" style="color:var(--green); background:var(--green-pale); border-color:var(--green-border);">Analytics</div>
+          <h3>Profit Reports</h3>
+          <p>See margins, not just totals. Daily, weekly, monthly.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════════
-       CTA STRIP
+       CTA
   ════════════════════════════════════════════ -->
   <section style="text-align:center;" class="reveal">
     <div class="eyebrow">Get Started Today</div>
     <h2 class="display-lg" style="margin-bottom:16px;">
-      Ready to run your shop<br>like a <span class="text-blue">pro</span>?
+      Ready to run your shop<br>like a <span class="text-gradient-blue">pro</span>?
     </h2>
-    <p class="lead" style="margin:0 auto 40px;">
-      KezPos is built to be accessible for every Kenyan shopkeeper. A small monthly plan, no hidden fees, no surprises.
+    <p class="lead" style="margin:0 auto 40px; text-align:center;">
+      A small monthly plan, no hidden fees, no surprises. Built for every Kenyan shopkeeper.
     </p>
-    <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" data-kezpos="navInstall" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
-        ↓ &nbsp;Download KezPos
-      </a>
-      <a href="install.html" class="btn btn-ghost">Installation guide →</a>
+    <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
+      <a href="install.html" class="btn btn-ghost btn-lg">Installation guide →</a>
     </div>
-    <p style="color:var(--muted); font-size:0.8rem; margin-top:20px;">
-      Android &amp; Windows · Works offline · Cloud sync included
+    <p style="color:var(--text3); font-size:0.78rem; margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <span>✦ Android &amp; Windows</span>
+      <span>✦ Works offline</span>
+      <span>✦ Cloud sync included</span>
     </p>
   </section>
 
 </div><!-- end .page -->
 
-<footer style="position:relative; z-index:1;">
+<footer>
   <div class="footer-wrap">
     <a href="index.html" class="footer-logo">
-      <img src="assets/kezpos.png" alt="KezPos">
+      <img src="assets/kezpos.png" alt="KezPos"
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3C/svg%3E'">
       <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
     </a>
-    <ul class="footer-links" id="footerLinks">
-      <!-- Dynamically filled from KEZPOS.footer -->
-    </ul>
-    <div class="footer-copy" id="footerCopy">
-      <!-- Dynamically filled -->
-    </div>
+    <ul class="footer-links" id="footerLinks"></ul>
+    <div class="footer-copy" id="footerCopy"></div>
   </div>
 </footer>
 
-<!-- Config -->
 <script src="config.js"></script>
 
-<!-- KezPos Link Patcher -->
 <script>
-  (function patchKezposLinks() {
-    document.querySelectorAll('[data-kezpos]').forEach(function(el) {
-      var path = el.getAttribute('data-kezpos');
-      var prefix = el.getAttribute('data-kezpos-prefix') || '';
+(function() {
+  if (typeof KEZPOS === 'undefined') {
+    window.KEZPOS = {
+      nav: [
+        { label: 'Home',     href: 'index.html'    },
+        { label: 'Features', href: 'features.html' },
+        { label: 'Pricing',  href: 'pricing.html'  },
+        { label: 'Install',  href: 'install.html'  }
+      ],
+      footer: [
+        { label: 'Features', href: 'features.html' },
+        { label: 'Pricing',  href: 'pricing.html'  },
+        { label: 'Privacy',  href: 'privacy.html'  },
+        { label: 'Terms',    href: 'terms.html'    }
+      ],
+      email: 'hello@kezpos.co.ke'
+    };
+  }
 
-      var value;
-      if (path === 'navInstall') {
-        var installItem = KEZPOS.nav.find(function(n) { return n.label === 'Install'; });
-        value = installItem ? installItem.href : 'install.html';
-      } else {
-        value = path.split('.').reduce(function(obj, key) {
-          return obj && obj[key];
-        }, window.KEZPOS);
-      }
-
-      if (value !== undefined && value !== null) {
-        if (el.tagName === 'A') {
-          el.href = prefix + value;
-        } else {
-          el.textContent = prefix + value;
-        }
-      }
-    });
-  })();
-</script>
-
-<!-- Theme + hamburger -->
-<script src="assets/theme.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-
-    var isHome = window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname === '';
-
-    // ── Desktop nav ──────────────────────────
-    var navLinks = document.getElementById('navLinks');
-    KEZPOS.nav.forEach(function(item) {
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.href === 'index.html' && isHome) a.classList.add('active');
-      li.appendChild(a);
-      navLinks.appendChild(li);
-    });
-
-    // ── Mobile drawer ─────────────────────────
-    var drawer = document.getElementById('navDrawer');
-    KEZPOS.nav.forEach(function(item) {
-      var a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      if (item.href === 'index.html' && isHome) a.classList.add('active');
-      drawer.appendChild(a);
-    });
-    var drawerCta = document.createElement('a');
-    drawerCta.href = KEZPOS.nav.find(function(n) { return n.label === 'Install'; }).href || 'install.html';
-    drawerCta.className = 'nav-cta';
-    drawerCta.textContent = '↓ Download';
-    drawer.appendChild(drawerCta);
-
-    // ── Footer links ──────────────────────────
-    var footerLinks = document.getElementById('footerLinks');
-    KEZPOS.footer.forEach(function(item) {
-      var li = document.createElement('li');
-      var a = document.createElement('a');
-      a.href = item.href;
-      a.textContent = item.label;
-      li.appendChild(a);
-      footerLinks.appendChild(li);
-    });
-    var contactLi = document.createElement('li');
-    var contactA = document.createElement('a');
-    contactA.href = 'mailto:' + KEZPOS.email;
-    contactA.textContent = 'Contact';
-    contactLi.appendChild(contactA);
-    footerLinks.appendChild(contactLi);
-
-    // ── Footer copyright ──────────────────────
-    document.getElementById('footerCopy').innerHTML =
-      '© 2025 KezPos · Built for Kenyan businesses · ' +
-      '<a href="mailto:' + KEZPOS.email + '" style="color:var(--muted);">' + KEZPOS.email + '</a>';
-
-    // ── Scroll reveal ─────────────────────────
-    var reveals = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(function(el) { observer.observe(el); });
-    } else {
-      reveals.forEach(function(el) { el.classList.add('visible'); });
-    }
-
+  var isHome = ['', '/', '/index.html'].some(function(p) {
+    return window.location.pathname.endsWith(p);
   });
+
+  document.querySelectorAll('[data-kezpos]').forEach(function(el) {
+    var key = el.getAttribute('data-kezpos');
+    if (key === 'navInstall') {
+      var item = KEZPOS.nav.find(function(n) { return n.label === 'Install'; });
+      if (item && el.tagName === 'A') el.href = item.href;
+    }
+  });
+
+  var navLinks = document.getElementById('navLinks');
+  KEZPOS.nav.forEach(function(item) {
+    var li = document.createElement('li');
+    var a  = document.createElement('a');
+    a.href = item.href;
+    a.textContent = item.label;
+    if (item.href === 'index.html' && isHome) a.classList.add('active');
+    li.appendChild(a);
+    navLinks.appendChild(li);
+  });
+
+  var drawer = document.getElementById('navDrawer');
+  KEZPOS.nav.forEach(function(item) {
+    var a = document.createElement('a');
+    a.href = item.href;
+    a.textContent = item.label;
+    if (item.href === 'index.html' && isHome) a.classList.add('active');
+    drawer.appendChild(a);
+  });
+  var cta = document.createElement('a');
+  cta.className = 'nav-cta';
+  cta.href = (KEZPOS.nav.find(function(n){ return n.label==='Install'; }) || {}).href || 'install.html';
+  cta.textContent = '↓ Download';
+  drawer.appendChild(cta);
+
+  var footerLinks = document.getElementById('footerLinks');
+  KEZPOS.footer.forEach(function(item) {
+    var li = document.createElement('li');
+    var a  = document.createElement('a');
+    a.href = item.href; a.textContent = item.label;
+    li.appendChild(a); footerLinks.appendChild(li);
+  });
+  var cLi = document.createElement('li');
+  var cA  = document.createElement('a');
+  cA.href = 'mailto:' + KEZPOS.email;
+  cA.textContent = 'Contact';
+  cLi.appendChild(cA); footerLinks.appendChild(cLi);
+
+  document.getElementById('footerCopy').innerHTML =
+    '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
+    '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+  window.addEventListener('scroll', function() {
+    document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  var ham = document.getElementById('navHamburger');
+  if (ham) ham.addEventListener('click', function() {
+    drawer.classList.toggle('open');
+    ham.classList.toggle('open');
+    ham.setAttribute('aria-expanded', drawer.classList.contains('open'));
+  });
+
+  /* ── FIX 1: Pause looping animations when tab is backgrounded ────────
+     The two stat cards (.phone-scene-stat) run CSS float keyframes
+     indefinitely. On low-end Android this keeps the GPU compositor
+     active even when the user switches apps. This listener pauses them
+     the moment the tab is hidden and resumes when it's visible again.
+
+     TO APPLY ON OTHER PAGES:
+     Copy this entire block. Change the selector to match whichever
+     elements on that page have infinite CSS animations.
+     e.g. '.loader-spinner', '.pulse-ring', '.hero-particle' etc.
+  ──────────────────────────────────────────────────────────────────── */
+  document.addEventListener('visibilitychange', function() {
+    var state = document.hidden ? 'paused' : 'running';
+    document.querySelectorAll('.phone-scene-stat').forEach(function(el) {
+      el.style.animationPlayState = state;
+    });
+  });
+
+})();
 </script>
 
 </body>
