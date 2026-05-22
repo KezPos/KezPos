@@ -23,6 +23,140 @@
       }, 300);
     })();
   </script>
+  <style>
+    /* ── Samsung-style phone mockup ────────────────────────────────── */
+
+    .phone-wrap {
+      --phone-w: 260px;
+      --phone-r: calc(var(--phone-w) * 0.082);   /* flatter than before (was 0.115) */
+      --phone-border: 3px;                        /* chunkier frame */
+      --phone-button-w: 4px;
+
+      position: relative;
+      width: var(--phone-w);
+      flex-shrink: 0;
+    }
+
+    .phone-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: var(--phone-r);
+      /* Galaxy-style warm dark frame */
+      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+      border: var(--phone-border) solid rgba(255,255,255,0.13);
+      box-shadow:
+        /* flat-edge highlight — left & top */
+        inset 1px 1px 0 rgba(255,255,255,0.09),
+        /* flat-edge shadow — right & bottom */
+        inset -1px -1px 0 rgba(0,0,0,0.45),
+        /* outer drop shadow */
+        0 32px 64px -16px rgba(0,0,0,0.6),
+        0 12px 24px -8px rgba(0,0,0,0.38);
+      overflow: visible;
+    }
+
+    .phone-screen {
+      position: absolute;
+      /* extra 1px top inset → visible top bezel like Samsung */
+      inset: 1px var(--phone-border) var(--phone-border);
+      border-radius: calc(var(--phone-r) - var(--phone-border));
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-screen img,
+    .phone-screen .phone-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+    }
+
+    /* Punch-hole camera — Samsung style */
+    .phone-notch {
+      position: absolute;
+      /* sits inside the screen area, not on the bezel */
+      top: calc(var(--phone-w) * 0.048);
+      left: 50%;
+      transform: translateX(-50%);
+      width:  calc(var(--phone-w) * 0.042);   /* small circle */
+      height: calc(var(--phone-w) * 0.042);
+      background: #000;
+      border-radius: 50%;                      /* circle, not pill */
+      z-index: 10;
+      box-shadow:
+        0 0 0 1.5px rgba(255,255,255,0.07),   /* subtle ring around hole */
+        inset 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    /* Screen glare */
+    .phone-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 5;
+    }
+
+    /* Power button — right side */
+    .phone-btn-power {
+      position: absolute;
+      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      top: 26%;
+      width: var(--phone-button-w);
+      height: 11%;
+      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
+      border-radius: 0 2px 2px 0;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-left: none;
+    }
+
+    /* Volume buttons — left side */
+    .phone-btn-vol-up,
+    .phone-btn-vol-dn {
+      position: absolute;
+      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      width: var(--phone-button-w);
+      height: 8%;
+      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
+      border-radius: 2px 0 0 2px;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-right: none;
+    }
+    .phone-btn-vol-up { top: 20%; }
+    .phone-btn-vol-dn { top: 31%; }
+
+    /* Glow — unchanged */
+    .phone-glow {
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(
+        ellipse at 50% 60%,
+        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
+        transparent 70%
+      );
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(20px);
+    }
+
+    /* Responsive grid stacking - same as index */
+    @media (max-width: 880px) {
+      .grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+
+    /* Add padding to phone containers on narrow screens */
+    .anim-float-in.d3 {
+      padding-left: clamp(16px, 4vw, 40px);
+      padding-right: clamp(16px, 4vw, 40px);
+    }
+  </style>
 </head>
 <body>
 
@@ -33,7 +167,7 @@
 <nav class="nav">
   <a href="index.html" class="nav-logo">
     <img src="assets/kezpos.png" alt="KezPos">
-    <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
+    <span class="nav-logo-text">Kez<span>Pos</span></span>
   </a>
   <ul class="nav-links" id="navLinks">
     <!-- Dynamically filled from KEZPOS.nav -->
@@ -53,7 +187,7 @@
 <div class="page">
 
   <!-- ═══════════════════════════════════════
-       HERO + DOWNLOAD
+       HERO + DOWNLOAD with PHONE FRAME
   ════════════════════════════════════════ -->
   <section id="download" style="padding-top:160px; padding-bottom:80px;">
     <div class="grid-2" style="gap:80px; align-items:center;">
@@ -90,31 +224,24 @@
         </div>
       </div>
 
-      <!-- Right: phone mockup -->
+      <!-- Right: phone frame with glow - SAME AS INDEX -->
       <div class="anim-float-in d3" style="display:flex; justify-content:center;">
-        <div class="anim-float" style="position:relative; max-width:260px; width:100%;">
-          <div style="
-            border-radius:40px; overflow:hidden;
-            border:2px solid var(--border);
-            box-shadow:var(--shadow-lg);
-          ">
-            <img src="assets/app-home.png" alt="KezPos App"
-                 style="width:100%; display:block;"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div style="
-              display:none; width:260px; height:460px;
-              background:var(--navy3); align-items:center;
-              justify-content:center; flex-direction:column;
-              gap:10px; color:var(--muted);
-            ">
-              <div style="font-size:2rem;">📱</div>
-              <div style="font-size:0.8rem; text-align:center; padding:0 20px;">Add assets/app-home.png<br>(app main screen)</div>
+        <div class="phone-wrap" style="--phone-w: clamp(180px, 22vw, 260px);">
+          <div class="phone-glow"></div>
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="assets/app-home.png" alt="KezPos App"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">
+                <div style="font-size:2rem;">📱</div>
+                <div style="font-size:0.8rem; text-align:center; padding:0 20px;">Add assets/app-home.png</div>
+              </div>
             </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
           </div>
-          <div style="
-            position:absolute; inset:-30px; z-index:-1;
-            background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);
-          "></div>
         </div>
       </div>
 
@@ -124,7 +251,7 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════
-       STEP BY STEP
+       STEP BY STEP (ORIGINAL - NO CHANGES)
   ════════════════════════════════════════ -->
   <section>
     <div style="margin-bottom:56px;" class="reveal">
@@ -190,7 +317,7 @@
 
       </div>
 
-      <!-- Brand-specific tips (Android only) -->
+      <!-- Brand-specific tips (Android only) - ORIGINAL -->
       <div class="reveal reveal-delay-2">
         <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:20px; letter-spacing:-0.02em;">
           Android: Brand-specific settings
@@ -261,7 +388,7 @@
   <div class="divider"></div>
 
   <!-- ═══════════════════════════════════════
-       FAQ
+       FAQ (ORIGINAL - NO CHANGES)
   ════════════════════════════════════════ -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
@@ -331,7 +458,6 @@
       var path = el.getAttribute('data-kezpos');
       var prefix = el.getAttribute('data-kezpos-prefix') || '';
 
-      // Resolve nested path like "downloads.apk.url" → KEZPOS.downloads.apk.url
       var value = path.split('.').reduce(function(obj, key) {
         return obj && obj[key];
       }, window.KEZPOS);
@@ -400,7 +526,7 @@
 
     // ── Footer copyright ──────────────────────
     document.getElementById('footerCopy').innerHTML =
-      '© 2025 KezPos · Built for Kenyan businesses · ' +
+      '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
       '<a href="mailto:' + KEZPOS.email + '" style="color:var(--muted);">' + KEZPOS.email + '</a>';
 
     // ── Scroll reveal ─────────────────────────
