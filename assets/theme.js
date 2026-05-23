@@ -4,7 +4,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
 
-    // Follow OS theme changes live
+    // OS theme change listener
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
         var link = document.getElementById('themeStylesheet');
@@ -28,6 +28,27 @@
           hamburger.setAttribute('aria-expanded', 'false');
         }
       });
+    }
+
+    // Scroll reveal with GPU compositing
+    var reveals = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            var el = entry.target;
+            el.classList.add('visible');
+            el.addEventListener('transitionend', function cleanup() {
+              el.style.willChange = 'auto';
+              el.removeEventListener('transitionend', cleanup);
+            });
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.08 });
+      reveals.forEach(function (el) { observer.observe(el); });
+    } else {
+      reveals.forEach(function (el) { el.classList.add('visible'); });
     }
 
   });
