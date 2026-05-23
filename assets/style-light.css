@@ -1453,8 +1453,58 @@ footer { position: relative; z-index: var(--z-base); }
   -webkit-backdrop-filter: none;
 }
 
+/* ══════════════════════════════════════════
+   PHONE WRAP — ensure width is always applied
+══════════════════════════════════════════ */
+.phone-wrap {
+  width: var(--phone-w, 260px);
+  flex-shrink: 0;
+}
+
+/* ══════════════════════════════════════════
+   SECTION STACKING CONTEXT — prevents z bleed
+══════════════════════════════════════════ */
+section {
+  isolation: isolate;
+  position: relative;
+}
+
+.phone-trio {
+  isolation: isolate;
+  position: relative;
+  z-index: 2;
+}
+
+.bento {
+  position: relative;
+  z-index: 1;
+}
+
+/* ══════════════════════════════════════════
+   TV / LARGE SCREEN  ≥ 1400px
+══════════════════════════════════════════ */
 @media (min-width: 1400px) {
   .mesh-bg { display: none; }
+
+  .grid-3 {
+    gap: clamp(16px, 2vw, 32px);
+  }
+
+  .grid-2 {
+    gap: clamp(64px, 6vw, 120px);
+  }
+
+  .bento {
+    gap: clamp(14px, 1.5vw, 28px);
+  }
+
+  .card {
+    padding: clamp(28px, 2.5vw, 48px);
+  }
+
+  section {
+    padding: 120px clamp(40px, 5vw, 80px);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
