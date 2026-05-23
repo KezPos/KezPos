@@ -9,20 +9,15 @@
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
   <script>
-    (function() {
-      document.documentElement.style.visibility = 'hidden';
-      var t = localStorage.getItem('kez-theme') ||
-        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      var link = document.getElementById('themeStylesheet');
-      link.href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
-      link.onload = function() {
-        document.documentElement.style.visibility = '';
-      };
-      setTimeout(function() {
-        document.documentElement.style.visibility = '';
-      }, 300);
-    })();
-  </script>
+  (function() {
+    document.documentElement.style.visibility = 'hidden';
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var link = document.getElementById('themeStylesheet');
+    link.href = dark ? 'assets/style-dark.css' : 'assets/style-light.css';
+    link.onload = function() { document.documentElement.style.visibility = ''; };
+    setTimeout(function() { document.documentElement.style.visibility = ''; }, 300);
+  })();
+</script>
 </head>
 <body>
 
