@@ -335,20 +335,33 @@
   ════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .phone-scene {
+    position: relative;
     justify-content: center;
     padding: 0;
     margin-top: 40px;
     width: 100%;
     max-width: 100%;
     overflow: hidden;
+    min-height: clamp(260px, 75vw, 400px);
   }
   .phone-scene .phone-primary {
-    --phone-w: clamp(200px, 55vw, 280px);
-    transform: none !important;
+    --phone-w: clamp(140px, 38vw, 210px);
+    transform: rotate(-4deg) !important;
     animation: none !important;
     opacity: 1 !important;
+    position: relative;
+    z-index: 2;
   }
-  .phone-scene .phone-secondary,
+  .phone-scene .phone-secondary {
+    --phone-w: clamp(105px, 28vw, 160px);
+    position: absolute;
+    right: clamp(8px, 8vw, 60px);
+    top: clamp(30px, 8vw, 60px);
+    z-index: 1;
+    transform: rotate(5deg);
+    opacity: 0.85;
+    display: block;
+  }
   .phone-scene-stat {
     display: none;
   }
@@ -357,11 +370,152 @@
   }
 }
 
-@media (max-width: 480px) {
-  #carouselPrev, #carouselNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
-  #carouselTrack .phone-wrap { --phone-w: clamp(130px, 52vw, 180px) !important; }
+/* ═══════════════════════════════════════════
+   LAPTOP FRAME
+════════════════════════════════════════════ */
+.hero-devices {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0 clamp(12px, 4vw, 32px);
 }
 
+.laptop-frame {
+  position: relative;
+  width: 100%;
+  max-width: clamp(280px, 52vw, 580px);
+  min-width: 0;
+  flex-shrink: 1;
+}
+
+.laptop-lid {
+  position: relative;
+  width: 100%;
+  background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+  border: 2.5px solid rgba(255,255,255,0.13);
+  border-radius: 12px 12px 0 0;
+  padding: 3% 3% 0;
+  box-shadow:
+    inset 1px 1px 0 rgba(255,255,255,0.09),
+    inset -1px -1px 0 rgba(0,0,0,0.45);
+}
+
+.laptop-screen {
+  width: 100%;
+  aspect-ratio: 1149 / 691;
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+.laptop-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  display: block;
+}
+
+.laptop-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.laptop-camera {
+  position: absolute;
+  top: 1.2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #2a2a2e;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.07);
+  z-index: 10;
+}
+
+.laptop-base {
+  width: 100%;
+  height: clamp(10px, 2.2vw, 18px);
+  background: linear-gradient(180deg, #242428 0%, #1a1a1c 100%);
+  border: 2.5px solid rgba(255,255,255,0.11);
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+  position: relative;
+}
+
+.laptop-base::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28%;
+  height: 40%;
+  background: rgba(255,255,255,0.04);
+  border-radius: 2px 2px 0 0;
+}
+
+.laptop-foot {
+  width: 108%;
+  margin-left: -4%;
+  height: clamp(6px, 1.2vw, 10px);
+  background: linear-gradient(180deg, #1a1a1c 0%, #111113 100%);
+  border: 2px solid rgba(255,255,255,0.08);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.laptop-glow {
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    var(--blue-glow, rgba(26,107,255,0.15)) 0%,
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(24px);
+}
+
+.laptop-phone {
+  position: absolute;
+  right: -6%;
+  bottom: 8%;
+  width: 18%;
+  z-index: 4;
+}
+
+.laptop-phone .phone-wrap {
+  --phone-w: 100%;
+  width: 100%;
+  flex-shrink: 1;
+}
+
+.laptop-phone .phone-shell {
+  width: 100%;
+  border-width: 1.5px;
+  border-radius: calc(var(--phone-w) * 0.06);
+}
+
+.laptop-phone .phone-screen {
+  inset: 1px 1.5px 1.5px;
+  border-radius: calc(var(--phone-w) * 0.052);
+}
+
+/* ═══════════════════════════════════════════
+   CAROUSEL
+════════════════════════════════════════════ */
 #carouselTrack {
   overflow: hidden;
 }
@@ -370,11 +524,24 @@
   display: none;
 }
 
+/* ═══════════════════════════════════════════
+   GLOBAL
+════════════════════════════════════════════ */
 html, body {
   overflow-x: hidden;
   max-width: 100%;
+  min-width: 0;
 }
 
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .laptop-frame { max-width: clamp(220px, 90vw, 340px); }
+  .laptop-phone { right: -4%; bottom: 5%; width: 22%; }
+  #carouselPrev, #carouselNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+  #carouselTrack .phone-wrap { --phone-w: clamp(130px, 52vw, 180px) !important; }
+}
 </style>
 
 </head>
@@ -404,72 +571,62 @@ html, body {
 <div class="page">
 
   <!-- HERO -->
-  <section style="padding-top:120px; padding-bottom:80px;">
-    <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
+<section style="padding-top:120px; padding-bottom:80px;">
+  <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
-      <div>
-        <div class="eyebrow anim-fade-up d1">Built for Kenyan Retail</div>
-        <h1 class="display-xl anim-fade-up d2" style="margin-bottom:20px;">
-          Take the<br>
-          <span class="text-gradient-blue">guesswork</span><br>
-          out of your<br>business.
-        </h1>
-        <p class="lead anim-fade-up d3" style="margin-bottom:32px;">
-          A modern POS for retailers ready to grow. Manage counter sales, track inventory, and monitor customer balances — on Android or Windows.
-        </p>
-        <div style="display:flex; gap:14px; flex-wrap:wrap;" class="anim-fade-up d4">
-          <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
-          <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
-        </div>
-        <p class="anim-fade-up d5" style="color:var(--text3); font-size:0.78rem; margin-top:16px; display:flex; gap:16px; flex-wrap:wrap;">
-          <span>✦ Offline-first</span>
-          <span>✦ Cloud-synced</span>
-          <span>✦ Android &amp; Windows</span>
-        </p>
+    <div>
+      <div class="eyebrow anim-fade-up d1">Built for Kenyan Retail</div>
+      <h1 class="display-xl anim-fade-up d2" style="margin-bottom:20px;">
+        Take the<br>
+        <span class="text-gradient-blue">guesswork</span><br>
+        out of your<br>business.
+      </h1>
+      <p class="lead anim-fade-up d3" style="margin-bottom:32px;">
+        A modern POS for retailers ready to grow. Manage counter sales, track inventory, and monitor customer balances — on Android or Windows.
+      </p>
+      <div style="display:flex; gap:14px; flex-wrap:wrap;" class="anim-fade-up d4">
+        <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
+        <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
       </div>
+      <p class="anim-fade-up d5" style="color:var(--text3); font-size:0.78rem; margin-top:16px; display:flex; gap:16px; flex-wrap:wrap;">
+        <span>✦ Offline-first</span>
+        <span>✦ Cloud-synced</span>
+        <span>✦ Android &amp; Windows</span>
+      </p>
+    </div>
 
-      <div class="phone-scene">
-        <div class="phone-wrap phone-primary">
-          <div class="phone-glow"></div>
+<div style="width:100%; display:flex; justify-content:center; align-items:center; box-sizing:border-box;">
+  <div class="hero-devices anim-fade-up d3">
+
+    <div class="laptop-frame">
+      <div class="laptop-glow"></div>
+      <div class="laptop-lid">
+        <div class="laptop-camera"></div>
+        <div class="laptop-screen">
+          <img src="assets/laptop.png" alt="KezPos dashboard on laptop"
+               onerror="this.style.display='none'">
+        </div>
+      </div>
+      <div class="laptop-base"></div>
+      <div class="laptop-foot"></div>
+
+      <!-- Phone pinned inside laptop frame -->
+      <div class="laptop-phone">
+        <div class="phone-wrap">
           <div class="phone-shell">
-            <div class="phone-notch"></div>
             <div class="phone-screen">
-              <img src="assets/reports.png" alt="KezPos reports"
+              <img src="assets/reports.png" alt="KezPos reports on phone"
                    onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
               <div class="phone-placeholder" style="display:none;">Reports</div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
           </div>
-        </div>
-
-        <div class="phone-wrap phone-secondary">
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <img src="assets/people.png" alt="KezPos people"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">People</div>
-            </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
-          </div>
-        </div>
-
-        <div class="phone-scene-stat stat-sales">
-          <div class="stat-label">Today's Sales</div>
-          <div class="stat-value" style="color:var(--green, #22c55e);">KES 12,450</div>
-        </div>
-        <div class="phone-scene-stat stat-stock">
-          <div class="stat-label">Customers</div>
-          <div class="stat-value" style="color:var(--amber, #f59e0b);">4 Pending</div>
         </div>
       </div>
 
     </div>
-  </section>
+  </div>
+</div>
+</section>
 
   <div class="divider"></div>
 
