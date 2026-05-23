@@ -590,21 +590,8 @@
       '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
       '<a href="mailto:' + KEZPOS.email + '" style="color:var(--muted);">' + KEZPOS.email + '</a>';
 
-    var reveals = document.querySelectorAll('.reveal');
-    if ('IntersectionObserver' in window) {
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.12 });
-      reveals.forEach(function(el) { observer.observe(el); });
-    } else {
-      reveals.forEach(function(el) { el.classList.add('visible'); });
-    }
   });
 </script>
+<script src="assets/theme.js"></script>  <!-- ADD THIS -->
 </body>
 </html>
