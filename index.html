@@ -230,14 +230,12 @@
     /* ═══════════════════════════════════════════
        HERO PHONE SCENE
     ════════════════════════════════════════════ */
-    .phone-scene {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-right: clamp(20px, 6vw, 60px);
-      padding-left: clamp(20px, 6vw, 60px);
-    }
+    @media (max-width: 768px) {
+  .phone-scene {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 
     .phone-scene .phone-primary {
       --phone-w: clamp(180px, 22vw, 280px);
