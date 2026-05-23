@@ -606,7 +606,7 @@
       <h2 class="display-lg">Everything your shop needs,<br>in your pocket.</h2>
     </div>
 
-    <div class="phone-trio reveal" style="margin-bottom: clamp(40px, 6vw, 64px);">
+    <div class="phone-trio" style="margin-bottom: clamp(40px, 6vw, 64px);">
 
  <!-- Left: Inventory -->
 <div class="phone-trio-item phone-trio-item--side" style="display:flex; flex-direction:column; align-items:center;">
@@ -823,23 +823,12 @@
     '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
     '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
 
   window.addEventListener('scroll', function() {
     document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  var ham = document.getElementById('navHamburger');
-  if (ham) ham.addEventListener('click', function() {
-    drawer.classList.toggle('open');
-    ham.classList.toggle('open');
-    ham.setAttribute('aria-expanded', drawer.classList.contains('open'));
-  });
+
 
   /* ── FIX 1: Pause looping animations when tab is backgrounded ────────
      The two stat cards (.phone-scene-stat) run CSS float keyframes
@@ -861,6 +850,6 @@
 
 })();
 </script>
-
+<script src="assets/theme.js"></script>
 </body>
 </html>
