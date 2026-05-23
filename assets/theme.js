@@ -1,36 +1,18 @@
 (function () {
-  var LIGHT_CSS  = 'assets/style-light.css';
-  var DARK_CSS   = 'assets/style-dark.css';
-  var STORAGE_KEY = 'kez-theme';
-
-  function applyTheme(theme) {
-    var link = document.getElementById('themeStylesheet');
-    if (link) link.href = theme === 'dark' ? DARK_CSS : LIGHT_CSS;
-    // persist so every page opens in the same theme
-    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
-  }
-
-  function getTheme() {
-    try {
-      var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) return stored;
-    } catch (e) {}
-    return (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ? 'dark' : 'light';
-  }
+  var LIGHT_CSS = 'assets/style-light.css';
+  var DARK_CSS  = 'assets/style-dark.css';
 
   document.addEventListener('DOMContentLoaded', function () {
-    applyTheme(getTheme());
 
-    // Follow OS changes only if user has no stored preference
+    // Follow OS theme changes live
     if (window.matchMedia) {
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
-        try { if (localStorage.getItem(STORAGE_KEY)) return; } catch (ex) {}
-        applyTheme(e.matches ? 'dark' : 'light');
+        var link = document.getElementById('themeStylesheet');
+        if (link) link.href = e.matches ? DARK_CSS : LIGHT_CSS;
       });
     }
 
-    // Hamburger (unchanged from your original)
+    // Hamburger
     var hamburger = document.getElementById('navHamburger');
     var drawer    = document.getElementById('navDrawer');
     if (hamburger && drawer) {
@@ -47,5 +29,6 @@
         }
       });
     }
+
   });
 })();
