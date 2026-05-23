@@ -97,16 +97,19 @@
   /* ═══════════════════════════════════════════
      PHONE WRAP — base
   ════════════════════════════════════════════ */
-  .phone-wrap {
-    --phone-w: 260px;
-    --phone-r: calc(var(--phone-w) * 0.082);
-    --phone-border: 3px;
-    --phone-button-w: 4px;
+.phone-wrap {
+  --phone-w: 260px;
+  --phone-r: calc(var(--phone-w) * 0.082);
+  --phone-border: 3px;
+  --phone-button-w: 4px;
 
-    position: relative;
-    width: var(--phone-w);
-    flex-shrink: 0;
-  }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: var(--phone-w);
+  flex-shrink: 0;
+}
 
   .phone-shell {
     position: relative;
@@ -365,27 +368,29 @@
   /* ═══════════════════════════════════════════
      MOBILE OVERRIDES  ≤ 1024px
   ════════════════════════════════════════════ */
-  @media (max-width: 1024px) {
-    .phone-scene {
-      justify-content: center;
-      padding: 0;
-      margin-top: 40px;
-    }
-    .phone-scene .phone-primary {
-      --phone-w: clamp(200px, 55vw, 280px);
-      transform: none;
-      animation: none;
-      opacity: 1;
-    }
-    /* hide secondary phone + stat cards — too cramped on mobile */
-    .phone-scene .phone-secondary,
-    .phone-scene-stat {
-      display: none;
-    }
-    .phone-solo-wrap .phone-wrap {
-      --phone-w: clamp(180px, 50vw, 240px);
-    }
+ @media (max-width: 1024px) {
+  .phone-scene {
+    justify-content: center;
+    padding: 0;
+    margin-top: 40px;
+    width: 100%;        /* ADD THIS */
+    max-width: 100%;    /* ADD THIS */
+    overflow: hidden;   /* ADD THIS — clips the absolute secondary */
   }
+  .phone-scene .phone-primary {
+    --phone-w: clamp(200px, 55vw, 280px);
+    transform: none;
+    animation: none;
+    opacity: 1;
+  }
+  .phone-scene .phone-secondary,
+  .phone-scene-stat {
+    display: none;
+  }
+  .phone-solo-wrap .phone-wrap {
+    --phone-w: clamp(180px, 50vw, 240px);
+  }
+}
 
   @media (max-width: 540px) {
     .phone-trio-item--side {
