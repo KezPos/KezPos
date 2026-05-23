@@ -83,17 +83,15 @@
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
   <script>
-    // REPLACE the head <script> in index.html with this:
-(function() {
-  document.documentElement.style.visibility = 'hidden';
-  var t = localStorage.getItem('kez-theme') ||
-    (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-  var link = document.getElementById('themeStylesheet');
-  link.href = t === 'dark' ? 'assets/style-dark.css' : 'assets/style-light.css';
-  link.onload = function() { document.documentElement.style.visibility = ''; };
-  setTimeout(function() { document.documentElement.style.visibility = ''; }, 300);
-})();
-  </script>
+  (function() {
+    document.documentElement.style.visibility = 'hidden';
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var link = document.getElementById('themeStylesheet');
+    link.href = dark ? 'assets/style-dark.css' : 'assets/style-light.css';
+    link.onload = function() { document.documentElement.style.visibility = ''; };
+    setTimeout(function() { document.documentElement.style.visibility = ''; }, 300);
+  })();
+</script>
 
   <style>
     /* ── Samsung-style phone mockup ────────────────────────────────── */
@@ -233,13 +231,14 @@
        HERO PHONE SCENE
     ════════════════════════════════════════════ */
     .phone-scene {
-      position: relative;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding-right: clamp(20px, 6vw, 60px);
-      padding-left: clamp(20px, 6vw, 60px);
-    }
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-right: clamp(20px, 6vw, 60px);
+  padding-left: clamp(20px, 6vw, 60px);
+  transform: translateX(-8px);
+}
 
     .phone-scene .phone-primary {
       --phone-w: clamp(180px, 22vw, 280px);
@@ -344,15 +343,15 @@
       padding: 0 clamp(16px, 4vw, 40px) 24px; /* FIX 3 */
     }
 
-    .phone-trio .phone-center {
-      --phone-w: clamp(130px, 16vw, 200px);
-      transform: translateY(-24px);
-      z-index: 2;
-    }
-    .phone-trio .phone-side {
-      --phone-w: clamp(110px, 13vw, 165px);
-      opacity: 0.85;
-    }
+@media (max-width: 540px) {
+  .phone-trio-item--side {
+    display: none !important;
+  }
+  .phone-trio .phone-center {
+    --phone-w: clamp(160px, 55vw, 200px);
+    transform: none;
+  }
+}
 
     .phone-trio-caption {
       text-align: center;
@@ -609,72 +608,60 @@
 
     <div class="phone-trio reveal" style="margin-bottom: clamp(40px, 6vw, 64px);">
 
-      <!-- Left: Quick Sales -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-side">
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- FIX 2: lazy -->
-              <img src="assets/sales.png" alt="Sales screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                Quick Sales
-              </div>
-            </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
-          </div>
-        </div>
-        <div class="phone-trio-caption">Quick Sales</div>
+ <!-- Left: Inventory -->
+<div class="phone-trio-item phone-trio-item--side" style="display:flex; flex-direction:column; align-items:center;">
+  <div class="phone-wrap phone-side">
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <img src="assets/inventory.png" alt="Inventory" loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+        <div class="phone-placeholder" style="display:none;">Inventory</div>
       </div>
+      <div class="phone-btn-power"></div>
+      <div class="phone-btn-vol-up"></div>
+      <div class="phone-btn-vol-dn"></div>
+    </div>
+  </div>
+  <div class="phone-trio-caption">Inventory</div>
+</div>
 
-      <!-- Center: Inventory (FIX 4 — was dashboard.png, now inventory.png) -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-center">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- FIX 2: lazy  |  FIX 4: src changed to inventory.png -->
-              <img src="assets/inventory.png" alt="Inventory" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                Inventory
-              </div>
-            </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
-          </div>
-        </div>
-        <div class="phone-trio-caption" style="color:var(--blue-hover); font-weight:600;">Inventory</div>
+<!-- Center: Quick Sales -->
+<div class="phone-trio-item phone-trio-item--center" style="display:flex; flex-direction:column; align-items:center;">
+  <div class="phone-wrap phone-center">
+    <div class="phone-glow"></div>
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <img src="assets/sales.png" alt="Sales screen" loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+        <div class="phone-placeholder" style="display:none;">Quick Sales</div>
       </div>
+      <div class="phone-btn-power"></div>
+      <div class="phone-btn-vol-up"></div>
+      <div class="phone-btn-vol-dn"></div>
+    </div>
+  </div>
+  <div class="phone-trio-caption" style="color:var(--blue-hover); font-weight:600;">Quick Sales</div>
+</div>
 
-      <!-- Right: Customers -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-side">
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- FIX 2: lazy -->
-              <img src="assets/customers.png" alt="Customers" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                Customers
-              </div>
-            </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
-          </div>
-        </div>
-        <div class="phone-trio-caption">Customers</div>
+<!-- Right: Customers -->
+<div class="phone-trio-item phone-trio-item--side" style="display:flex; flex-direction:column; align-items:center;">
+  <div class="phone-wrap phone-side">
+    <div class="phone-shell">
+      <div class="phone-notch"></div>
+      <div class="phone-screen">
+        <img src="assets/customers.png" alt="Customers" loading="lazy"
+             onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+        <div class="phone-placeholder" style="display:none;">Customers</div>
       </div>
+      <div class="phone-btn-power"></div>
+      <div class="phone-btn-vol-up"></div>
+      <div class="phone-btn-vol-dn"></div>
+    </div>
+  </div>
+  <div class="phone-trio-caption">Customers</div>
+</div>
 
     </div>
 
