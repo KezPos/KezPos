@@ -64,11 +64,6 @@
   <title>KezPos — Smart Business Management for Kenyan Retail</title>
   <meta name="description" content="KezPos replaces the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
 
-  <!-- ── FIX 6: Open Graph / Social meta tags ─────────────────────────
-       These make WhatsApp, Twitter, Facebook show a rich preview card.
-       Update og:image to a real 1200×630 PNG once you have one.
-       og:url should be your canonical production URL.
-  ──────────────────────────────────────────────────────────────────── -->
   <meta property="og:type"        content="website">
   <meta property="og:title"       content="KezPos — Smart Business Management for Kenyan Retail">
   <meta property="og:description" content="Replace the paper ledger. Manage stock, sales, debtors and profit reports — offline-first, cloud-backed, built for Kenya.">
@@ -93,295 +88,283 @@
   })();
 </script>
 
-  <style>
-    /* ── Samsung-style phone mockup ────────────────────────────────── */
+<style>
+  /* ═══════════════════════════════════════════
+     PHONE WRAP — base
+  ════════════════════════════════════════════ */
+.phone-wrap {
+  --phone-w: 260px;
+  --phone-r: calc(var(--phone-w) * 0.082);
+  --phone-border: 3px;
+  --phone-button-w: 4px;
 
-    .phone-wrap {
-      --phone-w: 260px;
-      --phone-r: calc(var(--phone-w) * 0.082);   /* flatter than before (was 0.115) */
-      --phone-border: 3px;                        /* chunkier frame */
-      --phone-button-w: 4px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: var(--phone-w);
+  flex-shrink: 0;
+}
 
-      position: relative;
-      width: var(--phone-w);
-      flex-shrink: 0;
-    }
+  .phone-shell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 19.5;
+    border-radius: var(--phone-r);
+    background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+    border: var(--phone-border) solid rgba(255,255,255,0.13);
+    box-shadow:
+      inset 1px 1px 0 rgba(255,255,255,0.09),
+      inset -1px -1px 0 rgba(0,0,0,0.45),
+      0 32px 64px -16px rgba(0,0,0,0.6),
+      0 12px 24px -8px rgba(0,0,0,0.38);
+    overflow: visible;
+    will-change: transform;
+    transform: translateZ(0);
+  }
 
-    .phone-shell {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9 / 19.5;
-      border-radius: var(--phone-r);
-      /* Galaxy-style warm dark frame */
-      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-      border: var(--phone-border) solid rgba(255,255,255,0.13);
-      box-shadow:
-        /* flat-edge highlight — left & top */
-        inset 1px 1px 0 rgba(255,255,255,0.09),
-        /* flat-edge shadow — right & bottom */
-        inset -1px -1px 0 rgba(0,0,0,0.45),
-        /* outer drop shadow */
-        0 32px 64px -16px rgba(0,0,0,0.6),
-        0 12px 24px -8px rgba(0,0,0,0.38);
-      overflow: visible;
-    }
+  .phone-screen {
+    position: absolute;
+    inset: 1px var(--phone-border) var(--phone-border);
+    border-radius: calc(var(--phone-r) - var(--phone-border));
+    overflow: hidden;
+    background: #000;
+  }
 
-    .phone-screen {
-      position: absolute;
-      /* extra 1px top inset → visible top bezel like Samsung */
-      inset: 1px var(--phone-border) var(--phone-border);
-      border-radius: calc(var(--phone-r) - var(--phone-border));
-      overflow: hidden;
-      background: #000;
-    }
+  .phone-screen img,
+  .phone-screen .phone-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
 
-    .phone-screen img,
-    .phone-screen .phone-placeholder {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
+  .phone-notch {
+    position: absolute;
+    top: calc(var(--phone-w) * 0.048);
+    left: 50%;
+    transform: translateX(-50%);
+    width:  calc(var(--phone-w) * 0.042);
+    height: calc(var(--phone-w) * 0.042);
+    background: #000;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+      0 0 0 1.5px rgba(255,255,255,0.07),
+      inset 0 1px 2px rgba(0,0,0,0.6);
+  }
 
-    /* Punch-hole camera — Samsung style */
-    .phone-notch {
-      position: absolute;
-      /* sits inside the screen area, not on the bezel */
-      top: calc(var(--phone-w) * 0.048);
-      left: 50%;
-      transform: translateX(-50%);
-      width:  calc(var(--phone-w) * 0.042);   /* small circle */
-      height: calc(var(--phone-w) * 0.042);
-      background: #000;
-      border-radius: 50%;                      /* circle, not pill */
-      z-index: 10;
-      box-shadow:
-        0 0 0 1.5px rgba(255,255,255,0.07),   /* subtle ring around hole */
-        inset 0 1px 2px rgba(0,0,0,0.6);
-    }
+  .phone-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 5;
+  }
 
-    /* Screen glare */
-    .phone-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 5;
-    }
+  .phone-btn-power {
+    position: absolute;
+    right: calc(-1 * var(--phone-button-w) - var(--phone-border));
+    top: 26%;
+    width: var(--phone-button-w);
+    height: 11%;
+    background: linear-gradient(to right, #2a2a2e, #1c1c1e);
+    border-radius: 0 2px 2px 0;
+    border: var(--phone-border) solid rgba(255,255,255,0.10);
+    border-left: none;
+  }
 
-    /* Power button — right side */
-    .phone-btn-power {
-      position: absolute;
-      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      top: 26%;
-      width: var(--phone-button-w);
-      height: 11%;
-      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
-      border-radius: 0 2px 2px 0;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-left: none;
-    }
+  .phone-btn-vol-up,
+  .phone-btn-vol-dn {
+    position: absolute;
+    left: calc(-1 * var(--phone-button-w) - var(--phone-border));
+    width: var(--phone-button-w);
+    height: 8%;
+    background: linear-gradient(to left, #2a2a2e, #1c1c1e);
+    border-radius: 2px 0 0 2px;
+    border: var(--phone-border) solid rgba(255,255,255,0.10);
+    border-right: none;
+  }
+  .phone-btn-vol-up { top: 20%; }
+  .phone-btn-vol-dn { top: 31%; }
 
-    /* Volume buttons — left side */
-    .phone-btn-vol-up,
-    .phone-btn-vol-dn {
-      position: absolute;
-      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      width: var(--phone-button-w);
-      height: 8%;
-      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
-      border-radius: 2px 0 0 2px;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-right: none;
-    }
-    .phone-btn-vol-up { top: 20%; }
-    .phone-btn-vol-dn { top: 31%; }
+  .phone-glow {
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(
+      ellipse at 50% 60%,
+      var(--blue-glow, rgba(26,107,255,0.18)) 0%,
+      transparent 70%
+    );
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(20px);
+    will-change: transform;
+  }
 
-    /* Glow — unchanged */
-    .phone-glow {
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(
-        ellipse at 50% 60%,
-        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
-        transparent 70%
-      );
-      z-index: -1;
-      pointer-events: none;
-      filter: blur(20px);
-    }
+  .phone-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text3, #60697a);
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 20px;
+    background: var(--bg2, #0d1117);
+  }
 
-    .phone-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--text3, #60697a);
-      font-size: 0.7rem;
-      text-align: center;
-      padding: 20px;
-      background: var(--bg2, #0d1117);
-    }
-
-    /* ═══════════════════════════════════════════
-       HERO PHONE SCENE
-    ════════════════════════════════════════════ */
-    @media (max-width: 768px) {
+  /* ═══════════════════════════════════════════
+     HERO PHONE SCENE
+  ════════════════════════════════════════════ */
   .phone-scene {
-    padding-left: 0;
-    padding-right: 0;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .phone-scene .phone-primary {
+    --phone-w: clamp(180px, 22vw, 280px);
+    position: relative;
+    z-index: 2;
+    transform: rotate(-4deg);
+    transform-origin: bottom center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .phone-scene:hover .phone-primary {
+    transform: rotate(-2deg) translateY(-8px);
+  }
+
+  .phone-scene .phone-secondary {
+    --phone-w: clamp(140px, 17vw, 215px);
+    position: absolute;
+    right: clamp(10px, 3vw, 30px);
+    top: 60px;
+    z-index: 1;
+    transform: rotate(5deg);
+    transform-origin: bottom center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0.92;
+  }
+  .phone-scene:hover .phone-secondary {
+    transform: rotate(3deg) translateY(-6px);
+  }
+
+  .phone-scene-stat {
+    position: absolute;
+    background: var(--bg2, #0d1117);
+    border: 1px solid var(--border2, rgba(255,255,255,0.11));
+    border-radius: 14px;
+    padding: 10px 16px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    will-change: transform;
+  }
+  .phone-scene-stat .stat-label {
+    font-size: 0.65rem;
+    color: var(--text3, #60697a);
+    margin-bottom: 2px;
+    font-family: var(--font-body, sans-serif);
+  }
+  .phone-scene-stat .stat-value {
+    font-family: var(--font-display, sans-serif);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text, #f4f5f7);
+    line-height: 1.1;
+  }
+  .phone-scene-stat.stat-sales {
+    bottom: 20px;
+    left: 0;
+  }
+  .phone-scene-stat.stat-stock {
+    top: 16px;
+    right: -8px;
+    border-color: rgba(245,158,11,0.25);
+  }
+
+  /* ═══════════════════════════════════════════
+     ANALYTICS — single phone
+  ════════════════════════════════════════════ */
+  .phone-solo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 32px;
+    position: relative;
+  }
+  .phone-solo-wrap .phone-wrap {
+    --phone-w: clamp(180px, 20vw, 260px);
+  }
+
+  /* ═══════════════════════════════════════════
+     ENTRANCE ANIMATIONS
+  ════════════════════════════════════════════ */
+  .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
+  .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+  .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
+  .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
+
+  .phone-solo-wrap .phone-wrap              { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+
+  @keyframes phone-enter-left  {
+    from { opacity: 0; transform: translateX(-30px) rotate(-4deg); }
+    to   { opacity: 1; transform: translateX(0)     rotate(-4deg); }
+  }
+  @keyframes phone-enter-right {
+    from { opacity: 0;    transform: translateX(30px) rotate(5deg); }
+    to   { opacity: 0.85; transform: translateX(0)    rotate(5deg); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-7px); }
+  }
+
+  /* ═══════════════════════════════════════════
+     MOBILE OVERRIDES  ≤ 1024px
+  ════════════════════════════════════════════ */
+ @media (max-width: 1024px) {
+  .phone-scene {
+    justify-content: center;
+    padding: 0;
+    margin-top: 40px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .phone-scene .phone-primary {
+    --phone-w: clamp(200px, 55vw, 280px);
+    transform: none;
+    animation: none;
+    opacity: 1;
+  }
+  .phone-scene .phone-secondary,
+  .phone-scene-stat {
+    display: none;
+  }
+  .phone-solo-wrap .phone-wrap {
+    --phone-w: clamp(180px, 50vw, 240px);
   }
 }
 
-    .phone-scene .phone-primary {
-      --phone-w: clamp(180px, 22vw, 280px);
-      position: relative;
-      z-index: 2;
-      transform: rotate(-4deg) translateY(0px);
-      transform-origin: bottom center;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .phone-scene:hover .phone-primary {
-      transform: rotate(-2deg) translateY(-8px);
-    }
 
-    .phone-scene .phone-secondary {
-      --phone-w: clamp(140px, 17vw, 215px);
-      position: absolute;
-      right: 0;
-      top: 60px;
-      z-index: 1;
-      transform: rotate(5deg);
-      transform-origin: bottom center;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-      opacity: 0.92;
-      right: clamp(10px, 3vw, 30px);
-    }
-    .phone-scene:hover .phone-secondary {
-      transform: rotate(3deg) translateY(-6px);
-    }
+@media (max-width: 480px) {
+  #carouselPrev, #carouselNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
+  #carouselTrack .phone-wrap { --phone-w: clamp(130px, 52vw, 180px) !important; }
+}
 
-    /* ── FIX 1: will-change added so browser composites these on GPU ──
-       The float animation runs forever; will-change: transform tells
-       the browser to promote these elements to their own layer upfront,
-       avoiding repeated paint during animation on low-end devices.    */
-    .phone-scene-stat {
-      position: absolute;
-      background: var(--bg2, #0d1117);
-      border: 1px solid var(--border2, rgba(255,255,255,0.11));
-      border-radius: 14px;
-      padding: 10px 16px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      white-space: nowrap;
-      z-index: 10;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      will-change: transform; /* FIX 1 */
-    }
-    .phone-scene-stat .stat-label {
-      font-size: 0.65rem;
-      color: var(--text3, #60697a);
-      margin-bottom: 2px;
-      font-family: var(--font-body, sans-serif);
-    }
-    .phone-scene-stat .stat-value {
-      font-family: var(--font-display, sans-serif);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text, #f4f5f7);
-      line-height: 1.1;
-    }
-    .phone-scene-stat.stat-sales {
-      bottom: 20px;
-      left: 0;
-      animation: float 6s ease-in-out 0.5s infinite;
-    }
-    .phone-scene-stat.stat-stock {
-      top: 16px;
-      right: -8px;
-      border-color: rgba(245,158,11,0.25);
-      animation: float 7s ease-in-out 1s infinite;
-    }
+</style>
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-7px); }
-    }
-
-    /* ═══════════════════════════════════════════
-       ANALYTICS SECTION — single phone
-    ════════════════════════════════════════════ */
-    .phone-solo-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 24px 32px;
-      position: relative;
-    }
-    .phone-solo-wrap .phone-wrap {
-      --phone-w: clamp(180px, 20vw, 260px);
-    }
-
-    /* ═══════════════════════════════════════════
-       FEATURES TRIO — three phones in a row
-       FIX 3: padding changed from "0 0 24px" to include horizontal
-       padding so side phones don't bleed to the viewport edge on
-       narrow screens (< ~480px).
-    ════════════════════════════════════════════ */
-    .phone-trio {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: clamp(12px, 2vw, 28px);
-      padding: 0 clamp(16px, 4vw, 40px) 24px; /* FIX 3 */
-    }
-
-    .phone-trio .phone-center {
-      --phone-w: clamp(130px, 16vw, 200px);
-      transform: translateY(-24px);
-      z-index: 2;
-    }
-    .phone-trio .phone-side {
-      --phone-w: clamp(110px, 13vw, 165px);
-      opacity: 0.85;
-    }
-
-    .phone-trio-caption {
-      text-align: center;
-      font-size: 0.72rem;
-      color: var(--text3, #60697a);
-      margin-top: 8px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ─────────────────────────────────
-       Entrance animations
-       FIX 5: phone-enter-right final opacity changed from 0.92 → 0.85
-       to match the .phone-side class value. Previously the keyframe
-       resolved to 0.92 on load, then snapped to 0.85 after — visible
-       flicker on some browsers.
-    ───────────────────────────────── */
-    .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
-    .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
-    .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
-    .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
-
-    .phone-solo-wrap .phone-wrap  { animation: phone-enter-left 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
-    .phone-trio .phone-center     { animation: phone-enter-up   0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
-    .phone-trio .phone-side:first-child { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
-    .phone-trio .phone-side:last-child  { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
-
-    @keyframes phone-enter-left  { from { opacity:0; transform: translateX(-30px) rotate(-4deg); } to { opacity:1; transform: translateX(0) rotate(-4deg); } }
-    /* FIX 5: final opacity is now 0.85, matching the .phone-side class */
-    @keyframes phone-enter-right { from { opacity:0; transform: translateX(30px) rotate(5deg); } to { opacity:0.85; transform: translateX(0) rotate(5deg); } }
-    @keyframes phone-enter-up    { from { opacity:0; transform: translateY(20px) translateY(-24px); } to { opacity:1; transform: translateY(-24px); } }
-    @keyframes fade-up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-
-  </style>
 </head>
 <body>
 
@@ -408,11 +391,7 @@
 
 <div class="page">
 
-  <!-- ═══════════════════════════════════════════
-       HERO
-       Images here are EAGER (no loading="lazy") — they are above
-       the fold and must load immediately.
-  ════════════════════════════════════════════ -->
+  <!-- HERO -->
   <section style="padding-top:120px; padding-bottom:80px;">
     <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
@@ -437,7 +416,6 @@
         </p>
       </div>
 
-      <!-- Hero phones: EAGER load (above fold) -->
       <div class="phone-scene">
         <div class="phone-wrap phone-primary">
           <div class="phone-glow"></div>
@@ -446,10 +424,7 @@
             <div class="phone-screen">
               <img src="assets/reports.png" alt="KezPos reports"
                    onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                <span>Reports screen<br><code style="font-size:0.65rem;">assets/reports.png</code></span>
-              </div>
+              <div class="phone-placeholder" style="display:none;">Reports</div>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
@@ -463,10 +438,7 @@
             <div class="phone-screen">
               <img src="assets/people.png" alt="KezPos people"
                    onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
-                <span>People<br><code style="font-size:0.6rem;">assets/people.png</code></span>
-              </div>
+              <div class="phone-placeholder" style="display:none;">People</div>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
@@ -489,9 +461,7 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════
-       WHY KEZPOS
-  ════════════════════════════════════════════ -->
+  <!-- WHY KEZPOS -->
   <section>
     <div style="text-align:center; margin-bottom:56px;" class="reveal">
       <div class="eyebrow">Why KezPos</div>
@@ -524,10 +494,7 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════
-       ANALYTICS — phone left, copy right
-       FIX 2: loading="lazy" added — this section is below the fold.
-  ════════════════════════════════════════════ -->
+  <!-- ANALYTICS -->
   <section>
     <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
@@ -537,13 +504,9 @@
           <div class="phone-shell">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <!-- FIX 2: lazy load — below the fold -->
               <img src="assets/reports.png" alt="Reports analytics" loading="lazy"
                    onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="M7 16l4-4 4 4 4-4"/></svg>
-                <span>Reports Screen<br><code style="font-size:0.65rem; color:var(--blue-hover);">assets/reports.png</code></span>
-              </div>
+              <div class="phone-placeholder" style="display:none;">Reports</div>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
@@ -561,26 +524,11 @@
           One tap reveals your margins, not just totals. KezPos tracks profit automatically so you buy smarter — not just record what sold.
         </p>
         <ul class="check-list">
-          <li>
-            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div><div class="check-title">Real-time margin per product</div></div>
-          </li>
-          <li>
-            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div><div class="check-title">Daily, weekly, monthly sales reports</div></div>
-          </li>
-          <li>
-            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div><div class="check-title">Hourly performance breakdowns</div></div>
-          </li>
-          <li>
-            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div><div class="check-title">Stock health &amp; low-stock alerts</div></div>
-          </li>
-          <li>
-            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
-            <div><div class="check-title">Exportable database backup anytime</div></div>
-          </li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Real-time margin per product</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Daily, weekly, monthly sales reports</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Hourly performance breakdowns</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Stock health &amp; low-stock alerts</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Exportable database backup anytime</div></div></li>
         </ul>
       </div>
     </div>
@@ -588,94 +536,105 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════
-       FEATURES — three phones + bento
-       FIX 2: all trio images get loading="lazy"
-       FIX 3: .phone-trio now has horizontal padding (see CSS above)
-       FIX 4: center phone changed from dashboard.png → inventory.png
-               (hero already shows dashboard; don't repeat it here)
-               If you don't have inventory.png yet, use whichever
-               screen is most visually distinct: receipt, debt tracker, etc.
-  ════════════════════════════════════════════ -->
+  <!-- FEATURES CAROUSEL -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
       <div class="eyebrow">Features</div>
       <h2 class="display-lg">Everything your shop needs,<br>in your pocket.</h2>
     </div>
 
-    <div class="phone-trio reveal" style="margin-bottom: clamp(40px, 6vw, 64px);">
+<!-- ============================================================================================================= -->
 
-      <!-- Left: Quick Sales -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-side">
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <!-- FIX 2: lazy -->
-              <img src="assets/sales.png" alt="Sales screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                Quick Sales
-              </div>
-            </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
-          </div>
-        </div>
-        <div class="phone-trio-caption">Quick Sales</div>
-      </div>
+<!-- Carousel with arrows — mobile-responsive -->
+<div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
+  <div style="display:flex; align-items:center; justify-content:center; gap:20px;">
 
-      <!-- Center: Inventory (FIX 4 — was dashboard.png, now inventory.png) -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-center">
+    <button id="carouselPrev" aria-label="Previous" style="
+      background:var(--bg2,#0d1117); border:1px solid var(--border2,rgba(255,255,255,0.11));
+      border-radius:50%; width:44px; height:44px; flex-shrink:0;
+      cursor:pointer; color:var(--text,#f4f5f7); font-size:20px;
+      display:flex; align-items:center; justify-content:center; transition:all .2s;">←</button>
+
+    <div id="carouselTrack" style="position:relative; display:flex; justify-content:center;">
+
+      <div class="phone-carousel-slide active-slide" data-slide="0" data-caption="Quick Sales"
+           style="display:flex; justify-content:center;">
+        <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
           <div class="phone-glow"></div>
           <div class="phone-shell">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <!-- FIX 2: lazy  |  FIX 4: src changed to inventory.png -->
-              <img src="assets/inventory.png" alt="Inventory" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
-                Inventory
-              </div>
+              <img src="assets/sales.png" alt="Quick Sales" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">Quick Sales</div>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
             <div class="phone-btn-vol-dn"></div>
           </div>
         </div>
-        <div class="phone-trio-caption" style="color:var(--blue-hover); font-weight:600;">Inventory</div>
       </div>
 
-      <!-- Right: Customers -->
-      <div style="display:flex; flex-direction:column; align-items:center;">
-        <div class="phone-wrap phone-side">
+      <div class="phone-carousel-slide" data-slide="1" data-caption="Inventory"
+           style="display:none; justify-content:center;">
+        <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
+          <div class="phone-glow"></div>
           <div class="phone-shell">
             <div class="phone-notch"></div>
             <div class="phone-screen">
-              <!-- FIX 2: lazy -->
-              <img src="assets/customers.png" alt="Customers" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
-                Customers
-              </div>
+              <img src="assets/inventory.png" alt="Inventory" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">Inventory</div>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
             <div class="phone-btn-vol-dn"></div>
           </div>
         </div>
-        <div class="phone-trio-caption">Customers</div>
+      </div>
+
+      <div class="phone-carousel-slide" data-slide="2" data-caption="Customers"
+           style="display:none; justify-content:center;">
+        <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
+          <div class="phone-glow"></div>
+          <div class="phone-shell">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="assets/customers.png" alt="Customers" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">Customers</div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
       </div>
 
     </div>
 
+    <button id="carouselNext" aria-label="Next" style="
+      background:var(--bg2,#0d1117); border:1px solid var(--border2,rgba(255,255,255,0.11));
+      border-radius:50%; width:44px; height:44px; flex-shrink:0;
+      cursor:pointer; color:var(--text,#f4f5f7); font-size:20px;
+      display:flex; align-items:center; justify-content:center; transition:all .2s;">→</button>
+  </div>
+
+  <!-- Dots -->
+  <div style="display:flex; gap:10px;">
+    <button class="carousel-dot on" data-dot="0" aria-label="Quick Sales" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--blue-light,#3b82f6);"></button>
+    <button class="carousel-dot" data-dot="1" aria-label="Inventory" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--text3,#60697a);"></button>
+    <button class="carousel-dot" data-dot="2" aria-label="Customers" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--text3,#60697a);"></button>
+  </div>
+
+  <div id="carouselCaption" style="color:var(--blue-hover,#3b82f6);font-weight:600;font-size:0.85rem;min-height:1.2em;">Quick Sales</div>
+</div>
+
+
+
+<!-- ============================================================================================================= -->
     <!-- Bento -->
-    <div class="bento reveal">
+    <div class="bento reveal" style="margin-top: 48px;">
       <div class="bento-item bento-lg">
         <div class="bento-content">
           <div class="bento-tag">Core Strength</div>
@@ -720,9 +679,7 @@
 
   <div class="divider"></div>
 
-  <!-- ═══════════════════════════════════════════
-       CTA
-  ════════════════════════════════════════════ -->
+  <!-- CTA -->
   <section style="text-align:center;" class="reveal">
     <div class="eyebrow">Get Started Today</div>
     <h2 class="display-lg" style="margin-bottom:16px;">
@@ -742,7 +699,7 @@
     </p>
   </section>
 
-</div><!-- end .page -->
+</div>
 
 <footer>
   <div class="footer-wrap">
@@ -759,6 +716,37 @@
 <script src="config.js"></script>
 
 <script>
+(function() {
+  var slides   = document.querySelectorAll('.phone-carousel-slide');
+  var dots     = document.querySelectorAll('.carousel-dot');
+  var caption  = document.getElementById('carouselCaption');
+  var current  = 0;
+
+  function showSlide(i) {
+    slides.forEach(function(s, idx) { s.style.display = idx === i ? 'flex' : 'none'; });
+    dots.forEach(function(d, idx) {
+      d.style.background = idx === i ? 'var(--blue-light,#3b82f6)' : 'var(--text3,#60697a)';
+    });
+    if (caption) caption.textContent = slides[i].dataset.caption;
+    current = i;
+  }
+
+  dots.forEach(function(d) { d.addEventListener('click', function() { showSlide(+d.dataset.dot); }); });
+  document.getElementById('carouselPrev').addEventListener('click', function() { showSlide((current - 1 + slides.length) % slides.length); });
+  document.getElementById('carouselNext').addEventListener('click', function() { showSlide((current + 1) % slides.length); });
+
+  // Touch swipe
+  var track = document.getElementById('carouselTrack');
+  var startX = 0;
+  track.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', function(e) {
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) showSlide(dx < 0 ? (current + 1) % slides.length : (current - 1 + slides.length) % slides.length);
+  }, { passive: true });
+
+  showSlide(0);
+})();
+
 (function() {
   if (typeof KEZPOS === 'undefined') {
     window.KEZPOS = {
@@ -832,35 +820,10 @@
     '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
     '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
-
   window.addEventListener('scroll', function() {
     document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  var ham = document.getElementById('navHamburger');
-  if (ham) ham.addEventListener('click', function() {
-    drawer.classList.toggle('open');
-    ham.classList.toggle('open');
-    ham.setAttribute('aria-expanded', drawer.classList.contains('open'));
-  });
-
-  /* ── FIX 1: Pause looping animations when tab is backgrounded ────────
-     The two stat cards (.phone-scene-stat) run CSS float keyframes
-     indefinitely. On low-end Android this keeps the GPU compositor
-     active even when the user switches apps. This listener pauses them
-     the moment the tab is hidden and resumes when it's visible again.
-
-     TO APPLY ON OTHER PAGES:
-     Copy this entire block. Change the selector to match whichever
-     elements on that page have infinite CSS animations.
-     e.g. '.loader-spinner', '.pulse-ring', '.hero-particle' etc.
-  ──────────────────────────────────────────────────────────────────── */
   document.addEventListener('visibilitychange', function() {
     var state = document.hidden ? 'paused' : 'running';
     document.querySelectorAll('.phone-scene-stat').forEach(function(el) {
@@ -870,6 +833,6 @@
 
 })();
 </script>
-
+<script src="assets/theme.js"></script>
 </body>
 </html>
