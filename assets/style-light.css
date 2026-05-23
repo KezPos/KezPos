@@ -709,10 +709,17 @@ h1, h2, h3, h4 {
    PHONE MOCKUP
 ══════════════════════════════════════════ */
 .phone-wrap {
+  --phone-w: 260px;
+  --phone-r: calc(var(--phone-w) * 0.082);
+  --phone-border: 3px;
+  --phone-button-w: 4px;
+
   position: relative;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: var(--phone-w);
+  flex-shrink: 0;
 }
 
 .phone-frame {
@@ -1451,14 +1458,6 @@ footer { position: relative; z-index: var(--z-base); }
 .phone-scene-stat {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-}
-
-/* ══════════════════════════════════════════
-   PHONE WRAP — ensure width is always applied
-══════════════════════════════════════════ */
-.phone-wrap {
-  width: var(--phone-w, 260px);
-  flex-shrink: 0;
 }
 
 /* ══════════════════════════════════════════
