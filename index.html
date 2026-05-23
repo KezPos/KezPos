@@ -93,298 +93,311 @@
   })();
 </script>
 
-  <style>
-    /* ── Samsung-style phone mockup ────────────────────────────────── */
+<style>
+  /* ═══════════════════════════════════════════
+     PHONE WRAP — base
+  ════════════════════════════════════════════ */
+  .phone-wrap {
+    --phone-w: 260px;
+    --phone-r: calc(var(--phone-w) * 0.082);
+    --phone-border: 3px;
+    --phone-button-w: 4px;
 
-    .phone-wrap {
-      --phone-w: 260px;
-      --phone-r: calc(var(--phone-w) * 0.082);   /* flatter than before (was 0.115) */
-      --phone-border: 3px;                        /* chunkier frame */
-      --phone-button-w: 4px;
+    position: relative;
+    width: var(--phone-w);
+    flex-shrink: 0;
+  }
 
-      position: relative;
-      width: var(--phone-w);
-      flex-shrink: 0;
-    }
+  .phone-shell {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 9 / 19.5;
+    border-radius: var(--phone-r);
+    background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+    border: var(--phone-border) solid rgba(255,255,255,0.13);
+    box-shadow:
+      inset 1px 1px 0 rgba(255,255,255,0.09),
+      inset -1px -1px 0 rgba(0,0,0,0.45),
+      0 32px 64px -16px rgba(0,0,0,0.6),
+      0 12px 24px -8px rgba(0,0,0,0.38);
+    overflow: visible;
+    will-change: transform;
+    transform: translateZ(0);
+  }
 
-    .phone-shell {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9 / 19.5;
-      border-radius: var(--phone-r);
-      /* Galaxy-style warm dark frame */
-      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-      border: var(--phone-border) solid rgba(255,255,255,0.13);
-      box-shadow:
-        /* flat-edge highlight — left & top */
-        inset 1px 1px 0 rgba(255,255,255,0.09),
-        /* flat-edge shadow — right & bottom */
-        inset -1px -1px 0 rgba(0,0,0,0.45),
-        /* outer drop shadow */
-        0 32px 64px -16px rgba(0,0,0,0.6),
-        0 12px 24px -8px rgba(0,0,0,0.38);
-      overflow: visible;
-    }
+  .phone-screen {
+    position: absolute;
+    inset: 1px var(--phone-border) var(--phone-border);
+    border-radius: calc(var(--phone-r) - var(--phone-border));
+    overflow: hidden;
+    background: #000;
+  }
 
-    .phone-screen {
-      position: absolute;
-      /* extra 1px top inset → visible top bezel like Samsung */
-      inset: 1px var(--phone-border) var(--phone-border);
-      border-radius: calc(var(--phone-r) - var(--phone-border));
-      overflow: hidden;
-      background: #000;
-    }
+  .phone-screen img,
+  .phone-screen .phone-placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
 
-    .phone-screen img,
-    .phone-screen .phone-placeholder {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: block;
-    }
+  .phone-notch {
+    position: absolute;
+    top: calc(var(--phone-w) * 0.048);
+    left: 50%;
+    transform: translateX(-50%);
+    width:  calc(var(--phone-w) * 0.042);
+    height: calc(var(--phone-w) * 0.042);
+    background: #000;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow:
+      0 0 0 1.5px rgba(255,255,255,0.07),
+      inset 0 1px 2px rgba(0,0,0,0.6);
+  }
 
-    /* Punch-hole camera — Samsung style */
-    .phone-notch {
-      position: absolute;
-      /* sits inside the screen area, not on the bezel */
-      top: calc(var(--phone-w) * 0.048);
-      left: 50%;
-      transform: translateX(-50%);
-      width:  calc(var(--phone-w) * 0.042);   /* small circle */
-      height: calc(var(--phone-w) * 0.042);
-      background: #000;
-      border-radius: 50%;                      /* circle, not pill */
-      z-index: 10;
-      box-shadow:
-        0 0 0 1.5px rgba(255,255,255,0.07),   /* subtle ring around hole */
-        inset 0 1px 2px rgba(0,0,0,0.6);
-    }
+  .phone-screen::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
+    pointer-events: none;
+    border-radius: inherit;
+    z-index: 5;
+  }
 
-    /* Screen glare */
-    .phone-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 5;
-    }
+  .phone-btn-power {
+    position: absolute;
+    right: calc(-1 * var(--phone-button-w) - var(--phone-border));
+    top: 26%;
+    width: var(--phone-button-w);
+    height: 11%;
+    background: linear-gradient(to right, #2a2a2e, #1c1c1e);
+    border-radius: 0 2px 2px 0;
+    border: var(--phone-border) solid rgba(255,255,255,0.10);
+    border-left: none;
+  }
 
-    /* Power button — right side */
-    .phone-btn-power {
-      position: absolute;
-      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      top: 26%;
-      width: var(--phone-button-w);
-      height: 11%;
-      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
-      border-radius: 0 2px 2px 0;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-left: none;
-    }
+  .phone-btn-vol-up,
+  .phone-btn-vol-dn {
+    position: absolute;
+    left: calc(-1 * var(--phone-button-w) - var(--phone-border));
+    width: var(--phone-button-w);
+    height: 8%;
+    background: linear-gradient(to left, #2a2a2e, #1c1c1e);
+    border-radius: 2px 0 0 2px;
+    border: var(--phone-border) solid rgba(255,255,255,0.10);
+    border-right: none;
+  }
+  .phone-btn-vol-up { top: 20%; }
+  .phone-btn-vol-dn { top: 31%; }
 
-    /* Volume buttons — left side */
-    .phone-btn-vol-up,
-    .phone-btn-vol-dn {
-      position: absolute;
-      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      width: var(--phone-button-w);
-      height: 8%;
-      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
-      border-radius: 2px 0 0 2px;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-right: none;
-    }
-    .phone-btn-vol-up { top: 20%; }
-    .phone-btn-vol-dn { top: 31%; }
+  .phone-glow {
+    position: absolute;
+    inset: -30%;
+    background: radial-gradient(
+      ellipse at 50% 60%,
+      var(--blue-glow, rgba(26,107,255,0.18)) 0%,
+      transparent 70%
+    );
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(20px);
+    will-change: transform;
+  }
 
-    /* Glow — unchanged */
-    .phone-glow {
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(
-        ellipse at 50% 60%,
-        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
-        transparent 70%
-      );
-      z-index: -1;
-      pointer-events: none;
-      filter: blur(20px);
-    }
+  .phone-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--text3, #60697a);
+    font-size: 0.7rem;
+    text-align: center;
+    padding: 20px;
+    background: var(--bg2, #0d1117);
+  }
 
-    .phone-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--text3, #60697a);
-      font-size: 0.7rem;
-      text-align: center;
-      padding: 20px;
-      background: var(--bg2, #0d1117);
-    }
+  /* ═══════════════════════════════════════════
+     HERO PHONE SCENE
+  ════════════════════════════════════════════ */
+  .phone-scene {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* no overflow:hidden — clips the secondary phone */
+    /* no translateX — causes nav overflow on mobile */
+  }
 
-    /* ═══════════════════════════════════════════
-       HERO PHONE SCENE
-    ════════════════════════════════════════════ */
+  .phone-scene .phone-primary {
+    --phone-w: clamp(180px, 22vw, 280px);
+    position: relative;
+    z-index: 2;
+    transform: rotate(-4deg);
+    transform-origin: bottom center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .phone-scene:hover .phone-primary {
+    transform: rotate(-2deg) translateY(-8px);
+  }
+
+  .phone-scene .phone-secondary {
+    --phone-w: clamp(140px, 17vw, 215px);
+    position: absolute;
+    right: clamp(10px, 3vw, 30px);
+    top: 60px;
+    z-index: 1;
+    transform: rotate(5deg);
+    transform-origin: bottom center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity: 0.92;
+  }
+  .phone-scene:hover .phone-secondary {
+    transform: rotate(3deg) translateY(-6px);
+  }
+
+  .phone-scene-stat {
+    position: absolute;
+    background: var(--bg2, #0d1117);
+    border: 1px solid var(--border2, rgba(255,255,255,0.11));
+    border-radius: 14px;
+    padding: 10px 16px;
+    white-space: nowrap;
+    z-index: 10;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    will-change: transform;
+    /* backdrop-filter removed — GPU cost not worth it on mobile */
+  }
+  .phone-scene-stat .stat-label {
+    font-size: 0.65rem;
+    color: var(--text3, #60697a);
+    margin-bottom: 2px;
+    font-family: var(--font-body, sans-serif);
+  }
+  .phone-scene-stat .stat-value {
+    font-family: var(--font-display, sans-serif);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text, #f4f5f7);
+    line-height: 1.1;
+  }
+  .phone-scene-stat.stat-sales {
+    bottom: 20px;
+    left: 0;
+  }
+  .phone-scene-stat.stat-stock {
+    top: 16px;
+    right: -8px;
+    border-color: rgba(245,158,11,0.25);
+  }
+
+  /* ═══════════════════════════════════════════
+     ANALYTICS — single phone
+  ════════════════════════════════════════════ */
+  .phone-solo-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 32px;
+    position: relative;
+  }
+  .phone-solo-wrap .phone-wrap {
+    --phone-w: clamp(180px, 20vw, 260px);
+  }
+
+  /* ═══════════════════════════════════════════
+     FEATURES TRIO
+  ════════════════════════════════════════════ */
+  .phone-trio {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: clamp(12px, 2vw, 28px);
+    padding: 0 clamp(16px, 4vw, 40px) 24px;
+    isolation: isolate;
+  }
+
+  .phone-trio-caption {
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text3, #60697a);
+    margin-top: 8px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ═══════════════════════════════════════════
+     ENTRANCE ANIMATIONS
+  ════════════════════════════════════════════ */
+  .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
+  .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
+  .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
+  .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
+
+  .phone-solo-wrap .phone-wrap              { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
+  .phone-trio .phone-center                 { animation: phone-enter-up    0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
+  .phone-trio .phone-side:first-child       { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+  .phone-trio .phone-side:last-child        { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
+
+  @keyframes phone-enter-left  {
+    from { opacity: 0; transform: translateX(-30px) rotate(-4deg); }
+    to   { opacity: 1; transform: translateX(0)     rotate(-4deg); }
+  }
+  @keyframes phone-enter-right {
+    from { opacity: 0;    transform: translateX(30px) rotate(5deg); }
+    to   { opacity: 0.85; transform: translateX(0)    rotate(5deg); }
+  }
+  @keyframes phone-enter-up {
+    from { opacity: 0; transform: translateY(20px) translateY(-24px); }
+    to   { opacity: 1; transform: translateY(-24px); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-7px); }
+  }
+
+  /* ═══════════════════════════════════════════
+     MOBILE OVERRIDES  ≤ 1024px
+  ════════════════════════════════════════════ */
+  @media (max-width: 1024px) {
     .phone-scene {
-  position: relative;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-right: clamp(20px, 6vw, 60px);
-  padding-left: clamp(20px, 6vw, 60px);
-  transform: translateX(-8px);
-}
-
-    .phone-scene .phone-primary {
-      --phone-w: clamp(180px, 22vw, 280px);
-      position: relative;
-      z-index: 2;
-      transform: rotate(-4deg) translateY(0px);
-      transform-origin: bottom center;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .phone-scene:hover .phone-primary {
-      transform: rotate(-2deg) translateY(-8px);
-    }
-
-    .phone-scene .phone-secondary {
-      --phone-w: clamp(140px, 17vw, 215px);
-      position: absolute;
-      right: 0;
-      top: 60px;
-      z-index: 1;
-      transform: rotate(5deg);
-      transform-origin: bottom center;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-      opacity: 0.92;
-      right: clamp(10px, 3vw, 30px);
-    }
-    .phone-scene:hover .phone-secondary {
-      transform: rotate(3deg) translateY(-6px);
-    }
-
-    /* ── FIX 1: will-change added so browser composites these on GPU ──
-       The float animation runs forever; will-change: transform tells
-       the browser to promote these elements to their own layer upfront,
-       avoiding repeated paint during animation on low-end devices.    */
-    .phone-scene-stat {
-      position: absolute;
-      background: var(--bg2, #0d1117);
-      border: 1px solid var(--border2, rgba(255,255,255,0.11));
-      border-radius: 14px;
-      padding: 10px 16px;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      white-space: nowrap;
-      z-index: 10;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-      will-change: transform; /* FIX 1 */
-    }
-    .phone-scene-stat .stat-label {
-      font-size: 0.65rem;
-      color: var(--text3, #60697a);
-      margin-bottom: 2px;
-      font-family: var(--font-body, sans-serif);
-    }
-    .phone-scene-stat .stat-value {
-      font-family: var(--font-display, sans-serif);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text, #f4f5f7);
-      line-height: 1.1;
-    }
-    .phone-scene-stat.stat-sales {
-      bottom: 20px;
-      left: 0;
-      animation: float 6s ease-in-out 0.5s infinite;
-    }
-    .phone-scene-stat.stat-stock {
-      top: 16px;
-      right: -8px;
-      border-color: rgba(245,158,11,0.25);
-      animation: float 7s ease-in-out 1s infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(-7px); }
-    }
-
-    /* ═══════════════════════════════════════════
-       ANALYTICS SECTION — single phone
-    ════════════════════════════════════════════ */
-    .phone-solo-wrap {
-      display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 24px 32px;
-      position: relative;
+      padding: 0;
+      margin-top: 40px;
+    }
+    .phone-scene .phone-primary {
+      --phone-w: clamp(200px, 55vw, 280px);
+      transform: none;
+      animation: none;
+      opacity: 1;
+    }
+    /* hide secondary phone + stat cards — too cramped on mobile */
+    .phone-scene .phone-secondary,
+    .phone-scene-stat {
+      display: none;
     }
     .phone-solo-wrap .phone-wrap {
-      --phone-w: clamp(180px, 20vw, 260px);
+      --phone-w: clamp(180px, 50vw, 240px);
     }
-
-    /* ═══════════════════════════════════════════
-       FEATURES TRIO — three phones in a row
-       FIX 3: padding changed from "0 0 24px" to include horizontal
-       padding so side phones don't bleed to the viewport edge on
-       narrow screens (< ~480px).
-    ════════════════════════════════════════════ */
-    .phone-trio {
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: clamp(12px, 2vw, 28px);
-      padding: 0 clamp(16px, 4vw, 40px) 24px; /* FIX 3 */
-    }
-
-@media (max-width: 540px) {
-  .phone-trio-item--side {
-    display: none !important;
   }
-  .phone-trio .phone-center {
-    --phone-w: clamp(160px, 55vw, 200px);
-    transform: none;
-  }
-}
 
-    .phone-trio-caption {
-      text-align: center;
-      font-size: 0.72rem;
-      color: var(--text3, #60697a);
-      margin-top: 8px;
-      letter-spacing: 0.02em;
+  @media (max-width: 540px) {
+    .phone-trio-item--side {
+      display: none !important;
     }
+    .phone-trio .phone-center {
+      --phone-w: clamp(160px, 55vw, 200px);
+      transform: none;
+    }
+  }
+</style>
 
-    /* ─────────────────────────────────
-       Entrance animations
-       FIX 5: phone-enter-right final opacity changed from 0.92 → 0.85
-       to match the .phone-side class value. Previously the keyframe
-       resolved to 0.92 on load, then snapped to 0.85 after — visible
-       flicker on some browsers.
-    ───────────────────────────────── */
-    .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
-    .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
-    .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
-    .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
-
-    .phone-solo-wrap .phone-wrap  { animation: phone-enter-left 0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
-    .phone-trio .phone-center     { animation: phone-enter-up   0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both; }
-    .phone-trio .phone-side:first-child { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
-    .phone-trio .phone-side:last-child  { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s both; }
-
-    @keyframes phone-enter-left  { from { opacity:0; transform: translateX(-30px) rotate(-4deg); } to { opacity:1; transform: translateX(0) rotate(-4deg); } }
-    /* FIX 5: final opacity is now 0.85, matching the .phone-side class */
-    @keyframes phone-enter-right { from { opacity:0; transform: translateX(30px) rotate(5deg); } to { opacity:0.85; transform: translateX(0) rotate(5deg); } }
-    @keyframes phone-enter-up    { from { opacity:0; transform: translateY(20px) translateY(-24px); } to { opacity:1; transform: translateY(-24px); } }
-    @keyframes fade-up { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-
-  </style>
 </head>
 <body>
 
