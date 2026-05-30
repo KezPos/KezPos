@@ -1,11 +1,11 @@
 {
-  "versionCode": 7,
-  "versionName": "1.0.6",
-  "releaseDate": "2026-05-20",
-  "whatsNew": "-Bug fixes\nUi updated",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.6/KezPos-v1.0.6.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.6/KezPos-v1.0.6-setup.exe",
+  "versionCode": 8,
+  "versionName": "1.0.7",
+  "releaseDate": "2026-05-30",
+  "whatsNew": "- Bug fixes\n- UI update\n- Added dark theme (see in settings > Theme & Behaviour)",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.7/KezPos-v1.0.7.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.7/KezPos-v1.0.7-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
-  "forceUpdate": true
+  "forceUpdate": false
 }
