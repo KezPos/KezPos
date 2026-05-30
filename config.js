@@ -3,19 +3,19 @@
  * Edit this file to update links, versions, and metadata across the entire site.
  */
  window.KEZPOS = {
-  version: 'v1.0.6',
+  version: 'v1.0.7',
   email: 'kezposapp@gmail.com',
 
   downloads: {
     apk: {
       label: 'Android APK',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.6/KezPos-v1.0.6.apk',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.7/KezPos-v1.0.7.apk',
       size: '76 MB',
       badge: 'Android',
     },
     windows: {
       label: 'Windows App',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.6/KezPos-v1.0.6-setup.exe',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.7/KezPos-v1.0.7-setup.exe',
       size: '35 MB',
       badge: 'Windows',
     },
