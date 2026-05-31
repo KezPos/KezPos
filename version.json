@@ -2,7 +2,7 @@
   "versionCode": 10,
   "versionName": "1.0.9",
   "releaseDate": "2026-05-30",
-  "whatsNew": "- Bug fixes\n- UI improvements\n- Added dark theme (Settings → Theme & Behaviour)\n- Items can now be sold in fractions"
+  "whatsNew": "- Bug fixes\n- UI improvements\n- Added dark theme (Settings → Theme & Behaviour)\n- Items can now be sold in fractions",
   "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.9/KezPos-v1.0.9.apk",
   "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.9/KezPos-v1.0.9-setup.exe",
   "linuxDownloadUrl": null,
