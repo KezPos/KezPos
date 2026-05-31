@@ -7,5 +7,5 @@
   "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.0.8/KezPos-v1.0.8-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
-  "forceUpdate": true
+  "forceUpdate": false
 }
