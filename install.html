@@ -5,6 +5,565 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Install KezPos — Download & Setup Guide</title>
   <meta name="description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Install KezPos — Download & Setup Guide">
+  <meta property="og:description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
+  <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
+  <meta property="og:url"         content="https://kezpos.co.ke/install.html">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Install KezPos — Download & Setup Guide">
+  <meta name="twitter:description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
+  <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
+
+  <link rel="icon" type="image/png" href="assets/kezpos.png">
+  <link rel="apple-touch-icon" href="assets/kezpos.png">
+  <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <script>
+  (function() {
+    document.documentElement.style.visibility = 'hidden';
+    var dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var link = document.getElementById('themeStylesheet');
+    link.href = dark ? 'assets/style-dark.css' : 'assets/style-light.css';
+    link.onload = function() { document.documentElement.style.visibility = ''; };
+    setTimeout(function() { document.documentElement.style.visibility = ''; }, 300);
+  })();
+</script>
+  <style>
+    /* ── Phone mockup (no camera dot) ────────────────────────────────── */
+    .phone-wrap {
+      --phone-w: 260px;
+      --phone-r: calc(var(--phone-w) * 0.082);
+      --phone-border: 3px;
+      --phone-button-w: 4px;
+
+      position: relative;
+      width: var(--phone-w);
+      flex-shrink: 0;
+    }
+
+    .phone-shell {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 19.5;
+      border-radius: var(--phone-r);
+      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
+      border: var(--phone-border) solid rgba(255,255,255,0.13);
+      box-shadow:
+        inset 1px 1px 0 rgba(255,255,255,0.09),
+        inset -1px -1px 0 rgba(0,0,0,0.45),
+        0 32px 64px -16px rgba(0,0,0,0.6),
+        0 12px 24px -8px rgba(0,0,0,0.38);
+      overflow: visible;
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    .phone-screen {
+      position: absolute;
+      inset: 1px var(--phone-border) var(--phone-border);
+      border-radius: calc(var(--phone-r) - var(--phone-border));
+      overflow: hidden;
+      background: #000;
+    }
+
+    .phone-screen img,
+    .phone-screen .phone-placeholder {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: #000;
+    }
+
+    .phone-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 5;
+    }
+
+    .phone-btn-power {
+      position: absolute;
+      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      top: 26%;
+      width: var(--phone-button-w);
+      height: 11%;
+      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
+      border-radius: 0 2px 2px 0;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-left: none;
+    }
+
+    .phone-btn-vol-up,
+    .phone-btn-vol-dn {
+      position: absolute;
+      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
+      width: var(--phone-button-w);
+      height: 8%;
+      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
+      border-radius: 2px 0 0 2px;
+      border: var(--phone-border) solid rgba(255,255,255,0.10);
+      border-right: none;
+    }
+    .phone-btn-vol-up { top: 20%; }
+    .phone-btn-vol-dn { top: 31%; }
+
+    .phone-glow {
+      position: absolute;
+      inset: -30%;
+      background: radial-gradient(
+        ellipse at 50% 60%,
+        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
+        transparent 70%
+      );
+      z-index: -1;
+      pointer-events: none;
+      filter: blur(20px);
+      will-change: auto;
+    }
+
+    .phone-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text3, #60697a);
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 20px;
+      background: var(--bg2, #0d1117);
+    }
+
+    @media (max-width: 880px) {
+      .grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="mesh-bg" aria-hidden="true">
+  <span></span><span></span><span></span>
+</div>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <img src="assets/kezpos.png" alt="KezPos"
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3Ctext x=%2220%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2222%22 font-weight=%22800%22 font-family=%22sans-serif%22%3EK%3C/text%3E%3C/svg%3E'">
+    <span class="nav-logo-text">Kez<span>Pos</span></span>
+  </a>
+  <ul class="nav-links" id="navLinks"></ul>
+  <div class="nav-right">
+    <a href="#" data-kezpos="navInstall" class="nav-cta">↓ Download</a>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav-mobile-drawer" id="navDrawer"></div>
+
+<div class="page">
+
+  <!-- HERO + DOWNLOAD -->
+  <section id="download" style="padding-top:160px; padding-bottom:80px;">
+    <div class="grid-2" style="gap:80px; align-items:center;">
+
+      <div>
+        <div class="eyebrow anim-slide-down">Get the App</div>
+        <h1 class="display-xl anim-fade-up d2" style="margin-bottom:20px;">
+          Install<br><span class="text-blue">KezPos</span><br>in minutes.
+        </h1>
+        <p class="lead anim-fade-up d3" style="margin-bottom:36px;">
+          KezPos runs on Android and Windows. Download below and follow the simple steps to get your shop running smarter today.
+        </p>
+
+        <div class="anim-fade-up d4">
+          <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:16px;">
+            <a href="#" data-kezpos="downloads.apk.url"
+               class="btn btn-primary"
+               style="font-size:1.05rem; padding:16px 32px; display:inline-flex;">
+              ↓ &nbsp;Android APK
+            </a>
+            <a href="#" data-kezpos="downloads.windows.url"
+               class="btn btn-ghost"
+               style="font-size:1.05rem; padding:16px 32px; display:inline-flex; border:1px solid var(--border);">
+              ↓ &nbsp;Windows .exe
+            </a>
+          </div>
+          <div style="color:var(--text3); font-size:0.82rem; margin-top:12px; display:flex; flex-direction:column; gap:4px;">
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Android · <span data-kezpos="downloads.apk.size"></span> &nbsp;|&nbsp;
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              Windows · <span data-kezpos="downloads.windows.size"></span>
+            </span>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Safe to install — see our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="anim-float-in d3" style="display:flex; justify-content:center;">
+        <div class="phone-wrap" style="--phone-w: clamp(180px, 22vw, 260px);">
+          <div class="phone-glow"></div>
+          <div class="phone-shell">
+            <div class="phone-screen">
+              <img src="assets/app-home.png" alt="KezPos App" loading="lazy"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+              <div class="phone-placeholder" style="display:none;">KezPos Home</div>
+            </div>
+            <div class="phone-btn-power"></div>
+            <div class="phone-btn-vol-up"></div>
+            <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- STEP BY STEP -->
+  <section>
+    <div style="margin-bottom:56px;" class="reveal">
+      <div class="eyebrow">Step-by-Step</div>
+      <h2 class="display-lg">How to install KezPos<br>on your device.</h2>
+    </div>
+
+    <div class="grid-2" style="gap:80px; align-items:start;">
+
+      <div class="step-list reveal">
+
+        <div class="step-item">
+          <div class="step-connector"></div>
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <h3>Download the app</h3>
+            <p>Tap the download button above for your platform. Android users get an <strong>.apk</strong> file, Windows users get a <strong>.exe</strong> installer.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-connector"></div>
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <h3>Android: Allow installation from unknown sources</h3>
+            <p>Since KezPos isn't on the Play Store, Android needs your permission to install it. When prompted, tap <strong>"Allow from this source"</strong> or go to:</p>
+            <div class="brand-box" style="margin-top:14px;">
+              <h4>General path (most phones)</h4>
+              <p>Settings → Apps → Special app access → Install unknown apps → Your browser → Allow</p>
+            </div>
+            <div class="tip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              You can turn this off again after installing for extra security.
+            </div>
+            <div class="tip" style="margin-top:8px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              <strong>Windows users:</strong> just double-click the .exe and follow the setup wizard — no extra steps needed.
+            </div>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-connector"></div>
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <h3>Open and install the file</h3>
+            <p><strong>Android:</strong> open your Downloads folder, tap <strong>KezPos.apk</strong>, then tap <strong>"Install"</strong>. Takes about 10 seconds.</p>
+            <p style="margin-top:8px;"><strong>Windows:</strong> run <strong>KezPos-Setup.exe</strong> and follow the installer prompts. KezPos will appear on your desktop and Start menu.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-connector"></div>
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <h3>Open KezPos and create your account</h3>
+            <p>Launch KezPos from your home screen or desktop. Enter your email and shop name to create a free account. Your data syncs to the cloud automatically across all your devices.</p>
+          </div>
+        </div>
+
+        <div class="step-item">
+          <div class="step-num" style="background:var(--blue-pale); border-color:rgba(0,51,255,0.4); color:var(--blue-hover);">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="step-body">
+            <h3>You're all set!</h3>
+            <p>Add your first product, make your first sale, and watch your business data come alive. Sign in on any device with the same email and everything restores automatically.</p>
+            <div class="tip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              Pro tip: Export your database from Settings → Backup &amp; Data as an extra safety net.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Brand-specific tips -->
+      <div class="reveal reveal-delay-2">
+        <h3 style="font-family:var(--font-display); font-size:1.2rem; font-weight:700; color:var(--text); margin-bottom:20px; letter-spacing:-0.02em;">
+          Android: Brand-specific settings
+        </h3>
+        <p style="color:var(--text2); font-size:0.9rem; margin-bottom:20px;">
+          The exact path to enable "Unknown Sources" varies by phone brand:
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:12px;">
+
+          <div class="brand-box">
+            <h4>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Samsung (One UI)
+            </h4>
+            <ul>
+              <li>Settings → Apps → tap top-right menu (⋮) → Special access</li>
+              <li>→ Install unknown apps → Chrome/Files → Allow</li>
+            </ul>
+          </div>
+
+          <div class="brand-box">
+            <h4>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Tecno / Infinix / itel (HiOS / XOS)
+            </h4>
+            <ul>
+              <li>Settings → Privacy &amp; Safety → Install unknown apps</li>
+              <li>→ Select your browser or Files app → Enable</li>
+            </ul>
+          </div>
+
+          <div class="brand-box">
+            <h4>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Xiaomi / Redmi (MIUI)
+            </h4>
+            <ul>
+              <li>Settings → Additional settings → Privacy → Install unknown apps</li>
+              <li>→ Select your browser → Allow from this source</li>
+            </ul>
+          </div>
+
+          <div class="brand-box">
+            <h4>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Nokia / Stock Android
+            </h4>
+            <ul>
+              <li>Settings → Apps &amp; notifications → Advanced</li>
+              <li>→ Special app access → Install unknown apps → Allow</li>
+            </ul>
+          </div>
+
+          <div class="brand-box">
+            <h4>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+              Huawei (EMUI)
+            </h4>
+            <ul>
+              <li>Settings → Security → More settings</li>
+              <li>→ Install apps from external sources → Allow</li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div style="
+          margin-top:20px; padding:16px 20px;
+          background:var(--card-bg); border:1px solid var(--border);
+          border-left:3px solid var(--amber); border-radius:var(--r-sm);
+          font-size:0.875rem; color:var(--text2);
+        ">
+          <strong style="color:var(--amber);">Having trouble?</strong> Email us at
+          <a href="#" data-kezpos="email" data-kezpos-prefix="mailto:" style="color:var(--blue-hover);">kezposapp@gmail.com</a>
+          and we'll walk you through it.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FAQ -->
+  <section>
+    <div style="text-align:center; margin-bottom:48px;" class="reveal">
+      <div class="eyebrow">FAQ</div>
+      <h2 class="display-lg">Common questions.</h2>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:16px; max-width:760px; margin:0 auto;" class="reveal">
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">Is KezPos really affordable?</h3>
+        <p style="font-size:0.9rem;">KezPos is priced to be accessible for local businesses. One affordable monthly plan covers everything — cloud sync, all features, Android &amp; Windows, and future updates. No hidden fees, no paywalls.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">Why isn't it on the Play Store?</h3>
+        <p style="font-size:0.9rem;">KezPos is in active development and distributed directly so updates reach you faster. It's safe — check our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a> for details on what data we collect (spoiler: very little).</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">What if I lose my phone or PC?</h3>
+        <p style="font-size:0.9rem;">No problem. Sign in with the same email on any new device and all your data — products, customers, sales history — restores automatically from the cloud.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">Does it work without internet?</h3>
+        <p style="font-size:0.9rem;">Yes. KezPos is offline-first on all platforms. Make sales, add stock, record transactions — all without a connection. Everything syncs automatically when you reconnect.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">Can I use it on both my phone and PC?</h3>
+        <p style="font-size:0.9rem;">Absolutely. Install on both, sign in with the same account, and your data syncs between them. Manage inventory on your PC, make sales on your phone — it all stays in sync.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">Which Bluetooth printers are supported?</h3>
+        <p style="font-size:0.9rem;">Standard 58mm and 80mm Bluetooth thermal printers. Most affordable models sold in Kenya work fine. The app scans for nearby printers automatically when you connect.</p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<footer style="position:relative; z-index:1;">
+  <div class="footer-wrap">
+    <a href="index.html" class="footer-logo">
+      <img src="assets/kezpos.png" alt="KezPos"
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3C/svg%3E'">
+      <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
+    </a>
+    <ul class="footer-links" id="footerLinks"></ul>
+    <div class="footer-copy" id="footerCopy"></div>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fallback if config.js fails to load
+    if (typeof KEZPOS === 'undefined') {
+      window.KEZPOS = {
+        pricing: { monthly: 800, currency: 'Ksh', period: '/month' },
+        downloads: {
+          apk: { label: 'Android APK', url: '', size: '18 MB', badge: 'Android 8+' },
+          windows: { label: 'Windows App', url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.0/KezPos-v1.0.0-setup.exe', size: '42 MB', badge: 'Windows 10/11' }
+        },
+        nav: [
+          { label: 'Home',     href: 'index.html' },
+          { label: 'Features', href: 'features.html' },
+          { label: 'Install',  href: 'install.html' },
+          { label: 'Legal',    href: 'terms.html' },
+        ],
+        footer: [
+          { label: 'Features', href: 'features.html' },
+          { label: 'Install',  href: 'install.html' },
+          { label: 'Terms',    href: 'terms.html' },
+          { label: 'Privacy',  href: 'privacy.html' },
+        ],
+        email: 'kezposapp@gmail.com'
+      };
+    }
+
+    var isInstall = window.location.pathname.indexOf('install.html') > -1;
+
+    // Patch kezpos data attributes
+    document.querySelectorAll('[data-kezpos]').forEach(function(el) {
+      var path = el.getAttribute('data-kezpos');
+      var prefix = el.getAttribute('data-kezpos-prefix') || '';
+      var value;
+      if (path === 'navInstall') {
+        var installItem = KEZPOS.nav.find(function(n) { return n.label === 'Install'; });
+        value = installItem ? installItem.href : 'install.html';
+      } else {
+        value = path.split('.').reduce(function(obj, key) {
+          return obj && obj[key];
+        }, window.KEZPOS);
+      }
+      if (value !== undefined && value !== null) {
+        if (el.tagName === 'A') {
+          el.href = prefix + value;
+        } else {
+          el.textContent = prefix + value;
+        }
+      }
+    });
+
+    // Nav
+    var navLinks = document.getElementById('navLinks');
+    KEZPOS.nav.forEach(function(item) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.href === 'install.html' && isInstall) a.classList.add('active');
+      li.appendChild(a);
+      navLinks.appendChild(li);
+    });
+
+    // Mobile drawer
+    var drawer = document.getElementById('navDrawer');
+    KEZPOS.nav.forEach(function(item) {
+      var a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      if (item.href === 'install.html' && isInstall) a.classList.add('active');
+      drawer.appendChild(a);
+    });
+    var drawerCta = document.createElement('a');
+    drawerCta.href = (KEZPOS.nav.find(function(n) { return n.label === 'Install'; }) || {}).href || 'install.html';
+    drawerCta.className = 'nav-cta';
+    drawerCta.textContent = '↓ Download';
+    drawer.appendChild(drawerCta);
+
+    // Footer
+    var footerLinks = document.getElementById('footerLinks');
+    KEZPOS.footer.forEach(function(item) {
+      var li = document.createElement('li');
+      var a = document.createElement('a');
+      a.href = item.href;
+      a.textContent = item.label;
+      li.appendChild(a);
+      footerLinks.appendChild(li);
+    });
+    var contactLi = document.createElement('li');
+    var contactA = document.createElement('a');
+    contactA.href = 'mailto:' + KEZPOS.email;
+    contactA.textContent = 'Contact';
+    contactLi.appendChild(contactA);
+    footerLinks.appendChild(contactLi);
+
+    document.getElementById('footerCopy').innerHTML =
+      '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
+      '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
+
+    window.addEventListener('scroll', function() {
+      document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  });
+</script>
+<script src="assets/theme.js"></script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install KezPos — Download & Setup Guide</title>
+  <meta name="description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
