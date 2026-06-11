@@ -1,5 +1,5 @@
 /* ============================================================
-   KezPos — Design System (Dark) v2
+   KezPos — Design System (Dark) v2.1 — Performance Optimized
    Typefaces: Plus Jakarta Sans (display) · Inter (body)
    ============================================================ */
 
@@ -59,7 +59,7 @@
   --card-hover:   rgba(255,255,255,0.055);
 
   /* Nav */
-  --nav-bg:       rgba(7,9,15,0.85);
+  --nav-bg:       rgba(7,9,15,0.92);
 
   /* Radius */
   --r:            12px;
@@ -139,22 +139,12 @@ body {
 a { color: inherit; }
 img { display: block; }
 
-/* ══════════════════════════════════════════
-   NOISE GRAIN OVERLAY
-══════════════════════════════════════════ */
-body::after {
-  content: '';
-  position: fixed; inset: 0; z-index: var(--z-grain);
-  pointer-events: none;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 160px 160px;
-}
 
 /* ══════════════════════════════════════════
-   AMBIENT BACKGROUND
+   AMBIENT BACKGROUND — Reduced blur, slower animations
 ══════════════════════════════════════════ */
 .mesh-bg {
+  display: none;
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   overflow: hidden;
 }
@@ -162,28 +152,36 @@ body::after {
 .mesh-bg::after {
   content: '';
   position: absolute; border-radius: 50%;
-  filter: blur(140px);
-  will-change: transform;
+  filter: blur(80px);
+  will-change: auto;
+  opacity: 0.7;
 }
 .mesh-bg::before {
-  width: 600px; height: 600px;
+  width: 800px; height: 800px;
   background: radial-gradient(circle, rgba(26,107,255,0.12) 0%, transparent 70%);
   top: -200px; left: -100px;
-  animation: drift1 25s ease-in-out infinite alternate;
+  animation: drift1 40s ease-in-out infinite alternate;
 }
 .mesh-bg::after {
-  width: 500px; height: 500px;
+  width: 700px; height: 700px;
   background: radial-gradient(circle, rgba(26,107,255,0.07) 0%, transparent 70%);
   bottom: -150px; right: -80px;
-  animation: drift2 30s ease-in-out infinite alternate;
+  animation: drift2 45s ease-in-out infinite alternate;
 }
 .mesh-bg span {
   position: absolute; border-radius: 50%;
-  width: 300px; height: 300px;
+  width: 400px; height: 400px;
   top: 45%; right: 12%;
   background: radial-gradient(circle, rgba(34,197,94,0.04) 0%, transparent 70%);
-  filter: blur(100px);
-  animation: drift1 20s ease-in-out 4s infinite alternate-reverse;
+  filter: blur(60px);
+  animation: drift1 35s ease-in-out 4s infinite alternate-reverse;
+}
+
+/* Pause ambient animations during scroll */
+body.is-scrolling .mesh-bg::before,
+body.is-scrolling .mesh-bg::after,
+body.is-scrolling .mesh-bg span {
+  animation-play-state: paused;
 }
 
 @keyframes drift1 {
@@ -210,6 +208,8 @@ section {
   padding: 100px 40px;
   max-width: 1160px;
   margin: 0 auto;
+  isolation: isolate;
+  position: relative;
 }
 
 .container {
@@ -304,7 +304,6 @@ h1, h2, h3, h4 {
   color: var(--amber);
   background: var(--amber-pale);
   border-color: var(--amber-border);
-
 }
 
 .text-blue   { color: var(--blue-hover); }
@@ -329,7 +328,7 @@ h1, h2, h3, h4 {
 }
 
 /* ══════════════════════════════════════════
-   NAV
+   NAV — Optimized: Reduced backdrop-filter, removed will-change: backdrop-filter
 ══════════════════════════════════════════ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0;
@@ -338,14 +337,15 @@ h1, h2, h3, h4 {
   padding: 0 40px;
   height: 60px;
   background: var(--nav-bg);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
   border-bottom: 1px solid var(--border);
-  transition: background var(--t-base), border-color var(--t-base);
-  will-change: backdrop-filter;
+  transition: background var(--t-base), border-color var(--t-base),
+              box-shadow var(--t-base);
+  will-change: transform;
+  transform: translateZ(0);
 }
 
-/* Scrolled state — add via JS */
 .nav.scrolled {
   background: rgba(7,9,15,0.95);
   border-bottom-color: var(--border2);
@@ -541,7 +541,6 @@ h1, h2, h3, h4 {
 }
 .btn-icon svg { width: 16px; height: 16px; }
 
-/* Loading state */
 .btn.loading {
   opacity: 0.7;
   cursor: not-allowed;
@@ -564,14 +563,13 @@ h1, h2, h3, h4 {
 .badge-red    { color: var(--red);          background: var(--red-pale);    border-color: var(--red-border); }
 .badge-muted  { color: var(--text3);        background: var(--bg3);         border-color: var(--border2); }
 
-/* Live dot for badge */
 .badge-dot {
   width: 5px; height: 5px; border-radius: 50%;
   background: currentColor; flex-shrink: 0;
 }
 
 /* ══════════════════════════════════════════
-   CARDS
+   CARDS — Optimized: Shadow on pseudo-element, radial gradient paused during scroll
 ══════════════════════════════════════════ */
 .card {
   background: var(--card-bg);
@@ -579,18 +577,30 @@ h1, h2, h3, h4 {
   border-radius: var(--r-lg);
   padding: 28px;
   box-shadow: var(--shadow);
-  transition: box-shadow var(--t-slow) var(--ease),
-              border-color var(--t-slow) var(--ease),
+  transition: border-color var(--t-slow) var(--ease),
               transform var(--t-slow) var(--ease);
   position: relative; overflow: hidden;
+  transform: translateY(0) translateZ(0);
+}
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: opacity var(--t-slow) var(--ease);
+  z-index: -1;
+  pointer-events: none;
 }
 .card:hover {
-  box-shadow: var(--shadow-lg);
   border-color: var(--border2);
   transform: translateY(-3px);
 }
+.card:hover::after {
+  opacity: 1;
+}
 
-/* Subtle inner shimmer on hover */
 .card::before {
   content: '';
   position: absolute; inset: 0;
@@ -602,6 +612,12 @@ h1, h2, h3, h4 {
   border-radius: inherit;
 }
 .card:hover::before { opacity: 1; }
+
+/* Pause card hover effects during scroll */
+body.is-scrolling .card::before,
+body.is-scrolling .card::after {
+  transition: none;
+}
 
 .card > * { position: relative; z-index: 1; }
 
@@ -625,7 +641,6 @@ h1, h2, h3, h4 {
 }
 .card p { color: var(--text2); font-size: 0.9rem; line-height: 1.75; }
 
-/* Highlighted / featured card */
 .card-featured {
   border-color: var(--blue-border);
   background: linear-gradient(135deg, rgba(26,107,255,0.06) 0%, var(--card-bg) 60%);
@@ -638,6 +653,8 @@ h1, h2, h3, h4 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
+  position: relative;
+  z-index: 1;
 }
 .bento-sm { grid-column: span 1; }
 .bento-lg { grid-column: span 2; }
@@ -649,13 +666,32 @@ h1, h2, h3, h4 {
   border-radius: var(--r-lg);
   overflow: hidden;
   box-shadow: var(--shadow);
-  transition: box-shadow var(--t-slow), border-color var(--t-slow), transform var(--t-slow);
+  transition: border-color var(--t-slow), transform var(--t-slow);
+  position: relative;
+}
+.bento-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  transition: opacity var(--t-slow);
+  z-index: -1;
+  pointer-events: none;
 }
 .bento-item:hover {
-  box-shadow: var(--shadow-lg);
   border-color: var(--border2);
   transform: translateY(-2px);
 }
+.bento-item:hover::after {
+  opacity: 1;
+}
+
+body.is-scrolling .bento-item::after {
+  transition: none;
+}
+
 .bento-content { padding: 26px; }
 .bento-content h3 {
   font-family: var(--font-display);
@@ -778,6 +814,24 @@ h1, h2, h3, h4 {
   position: absolute; inset: -60px;
   background: radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 65%);
   z-index: -1; pointer-events: none;
+  filter: blur(12px);
+  will-change: auto;
+}
+
+.phone-shell {
+  will-change: auto;
+  transform: translateZ(0);
+}
+
+.phone-scene-stat {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.phone-trio {
+  isolation: isolate;
+  position: relative;
+  z-index: 2;
 }
 
 /* ══════════════════════════════════════════
@@ -959,14 +1013,12 @@ h1, h2, h3, h4 {
 }
 .input-group-icon svg { width: 15px; height: 15px; }
 
-/* Textarea */
 textarea.input {
   resize: vertical;
   min-height: 100px;
   line-height: 1.6;
 }
 
-/* Select */
 select.input {
   cursor: pointer;
   appearance: none;
@@ -1153,19 +1205,22 @@ tbody tr:hover td:first-child { color: var(--text); }
 }
 
 /* ══════════════════════════════════════════
-   SCROLL REVEAL
+   SCROLL REVEAL — will-change managed by JS, not CSS
 ══════════════════════════════════════════ */
 .reveal {
-  opacity: 0; transform: translateY(24px);
-  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  opacity: 0;
+  transform: translateY(24px) translateZ(0);
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
 }
-.reveal.visible { opacity: 1; transform: none; }
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0) translateZ(0);
+}
 .reveal-delay-1 { transition-delay: 0.08s; }
-.reveal-delay-2 { transition-delay: 0.16s; }
+.reveal-delay-2 { transition-delay: 0.12s; }
 .reveal-delay-3 { transition-delay: 0.24s; }
 .reveal-delay-4 { transition-delay: 0.32s; }
 
-/* Respect reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }
@@ -1286,7 +1341,6 @@ footer { position: relative; z-index: var(--z-base); }
   gap: 20px;
 }
 
-/* Footer with full column layout option */
 .footer-full {
   border-top: 1px solid var(--border);
   padding: 60px 40px 36px;
@@ -1410,7 +1464,7 @@ footer { position: relative; z-index: var(--z-base); }
   .bento-full { grid-column: span 2; }
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-right .nav-cta { display: none; }   /* merged here, delete the 900px block */
+  .nav-right .nav-cta { display: none; }
   section { padding: 80px 28px; }
   .nav { padding: 0 28px; }
   .legal-wrap { grid-template-columns: 1fr; padding: 96px 28px 80px; }
@@ -1436,55 +1490,21 @@ footer { position: relative; z-index: var(--z-base); }
 }
 
 /* ══════════════════════════════════════════
-   GPU COMPOSITING & PERFORMANCE
+   GPU COMPOSITING — Conservative usage
 ══════════════════════════════════════════ */
-.reveal {
-  opacity: 0;
-  transform: translateY(24px) translateZ(0);
-  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
-  will-change: transform, opacity;
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0) translateZ(0);
-  will-change: auto;
-}
-.reveal-delay-2 { transition-delay: 0.12s; }
-.reveal-delay-3 { transition-delay: 0.24s; }
-
 .phone-shell {
-  will-change: transform;
+  will-change: auto;
   transform: translateZ(0);
 }
 
 .phone-glow {
   filter: blur(12px);
-  will-change: transform;
+  will-change: auto;
 }
 
 .phone-scene-stat {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-}
-
-
-/* ══════════════════════════════════════════
-   SECTION STACKING CONTEXT — prevents z bleed
-══════════════════════════════════════════ */
-section {
-  isolation: isolate;
-  position: relative;
-}
-
-.phone-trio {
-  isolation: isolate;
-  position: relative;
-  z-index: 2;
-}
-
-.bento {
-  position: relative;
-  z-index: 1;
 }
 
 /* ══════════════════════════════════════════
@@ -1514,10 +1534,37 @@ section {
   }
 }
 
+/* ══════════════════════════════════════════
+   REDUCED MOTION — Complete disable
+══════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════ mesh
+   MOBILE PERFORMANCE — Kill heavy effects
+══════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .mesh-bg::before,
+  .mesh-bg::after,
+  .mesh-bg span {
+    animation: none;
+  }
+
+
+  .card::before {
+    display: none;
+  }
+
+  .card:hover {
+    transform: translateY(-1px);
+  }
+
+  .bento-item:hover {
+    transform: translateY(-1px);
   }
 }
