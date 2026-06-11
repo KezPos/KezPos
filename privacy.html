@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — KezPos</title>
   <meta name="description" content="KezPos Privacy Policy — what data we collect, how we use it, your rights under the Kenya Data Protection Act 2019.">
+
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Privacy Policy — KezPos">
+  <meta property="og:description" content="KezPos Privacy Policy — what data we collect, how we use it, your rights under the Kenya Data Protection Act 2019.">
+  <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
+  <meta property="og:url"         content="https://kezpos.co.ke/privacy.html">
+  <meta name="twitter:card"       content="summary_large_image">
+  <meta name="twitter:title"      content="Privacy Policy — KezPos">
+  <meta name="twitter:description" content="KezPos Privacy Policy — what data we collect, how we use it, your rights under the Kenya Data Protection Act 2019.">
+  <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
+
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
@@ -27,12 +38,11 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">
-    <img src="assets/kezpos.png" alt="KezPos">
+    <img src="assets/kezpos.png" alt="KezPos"
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3Ctext x=%2220%22 y=%2228%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2222%22 font-weight=%22800%22 font-family=%22sans-serif%22%3EK%3C/text%3E%3C/svg%3E'">
     <span class="nav-logo-text">Kez<span>Pos</span></span>
   </a>
-  <ul class="nav-links" id="navLinks">
-    <!-- Dynamically filled from KEZPOS.nav -->
-  </ul>
+  <ul class="nav-links" id="navLinks"></ul>
   <div class="nav-right">
     <a href="#" data-kezpos="navInstall" class="nav-cta">↓ Download</a>
     <button class="nav-hamburger" id="navHamburger" aria-label="Open menu" aria-expanded="false">
@@ -41,14 +51,11 @@
   </div>
 </nav>
 
-<div class="nav-mobile-drawer" id="navDrawer">
-  <!-- Dynamically filled from KEZPOS.nav -->
-</div>
+<div class="nav-mobile-drawer" id="navDrawer"></div>
 
 <div class="page">
   <div class="legal-wrap">
 
-    <!-- Sidebar -->
     <aside class="legal-sidebar">
       <div class="stitle">Privacy Policy</div>
       <nav>
@@ -66,15 +73,14 @@
       <div style="margin-top:28px; padding:0 12px;">
         <a href="terms.html" style="
           display:inline-flex; align-items:center; gap:6px;
-          font-size:0.8rem; color:var(--muted);
-          padding:8px 12px; border-radius:var(--radius-sm);
+          font-size:0.8rem; color:var(--text3);
+          padding:8px 12px; border-radius:var(--r-sm);
           border:1px solid var(--border); text-decoration:none;
           transition:all 0.2s; width:100%; justify-content:center;
         ">← Terms of Service</a>
       </div>
     </aside>
 
-    <!-- Content -->
     <main class="legal-content">
 
       <div class="eyebrow">Legal</div>
@@ -107,10 +113,12 @@
         <li><strong>Sales and transaction data</strong> — your inventory items, customer records, receipts, and payment history that you enter into the App</li>
       </ul>
       <div class="legal-callout">
-        📍 <strong>Location permission (Bluetooth printers — Android only):</strong> Android requires location permission to scan for nearby Bluetooth devices when connecting a receipt printer. This permission is used solely to discover Bluetooth printers in your vicinity — we do <strong>not</strong> record, store, or transmit your physical location at any time. The Windows application does not require this permission.
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <strong>Location permission (Bluetooth printers — Android only):</strong> Android requires location permission to scan for nearby Bluetooth devices when connecting a receipt printer. This permission is used solely to discover Bluetooth printers in your vicinity — we do <strong>not</strong> record, store, or transmit your physical location at any time. The Windows application does not require this permission.
       </div>
       <div class="legal-callout">
-        ✅ We do <strong>not</strong> collect device contacts, camera access, or any other sensitive personal information beyond what is listed above.
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+        We do <strong>not</strong> collect device contacts, camera access, or any other sensitive personal information beyond what is listed above.
       </div>
 
       <div class="section-anchor" id="how-we-use"></div>
@@ -134,7 +142,8 @@
       </ul>
       <p>We implement industry-standard security measures including encrypted data transmission (HTTPS/TLS) and secure authentication to protect your information.</p>
       <div class="legal-callout">
-        🔒 Your password is never stored in plain text. All authentication is handled securely through <strong>Supabase Auth</strong>.
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Your password is never stored in plain text. All authentication is handled securely through <strong>Supabase Auth</strong>.
       </div>
 
       <div class="section-anchor" id="retention"></div>
@@ -179,7 +188,8 @@
       <p>For any privacy-related questions, data requests, or concerns, please contact:</p>
       <div class="legal-callout">
         <strong>KezPos Data Controller</strong><br>
-        📧 <a href="#" data-kezpos="email" data-kezpos-prefix="mailto:">kezposapp@gmail.com</a>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="#" data-kezpos="email" data-kezpos-prefix="mailto:">kezposapp@gmail.com</a>
       </div>
 
       <div style="margin-top:48px; padding-top:32px; border-top:1px solid var(--border); display:flex; gap:16px; flex-wrap:wrap;">
@@ -194,24 +204,42 @@
 <footer style="position:relative; z-index:1;">
   <div class="footer-wrap">
     <a href="index.html" class="footer-logo">
-      <img src="assets/kezpos.png" alt="KezPos">
+      <img src="assets/kezpos.png" alt="KezPos"
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 40 40%22%3E%3Crect width=%2240%22 height=%2240%22 rx=%228%22 fill=%22%231a6bff%22/%3E%3C/svg%3E'">
       <span><span style="color:var(--text);">Kez</span><span style="color:var(--blue-light);">Pos</span></span>
     </a>
-    <ul class="footer-links" id="footerLinks">
-      <!-- Dynamically filled from KEZPOS.footer -->
-    </ul>
-    <div class="footer-copy" id="footerCopy">
-      <!-- Dynamically filled -->
-    </div>
+    <ul class="footer-links" id="footerLinks"></ul>
+    <div class="footer-copy" id="footerCopy"></div>
   </div>
 </footer>
 
-<!-- Config -->
 <script src="config.js"></script>
-
-<!-- KezPos Link Patcher -->
+<script src="assets/theme.js"></script>
 <script>
-  (function patchKezposLinks() {
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fallback if config.js fails to load
+    if (typeof KEZPOS === 'undefined') {
+      window.KEZPOS = {
+        version: 'v1.0.0',
+        nav: [
+          { label: 'Home',     href: 'index.html' },
+          { label: 'Features', href: 'features.html' },
+          { label: 'Install',  href: 'install.html' },
+          { label: 'Legal',    href: 'terms.html' },
+        ],
+        footer: [
+          { label: 'Features', href: 'features.html' },
+          { label: 'Install',  href: 'install.html' },
+          { label: 'Terms',    href: 'terms.html' },
+          { label: 'Privacy',  href: 'privacy.html' },
+        ],
+        email: 'kezposapp@gmail.com'
+      };
+    }
+
+    var isPrivacy = window.location.pathname.indexOf('privacy.html') > -1;
+
+    // Patch kezpos data attributes
     document.querySelectorAll('[data-kezpos]').forEach(function(el) {
       var path = el.getAttribute('data-kezpos');
       var prefix = el.getAttribute('data-kezpos-prefix') || '';
@@ -232,30 +260,20 @@
         }
       }
     });
-  })();
-</script>
 
-<!-- Theme switcher + hamburger + scroll reveal -->
-<script src="assets/theme.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-
-    var isPrivacy = window.location.pathname.indexOf('privacy.html') > -1;
-
-    // ── Desktop nav ──────────────────────────
+    // Nav
     var navLinks = document.getElementById('navLinks');
     KEZPOS.nav.forEach(function(item) {
       var li = document.createElement('li');
       var a = document.createElement('a');
       a.href = item.href;
       a.textContent = item.label;
-      // Highlight "Legal" nav item for both privacy.html and terms.html
       if ((item.href === 'privacy.html' || item.href === 'terms.html') && isPrivacy) a.classList.add('active');
       li.appendChild(a);
       navLinks.appendChild(li);
     });
 
-    // ── Mobile drawer ─────────────────────────
+    // Mobile drawer
     var drawer = document.getElementById('navDrawer');
     KEZPOS.nav.forEach(function(item) {
       var a = document.createElement('a');
@@ -265,12 +283,12 @@
       drawer.appendChild(a);
     });
     var drawerCta = document.createElement('a');
-    drawerCta.href = KEZPOS.nav.find(function(n) { return n.label === 'Install'; }).href || 'install.html';
+    drawerCta.href = (KEZPOS.nav.find(function(n) { return n.label === 'Install'; }) || {}).href || 'install.html';
     drawerCta.className = 'nav-cta';
     drawerCta.textContent = '↓ Download';
     drawer.appendChild(drawerCta);
 
-    // ── Footer links ──────────────────────────
+    // Footer
     var footerLinks = document.getElementById('footerLinks');
     KEZPOS.footer.forEach(function(item) {
       var li = document.createElement('li');
@@ -287,12 +305,11 @@
     contactLi.appendChild(contactA);
     footerLinks.appendChild(contactLi);
 
-    // ── Footer copyright ──────────────────────
     document.getElementById('footerCopy').innerHTML =
-  '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
-      '<a href="mailto:' + KEZPOS.email + '" style="color:var(--muted);">' + KEZPOS.email + '</a>';
+      '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
+      '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
 
-    // ── Sidebar scroll spy ────────────────────
+    // Scroll spy for sidebar
     var sidebarLinks = document.querySelectorAll('.legal-sidebar a');
     var anchors = document.querySelectorAll('.section-anchor');
 
@@ -317,6 +334,9 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    window.addEventListener('scroll', function() {
+      document.querySelector('.nav').classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
   });
 </script>
 
