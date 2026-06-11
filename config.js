@@ -1,17 +1,23 @@
 /**
  * KezPos — Central Configuration
- * Edit this file to update links, versions, and metadata across the entire site.
+ * Edit this file to update links, versions, pricing, and metadata across the entire site.
  */
- window.KEZPOS = {
+window.KEZPOS = {
   version: 'v1.0.9',
   email: 'kezposapp@gmail.com',
+
+  pricing: {
+    monthly: 800,
+    currency: 'Ksh',
+    period: '/month',
+  },
 
   downloads: {
     apk: {
       label: 'Android APK',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.9/KezPos-v1.0.9.apk',
       size: '77 MB',
-      badge: 'Android',
+      badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
@@ -23,8 +29,8 @@
 
   social: {
     github: 'https://github.com/KezPos/KezPos',
-    twitter: '',       // add when ready
-    instagram: '',     // add when ready
+    twitter: '',
+    instagram: '',
   },
 
   nav: [
@@ -42,5 +48,4 @@
   ],
 };
 
-// Make globally available
 if (typeof module !== 'undefined') module.exports = KEZPOS;
