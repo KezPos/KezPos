@@ -8,4 +8,5 @@
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false
+  "baseUrl": "https://kezpos.github.io/KezPos",
 }
