@@ -1,10 +1,10 @@
 {
-  "versionCode": 11,
-  "versionName": "1.1.0",
+  "versionCode": 12,
+  "versionName": "1.1.1",
   "releaseDate": "2026-05-30",
-  "whatsNew": "- Bug fixes\n- UI improvements\n- Added option to add debt for migrating users",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.0/KezPos-v1.1.0.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.0/KezPos-v1.1.0-setup.exe",
+  "whatsNew": "- Bug fixes\n- Desktop inventory UI improvments\n- Added support for electronic devices",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.1/KezPos-v1.1.1.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.1/KezPos-v1.1.1-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false
