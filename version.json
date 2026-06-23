@@ -8,5 +8,7 @@
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false,
-  "baseUrl": "https://kezpos.github.io/KezPos"
+  "baseUrl": "https://kezpos.github.io/KezPos",
+  "sha256": "d6abc5512766a1ea3a2c57637d705684d5a029911a92b87218cb2219b76d7628",
+  "sha256Windows": "PASTE_EXE_HASH_HERE"
 }
