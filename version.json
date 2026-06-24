@@ -2,13 +2,13 @@
   "versionCode": 13,
   "versionName": "1.1.2",
   "releaseDate": "2026-05-30",
-  "whatsNew": "- Bug fixes\n- Desktop inventory UI improvments\n- Added support for electronic devices",
+  "whatsNew": "- You can now search to find customer when making a sale\n- Desktop inventory UI improvements\n- Electronic devices support (serial numbers & warranty)\n- Bug fixes and performance improvements",
   "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2.apk",
   "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false,
   "baseUrl": "https://kezpos.github.io/KezPos",
-  "sha256": "f11e0c7faae813ff42cfaee3c0f409624b6c2bd0334d586462e26c1e1cf8719a",
-  "sha256Windows": "ed28af2635760e1c68395e10ec8fcdd81c2f0688d64175641731dfcb76078764"
+  "sha256": "",
+  "sha256Windows": ""
 }
