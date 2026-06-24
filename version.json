@@ -1,14 +1,14 @@
 {
   "versionCode": 13,
-  "versionName": "1.1.1",
+  "versionName": "1.1.2",
   "releaseDate": "2026-05-30",
   "whatsNew": "- Bug fixes\n- Desktop inventory UI improvments\n- Added support for electronic devices",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.1/KezPos-v1.1.1.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.1/KezPos-v1.1.1-setup.exe",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false,
   "baseUrl": "https://kezpos.github.io/KezPos",
-  "sha256": "d6abc5512766a1ea3a2c57637d705684d5a029911a92b87218cb2219b76d7628",
-  "sha256Windows": "4520eb685d61d36452e899cab915fa34bf97bf4309e37580c0fca7961fcbcb15"
+  "sha256": "f11e0c7faae813ff42cfaee3c0f409624b6c2bd0334d586462e26c1e1cf8719a",
+  "sha256Windows": ""
 }
