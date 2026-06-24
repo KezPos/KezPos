@@ -20,7 +20,7 @@ window.KEZPOS = {
     },
     windows: {
       label: 'Windows App',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.0.9/KezPos-v1.1.1-setup.exe',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.1/KezPos-v1.1.1-setup.exe',
       size: '35 MB',
       badge: 'Windows',
     },
