@@ -15,7 +15,7 @@ window.KEZPOS = {
     apk: {
       label: 'Android APK',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2.apk',
-      size: '77 MB',
+      size: '35 MB',
       badge: 'Android 8+',
     },
     windows: {
