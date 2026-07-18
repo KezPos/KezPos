@@ -3,24 +3,24 @@
  * Edit this file to update links, versions, pricing, and metadata across the entire site.
  */
 window.KEZPOS = {
-  version: 'v1.1.2',
+  version: 'v1.1.3',
   email: 'kezposapp@gmail.com',
   whatsapp: '254745105755',
   pricing: {
-    monthly: 800,
+    monthly: 750,
     currency: 'Ksh',
     period: '/month',
   },
   downloads: {
     apk: {
       label: 'Android APK',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2.apk',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.3/KezPos-v1.1.3.apk',
       size: '30 MB',
       badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.2/KezPos-v1.1.2-setup.exe',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.3/KezPos-v1.1.3-setup.exe',
       size: '35 MB',
       badge: 'Windows',
     },
