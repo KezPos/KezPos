@@ -1,5 +1,5 @@
 {
-  "versionCode": 201,
+  "versionCode": 2014,
   "versionName": "1.1.3",
   "releaseDate": "2026-07-18",
   "whatsNew": "-Added theme options find in settings\n- You can now search to find customer when making a sale\n- Electronic devices support (serial numbers & warranty)\n- Bug fixes and performance improvements",
@@ -9,6 +9,6 @@
   "macosDownloadUrl": null,
   "forceUpdate": false,
   "baseUrl": "https://kezpos.github.io/KezPos",
-  "sha256": "3d4a34df3bd4d2b827eaffdcca03f7d95732fcaff232f91176837097a8a3f06c",
-  "sha256Windows": "9b8054dc3ab71b3596d85061f06f273abe7b47ff4f39a5c119e397dc772d35e4"
+  "sha256": "febbe9cead90545afd558084b0ea49210ec40941cb1f3cd0981d8e31ceed769e",
+  "sha256Windows": "c759bcdaaf597cb4866a146601ecd1d9d4428beccead9104e6db03e6964118ff"
 }
