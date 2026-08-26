@@ -15,13 +15,13 @@ window.KEZPOS = {
     apk: {
       label: 'Android APK',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.4/KezPos-v1.1.4.apk',
-      size: '30 MB',
+      size: '29 MB',
       badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.4/KezPos-v1.1.4-setup.exe',
-      size: '35 MB',
+      size: '33 MB',
       badge: 'Windows',
     },
   },
