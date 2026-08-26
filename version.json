@@ -1,5 +1,5 @@
 {
-  "versionCode": 4021,
+  "versionCode": 4022,
   "versionName": "1.1.6",
   "releaseDate": "2026-08-26",
   "whatsNew": "- Added Cashier mode: Admins can now connect multiple devices locally without requiring an internet connection. All data stays on-site.",
