@@ -3,7 +3,7 @@
  * Edit this file to update links, versions, pricing, and metadata across the entire site.
  */
 window.KEZPOS = {
-  version: 'v1.1.5',
+  version: 'v1.1.6',
   email: 'kezposapp@gmail.com',
   whatsapp: '254745105755',
   pricing: {
@@ -14,13 +14,13 @@ window.KEZPOS = {
   downloads: {
     apk: {
       label: 'Android APK',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.5/KezPos-v1.1.5.apk',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.6/KezPos-v1.1.6.apk',
       size: '36 MB',
       badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.5/KezPos-v1.1.5-setup.exe',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.6/KezPos-v1.1.6-setup.exe',
       size: '35 MB',
       badge: 'Windows',
     },
