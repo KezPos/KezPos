@@ -1,14 +1,14 @@
 {
-  "versionCode": 2015,
-  "versionName": "1.1.4",
+  "versionCode": 4020,
+  "versionName": "1.1.5",
   "releaseDate": "2026-08-26",
   "whatsNew": "- Added Cashier mode: Admins can now connect multiple devices locally without requiring an internet connection. All data stays on-site.",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.4/KezPos-v1.1.4.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.4/KezPos-v1.1.4-setup.exe",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.5/KezPos-v1.1.5.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.1.5/KezPos-v1.1.5-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false,
   "baseUrl": "https://kezpos.github.io/KezPos",
-  "sha256": "417a100f4c9e7b3ee77a0d3e1e125299fa3747fcb291243a05deec75b9f426b2",
+  "sha256": "3f2dc938b5befae64885fc3eaf729de6aa414bcaccce224c63e61bfb8f4aae83",
   "sha256Windows": "7b09812b68502906c39043ece8367878a1fefb4882ca7185d561d19aa1bbe1d3"
 }
