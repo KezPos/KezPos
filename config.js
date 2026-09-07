@@ -3,24 +3,30 @@
  * Edit this file to update links, versions, pricing, and metadata across the entire site.
  */
 window.KEZPOS = {
-  version: 'v1.1.6',
+  version: 'v1.2.0',
   email: 'kezposapp@gmail.com',
   whatsapp: '254745105755',
   pricing: {
-    monthly: 750,
+    monthly: 700,
     currency: 'Ksh',
     period: '/month',
   },
+  // ── Pricing Plans for the receipt-style cards ──
+pricingPlans: [
+  { name: 'Starter',      months: 1,  price: 700,  comment: 'Try it risk-free. Cancel anytime, no questions asked.' },
+  { name: '', months: 3,  price: 1700, comment: 'Best for growing shops. Skip the monthly hassle.' },
+  { name: 'Pro',          months: 12, price: 7000, comment: 'Lock in a year and forget about billing.' },
+],
   downloads: {
     apk: {
       label: 'Android APK',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.6/KezPos-v1.1.6.apk',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.2.0/KezPos-v1.2.0.apk',
       size: '36 MB',
       badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
-      url: 'https://github.com/KezPos/KezPos/releases/download/v1.1.6/KezPos-v1.1.6-setup.exe',
+      url: 'https://github.com/KezPos/KezPos/releases/download/v1.2.0/KezPos-v1.2.0-setup.exe',
       size: '35 MB',
       badge: 'Windows',
     },
@@ -42,6 +48,31 @@ window.KEZPOS = {
     { label: 'Terms',    href: 'terms.html' },
     { label: 'Privacy',  href: 'privacy.html' },
   ],
+
+  // ── Image registry ──────────────────────────────────────
+  images: {
+    
+    people:           'assets/mobile_pictures/people.png',
+    appHome:          'assets/mobile_pictures/app-home.png',
+    cashier:          'assets/mobile_pictures/cashier.png',
+    checkout:         'assets/mobile_pictures/checkout.png',
+    receipt:          'assets/mobile_pictures/receipt.png',
+    elecreceipt:      'assets/mobile_pictures/elecreceipt.png',
+    inventory:        'assets/mobile_pictures/inventory.png',
+    customers:        'assets/mobile_pictures/customers.png',
+    sales:            'assets/mobile_pictures/sales.png',
+    reports:          'assets/mobile_pictures/reports.png',
+
+    laptopcashier:    'assets/laptop_pictures/laptop_cashier.png',
+    laptopSales:      'assets/laptop_pictures/laptop_sales.png',
+    laptopReports:    'assets/laptop_pictures/laptop_reports.png',
+    laptopInventory:  'assets/laptop_pictures/laptop_inventory.png',
+    laptopPeople:     'assets/laptop_pictures/laptop_people.png',
+    laptopCheckout:   'assets/laptop_pictures/laptop_checkout.png',
+    laptopCashier:    'assets/laptop_pictures/laptop_cashier.png',
+    homescreen:       'assets/laptop_pictures/laptop_sales.png',
+    ogPreview:        'assets/og-preview.png',
+  },
 };
 
 // ── WhatsApp floating button ──────────────────────────────
@@ -78,6 +109,19 @@ window.KEZPOS = {
     wa.style.boxShadow  = '0 4px 16px rgba(37,211,102,0.45), 0 2px 6px rgba(0,0,0,0.2)';
   });
   document.body.appendChild(wa);
+})();
+
+// ── Resolve data-kezpos-img → real src ─────────────────────
+(function() {
+  document.querySelectorAll('[data-kezpos-img]').forEach(function(img) {
+    var key = img.getAttribute('data-kezpos-img');
+    var src = KEZPOS.images && KEZPOS.images[key];
+    if (src) {
+      img.src = src;
+    } else {
+      console.warn('KEZPOS.images has no entry for "' + key + '"');
+    }
+  });
 })();
 
 if (typeof module !== 'undefined') module.exports = KEZPOS;
