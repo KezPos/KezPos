@@ -19,6 +19,7 @@
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <link rel="stylesheet" href="assets/frames.css">
   <script>
   (function() {
     document.documentElement.style.visibility = 'hidden';
@@ -31,445 +32,249 @@
 </script>
 
 <style>
-  /* ═══════════════════════════════════════════
-     PHONE WRAP — base
-  ════════════════════════════════════════════ */
-.phone-wrap {
-  --phone-w: 260px;
-  --phone-r: calc(var(--phone-w) * 0.082);
-  --phone-border: 3px;
-  --phone-button-w: 4px;
-
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: var(--phone-w);
-  flex-shrink: 0;
-}
-
-  .phone-shell {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 9 / 19.5;
-    border-radius: var(--phone-r);
-    background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-    border: var(--phone-border) solid rgba(255,255,255,0.13);
-    box-shadow:
-      inset 1px 1px 0 rgba(255,255,255,0.09),
-      inset -1px -1px 0 rgba(0,0,0,0.45),
-      0 32px 64px -16px rgba(0,0,0,0.6),
-      0 12px 24px -8px rgba(0,0,0,0.38);
-    overflow: visible;
-    will-change: transform;
-    transform: translateZ(0);
-  }
-
-  .phone-screen {
-    position: absolute;
-    inset: 1px var(--phone-border) var(--phone-border);
-    border-radius: calc(var(--phone-r) - var(--phone-border));
-    overflow: hidden;
-    background: #000;
-  }
-
-  .phone-screen img,
-  .phone-screen .phone-placeholder {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    object-position: center;
-    display: block;
-    background: #000;
-  }
-
-  .phone-screen::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
-    pointer-events: none;
-    border-radius: inherit;
-    z-index: 5;
-  }
-
-  .phone-btn-power {
-    position: absolute;
-    right: calc(-1 * var(--phone-button-w) - var(--phone-border));
-    top: 26%;
-    width: var(--phone-button-w);
-    height: 11%;
-    background: linear-gradient(to right, #2a2a2e, #1c1c1e);
-    border-radius: 0 2px 2px 0;
-    border: var(--phone-border) solid rgba(255,255,255,0.10);
-    border-left: none;
-  }
-
-  .phone-btn-vol-up,
-  .phone-btn-vol-dn {
-    position: absolute;
-    left: calc(-1 * var(--phone-button-w) - var(--phone-border));
-    width: var(--phone-button-w);
-    height: 8%;
-    background: linear-gradient(to left, #2a2a2e, #1c1c1e);
-    border-radius: 2px 0 0 2px;
-    border: var(--phone-border) solid rgba(255,255,255,0.10);
-    border-right: none;
-  }
-  .phone-btn-vol-up { top: 20%; }
-  .phone-btn-vol-dn { top: 31%; }
-
-  .phone-glow {
-    position: absolute;
-    inset: -30%;
-    background: radial-gradient(
-      ellipse at 50% 60%,
-      var(--blue-glow, rgba(26,107,255,0.18)) 0%,
-      transparent 70%
-    );
-    z-index: -1;
-    pointer-events: none;
-    filter: blur(20px);
-    will-change: transform;
-  }
-
-  .phone-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: var(--text3, #60697a);
-    font-size: 0.7rem;
-    text-align: center;
-    padding: 20px;
-    background: var(--bg2, #0d1117);
-  }
-
-  /* ═══════════════════════════════════════════
-     HERO PHONE SCENE
-  ════════════════════════════════════════════ */
-  .phone-scene {
-    position: relative;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-  }
-
-  .phone-scene .phone-primary {
-    --phone-w: clamp(180px, 22vw, 280px);
-    position: relative;
-    z-index: 2;
-    transform: rotate(-4deg);
-    transform-origin: bottom center;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .phone-scene:hover .phone-primary {
-    transform: rotate(-2deg) translateY(-8px);
-  }
-
-  .phone-scene .phone-secondary {
-    --phone-w: clamp(140px, 17vw, 215px);
-    position: absolute;
-    right: clamp(10px, 3vw, 30px);
-    top: 60px;
-    z-index: 1;
-    transform: rotate(5deg);
-    transform-origin: bottom center;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    opacity: 0.92;
-  }
-  .phone-scene:hover .phone-secondary {
-    transform: rotate(3deg) translateY(-6px);
-  }
-
-  .phone-scene-stat {
-    position: absolute;
-    background: var(--bg2, #0d1117);
-    border: 1px solid var(--border2, rgba(255,255,255,0.11));
-    border-radius: 14px;
-    padding: 10px 16px;
-    white-space: nowrap;
-    z-index: 10;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    will-change: transform;
-  }
-  .phone-scene-stat .stat-label {
-    font-size: 0.65rem;
-    color: var(--text3, #60697a);
-    margin-bottom: 2px;
-    font-family: var(--font-body, sans-serif);
-  }
-  .phone-scene-stat .stat-value {
-    font-family: var(--font-display, sans-serif);
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--text, #f4f5f7);
-    line-height: 1.1;
-  }
-  .phone-scene-stat.stat-sales {
-    bottom: 20px;
-    left: 0;
-  }
-  .phone-scene-stat.stat-stock {
-    top: 16px;
-    right: -8px;
-    border-color: rgba(245,158,11,0.25);
-  }
-
-  /* ═══════════════════════════════════════════
-     ANALYTICS — single phone
-  ════════════════════════════════════════════ */
-  .phone-solo-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 24px 32px;
-    position: relative;
-  }
-  .phone-solo-wrap .phone-wrap {
-    --phone-w: clamp(180px, 20vw, 260px);
-  }
-
-  /* ═══════════════════════════════════════════
-     ENTRANCE ANIMATIONS
-  ════════════════════════════════════════════ */
-  .phone-scene .phone-primary   { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.3s both; }
-  .phone-scene .phone-secondary { animation: phone-enter-right 0.8s cubic-bezier(0.22,1,0.36,1) 0.5s both; }
-  .phone-scene-stat.stat-sales  { animation: fade-up 0.6s ease 1s both, float 6s ease-in-out 1.6s infinite; }
-  .phone-scene-stat.stat-stock  { animation: fade-up 0.6s ease 1.2s both, float 7s ease-in-out 2s infinite; }
-
-  .phone-solo-wrap .phone-wrap              { animation: phone-enter-left  0.8s cubic-bezier(0.22,1,0.36,1) 0.2s both; }
-
-  @keyframes phone-enter-left  {
-    from { opacity: 0; transform: translateX(-30px) rotate(-4deg); }
-    to   { opacity: 1; transform: translateX(0)     rotate(-4deg); }
-  }
-  @keyframes phone-enter-right {
-    from { opacity: 0;    transform: translateX(30px) rotate(5deg); }
-    to   { opacity: 0.85; transform: translateX(0)    rotate(5deg); }
-  }
-  @keyframes fade-up {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50%       { transform: translateY(-7px); }
-  }
-
-  /* ═══════════════════════════════════════════
-     MOBILE OVERRIDES  ≤ 1024px
-  ════════════════════════════════════════════ */
-@media (max-width: 1024px) {
-  .phone-scene {
-    position: relative;
-    justify-content: center;
-    padding: 0;
-    margin-top: 40px;
-    width: 100%;
+  html, body {
+    overflow-x: hidden;
     max-width: 100%;
+    min-width: 0;
+  }
+
+  #pricing,
+  #electronics {
+    scroll-margin-top: 100px;
+  }
+  #carouselTrack {
     overflow: hidden;
-    min-height: clamp(260px, 75vw, 400px);
   }
-  .phone-scene .phone-primary {
-    --phone-w: clamp(140px, 38vw, 210px);
-    transform: rotate(-4deg) !important;
-    animation: none !important;
-    opacity: 1 !important;
-    position: relative;
-    z-index: 2;
-  }
-  .phone-scene .phone-secondary {
-    --phone-w: clamp(105px, 28vw, 160px);
-    position: absolute;
-    right: clamp(8px, 8vw, 60px);
-    top: clamp(30px, 8vw, 60px);
-    z-index: 1;
-    transform: rotate(5deg);
-    opacity: 0.85;
-    display: block;
-  }
-  .phone-scene-stat {
+
+  .phone-carousel-slide .phone-glow {
     display: none;
   }
-  .phone-solo-wrap .phone-wrap {
-    --phone-w: clamp(180px, 50vw, 240px);
+
+  @media (max-width: 480px) {
+    #carouselPrev, #carouselNext {
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 16px !important;
+    }
+    #carouselTrack .phone-frame {
+      --phone-w: clamp(130px, 52vw, 180px) !important;
+    }
+  }
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  max-width: 960px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Base = dark card, used when the page itself is in LIGHT mode */
+.pricing-card {
+  background: #14161c;
+  color: #f4f5f7;
+  padding: 44px 24px 32px;
+  text-align: center;
+  position: relative;
+  transition: transform var(--t-slow) var(--ease), filter var(--t-slow) var(--ease);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+  clip-path: polygon(
+    0% 0px, 5% 7px, 10% 0px, 15% 7px, 20% 0px, 25% 7px,
+    30% 0px, 35% 7px, 40% 0px, 45% 7px, 50% 0px, 55% 7px,
+    60% 0px, 65% 7px, 70% 0px, 75% 7px, 80% 0px, 85% 7px,
+    90% 0px, 95% 7px, 100% 0px,
+    100% calc(100% - 7px), 95% 100%, 90% calc(100% - 7px),
+    85% 100%, 80% calc(100% - 7px), 75% 100%,
+    70% calc(100% - 7px), 65% 100%, 60% calc(100% - 7px),
+    55% 100%, 50% calc(100% - 7px), 45% 100%,
+    40% calc(100% - 7px), 35% 100%, 30% calc(100% - 7px),
+    25% 100%, 20% calc(100% - 7px), 15% 100%,
+    10% calc(100% - 7px), 5% 100%, 0% calc(100% - 7px)
+  );
+}
+
+.pricing-card *::selection {
+  background: rgba(61,130,255,0.35);
+  color: #f4f5f7;
+}
+
+.pricing-card:hover {
+  transform: translateY(-6px);
+}
+
+.pricing-card.featured {
+  background: #17191f;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 34px 60px rgba(26,107,255,0.45));
+  transform: scale(1.02);
+}
+
+.pricing-card.featured:hover {
+  transform: scale(1.02) translateY(-6px);
+}
+
+.pricing-badge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #0033ff;
+  padding: 4px 14px;
+  border-radius: var(--r-full);
+  margin-bottom: 16px;
+}
+
+.pricing-name {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f4f5f7;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.pricing-price {
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #f4f5f7;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed rgba(255,255,255,0.18);
+  width: 100%;
+}
+
+.pricing-permonth {
+  font-size: 0.72rem;
+  font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
+  color: #7a8092;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+.pricing-period {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #7eb3ff;
+  background: rgba(26,107,255,0.14);
+  padding: 3px 10px;
+  border-radius: var(--r-full);
+  margin-bottom: 14px;
+}
+
+.pricing-divider {
+  width: 100%;
+  border-bottom: 1px dashed rgba(255,255,255,0.18);
+  margin: 0 0 14px;
+}
+
+.pricing-save {
+  font-size: 0.72rem;
+  color: #4ade80;
+  font-weight: 700;
+  margin-top: -6px;
+  margin-bottom: 10px;
+}
+
+.pricing-comment {
+  font-size: 0.85rem;
+  color: #9ba3b2;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  min-height: 2.8em;
+}
+
+.pricing-card .btn {
+  margin-top: auto;
+  width: 100%;
+  justify-content: center;
+}
+
+.pricing-card .btn-ghost {
+  background: #1e2128 !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  color: #f4f5f7 !important;
+}
+
+.pricing-card .btn-ghost:hover {
+  background: #262a33 !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+@media (max-width: 768px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .pricing-card.featured { transform: scale(1); }
+  .pricing-card.featured:hover { transform: translateY(-6px); }
+  .pricing-price { font-size: 2rem; }
+}
+
+/* Override = light/cream receipt card, used when the page itself is in DARK mode */
+@media (prefers-color-scheme: dark) {
+  .pricing-card {
+    background: #fdfbf5;
+    color: #1a1a1a;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+  }
+
+  .pricing-card.featured {
+    background: #fffdf7;
+    filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 34px 60px rgba(0, 51, 255, 0.55));
+  }
+
+  .pricing-card *::selection {
+    background: rgba(0, 51, 255, 0.28);
+    color: #0f172a;
+  }
+
+  .pricing-name { color: #1a1a1a; }
+
+  .pricing-price {
+    color: #1a1a1a;
+    border-bottom-color: rgba(0,0,0,0.2);
+  }
+
+  .pricing-permonth { color: #8a8578; }
+
+  .pricing-period {
+    color: #0033ff;
+    background: #e8ecff;
+  }
+
+  .pricing-divider { border-bottom-color: rgba(0,0,0,0.2); }
+
+  .pricing-comment { color: #55524a; }
+
+  .pricing-save { color: #1a7f37; }
+
+  .pricing-card .btn-ghost {
+    background: #f3f0e6 !important;
+    border: 1px solid rgba(0,0,0,0.15) !important;
+    color: #1a1a1a !important;
+  }
+
+  .pricing-card .btn-ghost:hover {
+    background: #e9e4d4 !important;
+    border-color: rgba(0,0,0,0.25) !important;
   }
 }
 
-/* ═══════════════════════════════════════════
-   LAPTOP FRAME
-════════════════════════════════════════════ */
-.hero-devices {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-width: 0;
-  box-sizing: border-box;
-  padding: 0 clamp(12px, 4vw, 32px);
+@media (max-width: 768px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+  .pricing-card.featured { transform: scale(1); }
+  .pricing-card.featured:hover { transform: translateY(-6px); }
+  .pricing-price { font-size: 2rem; }
 }
 
-.laptop-frame {
-  position: relative;
-  width: 100%;
-  max-width: clamp(280px, 52vw, 580px);
-  min-width: 0;
-  flex-shrink: 1;
-}
-
-.laptop-lid {
-  position: relative;
-  width: 100%;
-  background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-  border: 2.5px solid rgba(255,255,255,0.13);
-  border-radius: 12px 12px 0 0;
-  padding: 3% 3% 0;
-  box-shadow:
-    inset 1px 1px 0 rgba(255,255,255,0.09),
-    inset -1px -1px 0 rgba(0,0,0,0.45);
-}
-
-.laptop-screen {
-  width: 100%;
-  aspect-ratio: 1366 / 768;
-  border-radius: 6px 6px 0 0;
-  overflow: hidden;
-  background: #000;
-  position: relative;
-}
-
-.laptop-screen img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top left;
-  display: block;
-}
-
-.laptop-screen::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, transparent 50%);
-  pointer-events: none;
-  z-index: 2;
-}
-
-.laptop-camera {
-  position: absolute;
-  top: 1.2%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 6px;
-  height: 6px;
-  background: #2a2a2e;
-  border-radius: 50%;
-  box-shadow: 0 0 0 1.5px rgba(255,255,255,0.07);
-  z-index: 10;
-}
-
-.laptop-base {
-  width: 100%;
-  height: clamp(10px, 2.2vw, 18px);
-  background: linear-gradient(180deg, #242428 0%, #1a1a1c 100%);
-  border: 2.5px solid rgba(255,255,255,0.11);
-  border-top: none;
-  border-radius: 0 0 6px 6px;
-  position: relative;
-}
-
-.laptop-base::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 28%;
-  height: 40%;
-  background: rgba(255,255,255,0.04);
-  border-radius: 2px 2px 0 0;
-}
-
-.laptop-foot {
-  width: 108%;
-  margin-left: -4%;
-  height: clamp(6px, 1.2vw, 10px);
-  background: linear-gradient(180deg, #1a1a1c 0%, #111113 100%);
-  border: 2px solid rgba(255,255,255,0.08);
-  border-top: none;
-  border-radius: 0 0 8px 8px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.laptop-glow {
-  position: absolute;
-  inset: -20%;
-  background: radial-gradient(
-    ellipse at 50% 60%,
-    var(--blue-glow, rgba(26,107,255,0.15)) 0%,
-    transparent 70%
-  );
-  z-index: -1;
-  pointer-events: none;
-  filter: blur(24px);
-}
-
-.laptop-phone {
-  position: absolute;
-  right: -6%;
-  bottom: 8%;
-  width: 18%;
-  z-index: 4;
-}
-
-.laptop-phone .phone-wrap {
-  --phone-w: 100%;
-  width: 100%;
-  flex-shrink: 1;
-}
-
-.laptop-phone .phone-shell {
-  width: 100%;
-  border-width: 1.5px;
-  border-radius: calc(var(--phone-w) * 0.06);
-}
-
-.laptop-phone .phone-screen {
-  inset: 1px 1.5px 1.5px;
-  border-radius: calc(var(--phone-w) * 0.052);
-}
-
-/* ═══════════════════════════════════════════
-   CAROUSEL
-════════════════════════════════════════════ */
-#carouselTrack {
-  overflow: hidden;
-}
-
-.phone-carousel-slide .phone-glow {
-  display: none;
-}
-
-/* ═══════════════════════════════════════════
-   GLOBAL
-════════════════════════════════════════════ */
-html, body {
-  overflow-x: hidden;
-  max-width: 100%;
-  min-width: 0;
-}
-
-/* ═══════════════════════════════════════════
-   RESPONSIVE
-════════════════════════════════════════════ */
-@media (max-width: 480px) {
-  .laptop-frame { max-width: clamp(220px, 90vw, 340px); }
-  .laptop-phone { right: -4%; bottom: 5%; width: 22%; }
-  #carouselPrev, #carouselNext { width: 36px !important; height: 36px !important; font-size: 16px !important; }
-  #carouselTrack .phone-wrap { --phone-w: clamp(130px, 52vw, 180px) !important; }
-}
 </style>
 
 </head>
@@ -498,9 +303,6 @@ html, body {
 
 <div class="page">
 
-  <!-- ============================================================
-       HERO — UPDATED
-  ============================================================ -->
   <section style="padding-top:120px; padding-bottom:80px;">
     <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
@@ -511,47 +313,60 @@ html, body {
           it has a <span class="text-gradient-blue">back office</span>.
         </h1>
         <p class="lead anim-fade-up d3" style="margin-bottom:32px;">
-          Sales, stock, customer credit, and profit — all in one app. Works offline. Syncs itself. Looks good doing it.
+          Sales, stock, customer credit, and profit. All in one app. Works offline. Syncs itself. Looks good doing it.
         </p>
         <div style="display:flex; gap:14px; flex-wrap:wrap;" class="anim-fade-up d4">
           <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
           <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
         </div>
         <p class="anim-fade-up d5" style="color:var(--text3); font-size:0.78rem; margin-top:16px; display:flex; gap:16px; flex-wrap:wrap;">
-          <span>✦ Android &amp; Windows — full app on both</span>
+          <span>✦ Android &amp; Windows, full app on both</span>
+          <span>✦ Responsive UI for any screen size</span>
           <span>✦ Works offline</span>
           <span>✦ Auto cloud sync</span>
+          <span>✦ Cashier mode with local network pairing</span>
         </p>
       </div>
 
       <div style="width:100%; display:flex; justify-content:center; align-items:center; box-sizing:border-box;">
         <div class="hero-devices anim-fade-up d3">
 
-          <div class="laptop-frame">
-            <div class="laptop-glow"></div>
-            <div class="laptop-lid">
-              <div class="laptop-camera"></div>
-              <div class="laptop-screen">
-                <img src="assets/laptop_sales.png" alt="KezPos dashboard on laptop"
-                     onerror="this.style.display='none'">
+          <div class="hero-duo">
+            <div class="laptop-frame">
+              <div class="laptop-glow"></div>
+              <div class="laptop-lid">
+                <div class="laptop-camera"></div>
+                <div class="laptop-screen">
+                  <button class="swap-tap" data-lightbox aria-label="View laptop dashboard full size" style="width:100%;height:100%;">
+                    <img data-kezpos-img="laptopSales" alt="KezPos dashboard on laptop"
+                         onerror="this.style.display='none'">
+                  </button>
+                </div>
               </div>
+              <div class="laptop-base"></div>
+              <div class="laptop-foot"></div>
             </div>
-            <div class="laptop-base"></div>
-            <div class="laptop-foot"></div>
 
-            <div class="laptop-phone">
-              <div class="phone-wrap">
+            <div class="hero-duo-phone">
+              <div class="phone-frame">
+                <div class="phone-glow"></div>
                 <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
                   <div class="phone-screen">
-                    <img src="assets/reports.png" alt="KezPos reports on phone"
-                         onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-                    <div class="phone-placeholder" style="display:none;">Reports</div>
+                    <button class="swap-tap" data-lightbox aria-label="View phone Reports full size" style="width:100%;height:100%;">
+                      <img data-kezpos-img="reports" alt="KezPos Reports on phone"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Checkout</div>
+                    </button>
                   </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
                 </div>
               </div>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
@@ -559,8 +374,8 @@ html, body {
 
   <div class="divider"></div>
 
-  <!-- ============================================================
-       WHY KEZPOS — UPDATED (4 cards)
+<!-- ============================================================
+       WHY KEZPOS — 4 cards (Cashier Mode replaces Quick Sales)
   ============================================================ -->
   <section>
     <div style="text-align:center; margin-bottom:56px;" class="reveal">
@@ -568,13 +383,13 @@ html, body {
       <h2 class="display-lg">The soul of the app</h2>
     </div>
     <div class="grid-4">
-      <!-- Card 1: Quick Sales -->
+      <!-- Card 1: Cashier Mode -->
       <div class="card reveal reveal-delay-1">
-        <div class="card-icon">
+        <div class="card-icon" style="background:var(--blue-pale); border-color:var(--blue-border); color:var(--blue-hover);">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
         </div>
-        <h3>Quick Sales</h3>
-        <p>Search as you type, select, done. KezPos auto-calculates the total, tracks change as the customer hands you cash, and handles debt sales, cart discounts, and per-item discounts — without slowing the queue.</p>
+        <h3>Cashier Mode</h3>
+        <p>Connect multiple cashier devices to your admin account over your local network. No internet needed, no shared logins. Cashiers see only what they need to work the till, sales and new customers. No access to inventory, pricing, or reports. Full admin control stays on the admin device.</p>
       </div>
       <!-- Card 2: Customer Credit -->
       <div class="card reveal reveal-delay-2">
@@ -582,7 +397,7 @@ html, body {
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>Customer Credit</h3>
-        <p>Save a customer's name and number once. Every debt sale is logged to their profile. Find them by name or number at checkout — no notebook, no guessing who owes what.</p>
+        <p>Save a customer's name and number once. Every debt sale is logged to their profile. Find them by name or number at checkout. No notebook, no guessing who owes what.</p>
       </div>
       <!-- Card 3: Offline-First -->
       <div class="card reveal reveal-delay-3">
@@ -592,38 +407,131 @@ html, body {
         <h3>Offline-First, Auto-Synced</h3>
         <p>No internet? Keep selling. KezPos stores everything locally and syncs automatically every 10 minutes when you're back online. Your data is never stuck on one device.</p>
       </div>
-      <!-- Card 4: Reports -->
+      <!-- Card 4: Electronics -->
       <div class="card reveal reveal-delay-4">
-        <div class="card-icon" style="background:var(--purple-pale); border-color:var(--purple-border); color:var(--purple);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M18 17V9M13 17V5M8 17v-3"/></svg>
+        <div class="card-icon" style="background:var(--blue-pale); border-color:var(--blue-border); color:var(--blue-hover);">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
         </div>
-        <h3>Reports That Actually Tell You Something</h3>
-        <p>Hourly, daily, weekly, monthly, and yearly breakdowns. See profit, discounts, refunds, and stock value — filtered however you need. Export a detailed PDF or CSV covering your full inventory, debtors, and financials anytime.</p>
+        <h3>Supports Electronics Resellers</h3>
+        <p>Capture IMEI or serial number, condition, and warranty length per device sold. The warranty terms and a signature space print straight onto the receipt. Proof of sale and proof of warranty, in one slip.</p>
       </div>
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ============================================================
-       ANALYTICS — UPDATED (features bullet list)
-  ============================================================ -->
-  <section>
+  <section id="electronics">
     <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
 
-      <div class="phone-solo-wrap reveal">
+      <div class="reveal">
+        <div class="eyebrow">High-Value Sales</div>
+        <h2 class="display-lg" style="margin-bottom:18px;">
+          Selling phones or electronics?<br>
+          <span class="text-blue">We've got the paperwork.</span>
+        </h2>
+        <p class="lead" style="margin-bottom:28px;">
+          Every unit gets its own record. Serial number, condition, and warranty. And it all prints straight onto the customer's receipt. No more handwritten warranty slips.
+        </p>
+        <ul class="check-list">
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <div class="check-title">IMEI / Serial Number per Item</div>
+              <div class="check-desc">Log the exact unit sold. Critical for phones, laptops, and any device with a unique identifier.</div>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <div class="check-title">Condition Tracking</div>
+              <div class="check-desc">Mark each item new, used, or refurbished. So pricing and expectations are clear from the sale.</div>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <div class="check-title">Warranty Length on the Receipt</div>
+              <div class="check-desc">Set a warranty period per sale. 7 days, 3 months, 1 year. It prints automatically on the customer's copy.</div>
+            </div>
+          </li>
+          <li>
+            <div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div>
+            <div>
+              <div class="check-title">Signature Space Built In</div>
+              <div class="check-desc">A signature line appears on the receipt for both parties to sign off. Useful proof if a warranty claim comes up later.</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="phone-solo-wrap reveal reveal-delay-2">
         <div class="phone-glow"></div>
-        <div class="phone-wrap">
+        <div class="phone-frame">
           <div class="phone-shell">
-            <div class="phone-notch"></div>
+            <div class="phone-camera-punch"></div>
             <div class="phone-screen">
-              <img src="assets/reports.png" alt="Reports analytics" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">Reports</div>
+              <button class="swap-tap" data-lightbox aria-label="View receipt with warranty full size" style="width:100%;height:100%;">
+                <img data-kezpos-img="elecreceipt" alt="KezPos receipt showing warranty length and signature space" loading="lazy"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                <div class="phone-placeholder" style="display:none;">Receipt with warranty</div>
+              </button>
             </div>
             <div class="phone-btn-power"></div>
             <div class="phone-btn-vol-up"></div>
             <div class="phone-btn-vol-dn"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="grid-2" style="gap:clamp(32px,5vw,80px); align-items:center;">
+
+      <div class="reveal">
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" aria-label="View reports on phone full size">
+                      <img data-kezpos-img="reports" alt="Reports analytics on phone" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Reports</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" aria-label="View reports on PC full size">
+                      <img data-kezpos-img="laptopReports" alt="Reports analytics on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
       </div>
@@ -634,18 +542,19 @@ html, body {
           Stop counting<br>coins at midnight.
         </h2>
         <p class="lead" style="margin-bottom:28px;">
-          One tap reveals your margins, not just totals. KezPos tracks profit automatically so you buy smarter — not just record what sold.
+          One tap reveals your margins, not just totals. KezPos tracks profit automatically so you buy smarter. Not just record what sold. Available on phone and PC. Check out either view.
         </p>
         <ul class="check-list">
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Search-as-you-type sales with auto change calculation</div></div></li>
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Cart discounts + per-item discounts in the same sale</div></div></li>
-          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Debt selling — log credit to a named customer profile</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Debt selling, log credit to a named customer profile</div></div></li>
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Hourly, daily, weekly, monthly &amp; yearly profit reports</div></div></li>
-          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Export detailed PDF or CSV reports anytime — inventory, debtors, financials</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Export detailed PDF or CSV reports anytime. Inventory, debtors, financials.</div></div></li>
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Low-stock dashboard alert with customisable threshold per product</div></div></li>
-          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Fully customisable receipts — shop name, footer, refund policy note, signature field, paper width &amp; line spacing</div></div></li>
-          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">IMEI / serial number, warranty &amp; condition tracking per sale item</div></div></li>
-          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Responsive UI — mobile, split-view tablet, and full side-panel on PC</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Fully customisable receipts. Shop name, footer, refund policy note, signature field, paper width &amp; line spacing.</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Share receipts as an image — straight to WhatsApp/any app on Android, or copy-paste on Windows</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">IMEI, serial number, warranty &amp; condition tracking per sale item</div></div></li>
+          <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Responsive UI. Mobile, split-view tablet, and full side-panel on PC.</div></div></li>
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Auto cloud sync every 10 minutes, works 100% offline between syncs</div></div></li>
           <li><div class="check-icon"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 6 5 9 10 3"/></svg></div><div><div class="check-title">Android app + full Windows desktop app, same features on both</div></div></li>
         </ul>
@@ -655,83 +564,206 @@ html, body {
 
   <div class="divider"></div>
 
-  <!-- ============================================================
-       FEATURES CAROUSEL — UPDATED (Bluetooth card)
-  ============================================================ -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
       <div class="eyebrow">Features</div>
-      <h2 class="display-lg">Everything your shop needs,<br>in your pocket.</h2>
+      <h2 class="display-lg">Everything your shop needs,<br>on your phone or your PC.</h2>
     </div>
 
     <div style="display:flex; flex-direction:column; align-items:center; gap:16px;">
       <div style="display:flex; align-items:center; justify-content:center; gap:20px;">
 
-        <button id="carouselPrev" aria-label="Previous" style="
+        <button id="carouselPrev" aria-label="Previous feature" style="
           background:var(--bg2,#0d1117); border:1px solid var(--border2,rgba(255,255,255,0.11));
           border-radius:50%; width:44px; height:44px; flex-shrink:0;
           cursor:pointer; color:var(--text,#f4f5f7); font-size:20px;
           display:flex; align-items:center; justify-content:center; transition:all .2s;">←</button>
 
-        <div id="carouselTrack" style="position:relative; display:flex; justify-content:center;">
+        <div id="carouselTrack" style="position:relative; display:flex; justify-content:center; width:100%; max-width:560px;">
 
-          <div class="phone-carousel-slide active-slide" data-slide="0" data-caption="Quick Sales"
-               style="display:flex; justify-content:center;">
-            <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
-              <div class="phone-glow"></div>
-              <div class="phone-shell">
-                <div class="phone-notch"></div>
-                <div class="phone-screen">
-                  <img src="assets/sales.png" alt="Quick Sales" loading="lazy"
-                       onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
-                  <div class="phone-placeholder" style="display:none;">Quick Sales</div>
+          <div class="phone-carousel-slide active-slide" data-slide="0" data-caption="Quick Sales" style="display:block; width:100%;">
+            <div class="swap-stage" data-interval="4000">
+              <div class="swap-stage-frame">
+                <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+                  <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
+                    <div class="phone-glow"></div>
+                    <div class="phone-shell">
+                      <div class="phone-camera-punch"></div>
+                      <div class="phone-screen">
+                        <button class="swap-tap" aria-label="View Quick Sales on phone full size">
+                          <img data-kezpos-img="sales" alt="Quick Sales on phone" loading="lazy"
+                               onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+                          <div class="phone-placeholder" style="display:none;">Quick Sales</div>
+                        </button>
+                      </div>
+                      <div class="phone-btn-power"></div>
+                      <div class="phone-btn-vol-up"></div>
+                      <div class="phone-btn-vol-dn"></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="phone-btn-power"></div>
-                <div class="phone-btn-vol-up"></div>
-                <div class="phone-btn-vol-dn"></div>
+                <div class="swap-layer swap-layer-laptop" data-view="laptop">
+                  <div class="laptop-frame">
+                    <div class="laptop-glow"></div>
+                    <div class="laptop-lid">
+                      <div class="laptop-camera"></div>
+                      <div class="laptop-screen">
+                        <button class="swap-tap" aria-label="View Quick Sales on PC full size">
+                          <img data-kezpos-img="laptopSales" alt="Quick Sales on PC" loading="lazy" onerror="this.style.display='none'">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                    <div class="laptop-foot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="swap-stage-controls">
+                <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+                <span class="swap-stage-label">Phone view</span>
+                <button class="swap-arrow swap-next" aria-label="Next view">›</button>
               </div>
             </div>
           </div>
 
-          <div class="phone-carousel-slide" data-slide="1" data-caption="Inventory"
-               style="display:none; justify-content:center;">
-            <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
-              <div class="phone-glow"></div>
-              <div class="phone-shell">
-                <div class="phone-notch"></div>
-                <div class="phone-screen">
-                  <img src="assets/inventory.png" alt="Inventory" loading="lazy"
-                       onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
-                  <div class="phone-placeholder" style="display:none;">Inventory</div>
+          <div class="phone-carousel-slide" data-slide="1" data-caption="Inventory" style="display:none; width:100%;">
+            <div class="swap-stage" data-interval="40">
+              <div class="swap-stage-frame">
+                <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+                  <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
+                    <div class="phone-glow"></div>
+                    <div class="phone-shell">
+                      <div class="phone-camera-punch"></div>
+                      <div class="phone-screen">
+                        <button class="swap-tap" aria-label="View Inventory on phone full size">
+                          <img data-kezpos-img="inventory" alt="Inventory on phone" loading="lazy"
+                               onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+                          <div class="phone-placeholder" style="display:none;">Inventory</div>
+                        </button>
+                      </div>
+                      <div class="phone-btn-power"></div>
+                      <div class="phone-btn-vol-up"></div>
+                      <div class="phone-btn-vol-dn"></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="phone-btn-power"></div>
-                <div class="phone-btn-vol-up"></div>
-                <div class="phone-btn-vol-dn"></div>
+                <div class="swap-layer swap-layer-laptop" data-view="laptop">
+                  <div class="laptop-frame">
+                    <div class="laptop-glow"></div>
+                    <div class="laptop-lid">
+                      <div class="laptop-camera"></div>
+                      <div class="laptop-screen">
+                        <button class="swap-tap" aria-label="View Inventory on PC full size">
+                          <img data-kezpos-img="laptopInventory" alt="Inventory on PC" loading="lazy" onerror="this.style.display='none'">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                    <div class="laptop-foot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="swap-stage-controls">
+                <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+                <span class="swap-stage-label">Phone view</span>
+                <button class="swap-arrow swap-next" aria-label="Next view">›</button>
               </div>
             </div>
           </div>
 
-          <div class="phone-carousel-slide" data-slide="2" data-caption="Customers"
-               style="display:none; justify-content:center;">
-            <div class="phone-wrap phone-center" style="--phone-w:clamp(140px,38vw,240px);">
-              <div class="phone-glow"></div>
-              <div class="phone-shell">
-                <div class="phone-notch"></div>
-                <div class="phone-screen">
-                  <img src="assets/customers.png" alt="Customers" loading="lazy"
-                       onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
-                  <div class="phone-placeholder" style="display:none;">Customers</div>
+          <div class="phone-carousel-slide" data-slide="2" data-caption="Customers" style="display:none; width:100%;">
+            <div class="swap-stage" data-interval="40">
+              <div class="swap-stage-frame">
+                <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+                  <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
+                    <div class="phone-glow"></div>
+                    <div class="phone-shell">
+                      <div class="phone-camera-punch"></div>
+                      <div class="phone-screen">
+                        <button class="swap-tap" aria-label="View Customers on phone full size">
+                          <img data-kezpos-img="customers" alt="Customers on phone" loading="lazy"
+                               onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+                          <div class="phone-placeholder" style="display:none;">Customers</div>
+                        </button>
+                      </div>
+                      <div class="phone-btn-power"></div>
+                      <div class="phone-btn-vol-up"></div>
+                      <div class="phone-btn-vol-dn"></div>
+                    </div>
+                  </div>
                 </div>
-                <div class="phone-btn-power"></div>
-                <div class="phone-btn-vol-up"></div>
-                <div class="phone-btn-vol-dn"></div>
+                <div class="swap-layer swap-layer-laptop" data-view="laptop">
+                  <div class="laptop-frame">
+                    <div class="laptop-glow"></div>
+                    <div class="laptop-lid">
+                      <div class="laptop-camera"></div>
+                      <div class="laptop-screen">
+                        <button class="swap-tap" aria-label="View Customers on PC full size">
+                          <img data-kezpos-img="laptopPeople" alt="Customers on PC" loading="lazy" onerror="this.style.display='none'">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                    <div class="laptop-foot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="swap-stage-controls">
+                <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+                <span class="swap-stage-label">Phone view</span>
+                <button class="swap-arrow swap-next" aria-label="Next view">›</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="phone-carousel-slide" data-slide="3" data-caption="Checkout" style="display:none; width:100%;">
+            <div class="swap-stage" data-interval="40">
+              <div class="swap-stage-frame">
+                <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+                  <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
+                    <div class="phone-glow"></div>
+                    <div class="phone-shell">
+                      <div class="phone-camera-punch"></div>
+                      <div class="phone-screen">
+                        <button class="swap-tap" aria-label="View Checkout on phone full size">
+                          <img data-kezpos-img="checkout" alt="Checkout on phone" loading="lazy"
+                               onerror="this.style.display='none';this.nextElementSibling.style.removeProperty('display')">
+                          <div class="phone-placeholder" style="display:none;">Checkout</div>
+                        </button>
+                      </div>
+                      <div class="phone-btn-power"></div>
+                      <div class="phone-btn-vol-up"></div>
+                      <div class="phone-btn-vol-dn"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="swap-layer swap-layer-laptop" data-view="laptop">
+                  <div class="laptop-frame">
+                    <div class="laptop-glow"></div>
+                    <div class="laptop-lid">
+                      <div class="laptop-camera"></div>
+                      <div class="laptop-screen">
+                        <button class="swap-tap" aria-label="View Checkout on PC full size">
+                          <img data-kezpos-img="laptopCheckout" alt="Checkout on PC" loading="lazy" onerror="this.style.display='none'">
+                        </button>
+                      </div>
+                    </div>
+                    <div class="laptop-base"></div>
+                    <div class="laptop-foot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="swap-stage-controls">
+                <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+                <span class="swap-stage-label">Phone view</span>
+                <button class="swap-arrow swap-next" aria-label="Next view">›</button>
               </div>
             </div>
           </div>
 
         </div>
 
-        <button id="carouselNext" aria-label="Next" style="
+        <button id="carouselNext" aria-label="Next feature" style="
           background:var(--bg2,#0d1117); border:1px solid var(--border2,rgba(255,255,255,0.11));
           border-radius:50%; width:44px; height:44px; flex-shrink:0;
           cursor:pointer; color:var(--text,#f4f5f7); font-size:20px;
@@ -742,18 +774,18 @@ html, body {
         <button class="carousel-dot on" data-dot="0" aria-label="Quick Sales" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--blue-light,#3b82f6);"></button>
         <button class="carousel-dot" data-dot="1" aria-label="Inventory" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--text3,#60697a);"></button>
         <button class="carousel-dot" data-dot="2" aria-label="Customers" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--text3,#60697a);"></button>
+        <button class="carousel-dot" data-dot="3" aria-label="Checkout" style="width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;transition:all .2s;background:var(--text3,#60697a);"></button>
       </div>
 
       <div id="carouselCaption" style="color:var(--blue-hover,#3b82f6);font-weight:600;font-size:0.85rem;min-height:1.2em;">Quick Sales</div>
     </div>
 
-    <!-- Bento — UPDATED Bluetooth card -->
     <div class="bento reveal" style="margin-top: 48px;">
       <div class="bento-item bento-lg">
         <div class="bento-content">
           <div class="bento-tag">Core Strength</div>
           <h3 style="font-size:1.3rem; margin-bottom:10px;">Offline-First.<br>Cloud-Always.</h3>
-          <p>Business doesn't stop when signal drops. KezPos syncs everything the moment you're back online — zero data loss, guaranteed.</p>
+          <p>Business doesn't stop when signal drops. KezPos syncs everything the moment you're back online. Zero data loss, guaranteed.</p>
         </div>
       </div>
       <div class="bento-item bento-sm">
@@ -763,7 +795,7 @@ html, body {
           </div>
           <div class="bento-tag">Hardware</div>
           <h3>Receipts, Your Way</h3>
-          <p>58mm or 80mm — pick your printer. Set your shop name, thank-you message, refund policy, signature space, and line spacing from settings. Your receipt, your brand.</p>
+          <p>58mm or 80mm. Pick your printer. Set your shop name, thank-you message, refund policy, signature space, and line spacing from settings. Your receipt, your brand.</p>
         </div>
       </div>
       <div class="bento-item bento-sm">
@@ -802,28 +834,45 @@ html, body {
   <div class="divider"></div>
 
   <!-- ============================================================
-       CTA / PRICING — UPDATED
+       PRICING — Receipt-style cards with zigzag borders
+  ============================================================ -->
+  <section id="pricing">
+    <div style="text-align:center; margin-bottom:56px;" class="reveal">
+      <div class="eyebrow">Pricing</div>
+      <h2 class="display-lg">Simple, transparent pricing.<br><span class="text-blue">No surprises.</span></h2>
+      <p class="lead" style="margin:16px auto 0; text-align:center; max-width:600px;">
+        Choose the plan that fits your business. All plans include the full KezPos experience.
+      </p>
+    </div>
+
+    <div class="pricing-grid" id="pricingGrid">
+      <!-- Cards will be rendered by JavaScript from config.js -->
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       CTA — Simplified
   ============================================================ -->
   <section style="text-align:center;" class="reveal">
     <div class="eyebrow">Get Started Today</div>
     <h2 class="display-lg" style="margin-bottom:16px;">
       Ready to run your shop<br>like a <span class="text-gradient-blue">pro</span>?
     </h2>
-    <p class="lead" id="pricingText" style="margin:0 auto 40px; text-align:center;">
-      Free to start. Ksh 800/month when you're ready.
-    </p>
-    <p style="color:var(--text3); font-size:0.95rem; margin:-24px auto 40px; text-align:center; max-width:500px;">
-      Set up your shop for free — no card, no commitment. Use the full app. If it's not for you, just delete it. Subscription pricing kicks in later; right now setup is on us.
+    <p class="lead" style="margin:0 auto 40px; text-align:center;">
+      Free to start. Upgrade when you're ready.
     </p>
     <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
       <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
-      <a href="install.html" class="btn btn-ghost btn-lg">Installation guide →</a>
+      <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
     </div>
     <p style="color:var(--text3); font-size:0.78rem; margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <span>✦ Android &amp; Windows — full app on both</span>
+      <span>✦ Android &amp; Windows, full app on both</span>
       <span>✦ Responsive UI for any screen size</span>
       <span>✦ Works offline</span>
       <span>✦ Auto cloud sync</span>
+      <span>✦ Cashier mode with local network pairing</span>
     </p>
   </section>
 
@@ -845,13 +894,14 @@ html, body {
 
 <script>
 (function() {
+  // ── Carousel ──
   var slides   = document.querySelectorAll('.phone-carousel-slide');
   var dots     = document.querySelectorAll('.carousel-dot');
   var caption  = document.getElementById('carouselCaption');
   var current  = 0;
 
   function showSlide(i) {
-    slides.forEach(function(s, idx) { s.style.display = idx === i ? 'flex' : 'none'; });
+    slides.forEach(function(s, idx) { s.style.display = idx === i ? 'block' : 'none'; });
     dots.forEach(function(d, idx) {
       d.style.background = idx === i ? 'var(--blue-light,#3b82f6)' : 'var(--text3,#60697a)';
     });
@@ -872,12 +922,16 @@ html, body {
   }, { passive: true });
 
   showSlide(0);
-})();
 
-(function() {
+  // ── KEZPOS config fallback ──
   if (typeof KEZPOS === 'undefined') {
     window.KEZPOS = {
-      pricing: { monthly: 800, currency: 'Ksh', period: '/month' },
+      pricing: { monthly: '', currency: 'Ksh', period: '/month' },
+      pricingPlans: [
+        { name: 'Free', price: '0', currency: 'Ksh', period: '/month', comment: '', badge: '' },
+        { name: 'Pro', price: '', currency: 'Ksh', period: '/month', comment: '', badge: '' },
+        { name: 'Enterprise', price: '0', currency: 'Ksh', period: '/month', comment: '', badge: '' }
+      ],
       nav: [
         { label: 'Home',     href: 'index.html'    },
         { label: 'Features', href: 'features.html' },
@@ -894,13 +948,54 @@ html, body {
     };
   }
 
-  var pricingEl = document.getElementById('pricingText');
-  if (pricingEl && KEZPOS.pricing) {
-    var p = KEZPOS.pricing;
-    // Keep the new "Free to start" copy — don't override with dynamic price
-    // pricingEl.textContent = 'Free to start. ' + p.currency + ' ' + p.monthly + p.period + ' when you\'re ready.';
+  // ── Render Pricing Cards ──
+  var pricingGrid = document.getElementById('pricingGrid');
+  var plans = KEZPOS.pricingPlans || [
+    { name: 'Free', price: '0', currency: 'Ksh', period: '/month', comment: '', badge: '' },
+    { name: 'Pro', price: '0', currency: 'Ksh', period: '/month', comment: '', badge: '' },
+    { name: 'Enterprise', price: '0', currency: 'Ksh', period: '/month', comment: '', badge: '' }
+  ];
+
+function renderPricing() {
+  var plans = KEZPOS.pricingPlans;
+  var currency = plans[0].currency || (KEZPOS.pricing && KEZPOS.pricing.currency) || 'Ksh';
+  var baseMonthly = (plans.find(function(p){ return p.months === 1; }) || plans[0]).price;
+
+  function fmt(n) { return Math.round(n).toLocaleString('en-KE'); }
+  function periodLabel(months) {
+    if (months === 1) return 'Billed monthly';
+    if (months === 12) return 'Billed yearly';
+    return 'Billed every ' + months + ' months';
   }
 
+  var html = '';
+  plans.forEach(function(plan, index) {
+    var isFeatured = index === 1;
+    var perMonth = plan.price / plan.months;
+    var fullPriceAtBase = baseMonthly * plan.months;
+    var savingsPct = Math.round((1 - plan.price / fullPriceAtBase) * 100);
+    var badgeHtml = isFeatured ? '<span class="pricing-badge">Most Popular</span>' : '';
+
+    html += `
+      <div class="pricing-card ${isFeatured ? 'featured' : ''}">
+        ${badgeHtml}
+        <div class="pricing-name">${plan.name}</div>
+        <div class="pricing-price">${currency} ${fmt(plan.price)}</div>
+        <div class="pricing-permonth">${plan.months > 1 ? '≈ ' + currency + ' ' + fmt(perMonth) + ' / month' : '&nbsp;'}</div>
+        <div class="pricing-period">${periodLabel(plan.months)}</div>
+        <div class="pricing-divider"></div>
+        <div class="pricing-comment">${plan.comment || ''}</div>
+        ${savingsPct > 0 ? `<div class="pricing-save">Save ${savingsPct}% vs monthly</div>` : '<div class="pricing-save">&nbsp;</div>'}
+        <a href="#" data-kezpos="navInstall" class="btn ${isFeatured ? 'btn-primary' : 'btn-ghost'} btn-sm">Get Started →</a>
+      </div>
+    `;
+  });
+  pricingGrid.innerHTML = html;
+}
+
+  renderPricing();
+
+  // ── Nav / Footer setup ──
   var isHome = ['', '/', '/index.html'].some(function(p) {
     return window.location.pathname.endsWith(p);
   });
@@ -969,5 +1064,18 @@ html, body {
 })();
 </script>
 <script src="assets/theme.js"></script>
+<script src="assets/interactive.js"></script>
+<script>
+  window.addEventListener('load', function() {
+    if (window.location.hash) {
+      var target = document.querySelector(window.location.hash);
+      if (target) {
+        // re-snap after images/webfonts settle and shift the layout
+        setTimeout(function() { target.scrollIntoView({ block: 'start' }); }, 50);
+        setTimeout(function() { target.scrollIntoView({ block: 'start' }); }, 500);
+      }
+    }
+  });
+</script>
 </body>
 </html>
