@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Features — KezPos</title>
+  <title>Features KezPos</title>
   <meta name="description" content="Explore KezPos features: smart sales, profit analytics, inventory control, debt tracking, PDF reports, Bluetooth printing, and cloud sync built for Kenyan retail.">
 
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="KezPos Features — Smart Sales, Inventory & Debt Tracking">
+  <meta property="og:title"       content="KezPos Features Smart Sales, Inventory & Debt Tracking">
   <meta property="og:description" content="Explore KezPos features: smart sales, profit analytics, inventory control, debt tracking, PDF reports, Bluetooth printing, and cloud sync built for Kenyan retail.">
   <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
   <meta property="og:url"         content="https://kezpos.co.ke/features.html">
   <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="KezPos Features — Smart Sales, Inventory & Debt Tracking">
+  <meta name="twitter:title"      content="KezPos Features Smart Sales, Inventory & Debt Tracking">
   <meta name="twitter:description" content="Explore KezPos features: smart sales, profit analytics, inventory control, debt tracking, PDF reports, Bluetooth printing, and cloud sync built for Kenyan retail.">
   <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
 
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <link rel="stylesheet" href="assets/frames.css">
   <script>
   (function() {
     document.documentElement.style.visibility = 'hidden';
@@ -30,115 +31,7 @@
   })();
 </script>
   <style>
-    /* ── Phone mockup (no camera dot) ────────────────────────────────── */
-    .phone-wrap {
-      --phone-w: 260px;
-      --phone-r: calc(var(--phone-w) * 0.082);
-      --phone-border: 3px;
-      --phone-button-w: 4px;
-
-      position: relative;
-      width: var(--phone-w);
-      flex-shrink: 0;
-    }
-
-    .phone-shell {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9 / 19.5;
-      border-radius: var(--phone-r);
-      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-      border: var(--phone-border) solid rgba(255,255,255,0.13);
-      box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,0.09),
-        inset -1px -1px 0 rgba(0,0,0,0.45),
-        0 32px 64px -16px rgba(0,0,0,0.6),
-        0 12px 24px -8px rgba(0,0,0,0.38);
-      overflow: visible;
-      will-change: transform;
-      transform: translateZ(0);
-    }
-
-    .phone-screen {
-      position: absolute;
-      inset: 1px var(--phone-border) var(--phone-border);
-      border-radius: calc(var(--phone-r) - var(--phone-border));
-      overflow: hidden;
-      background: #000;
-    }
-
-    .phone-screen img,
-    .phone-screen .phone-placeholder {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      background: #000;
-    }
-
-    .phone-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 5;
-    }
-
-    .phone-btn-power {
-      position: absolute;
-      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      top: 26%;
-      width: var(--phone-button-w);
-      height: 11%;
-      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
-      border-radius: 0 2px 2px 0;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-left: none;
-    }
-
-    .phone-btn-vol-up,
-    .phone-btn-vol-dn {
-      position: absolute;
-      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      width: var(--phone-button-w);
-      height: 8%;
-      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
-      border-radius: 2px 0 0 2px;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-right: none;
-    }
-    .phone-btn-vol-up { top: 20%; }
-    .phone-btn-vol-dn { top: 31%; }
-
-    .phone-glow {
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(
-        ellipse at 50% 60%,
-        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
-        transparent 70%
-      );
-      z-index: -1;
-      pointer-events: none;
-      filter: blur(20px);
-      will-change: auto;
-    }
-
-    .phone-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--text3, #60697a);
-      font-size: 0.7rem;
-      text-align: center;
-      padding: 20px;
-      background: var(--bg2, #0d1117);
-    }
+    /* No phone/laptop frame styles - all moved to frames.css */
   </style>
 </head>
 <body>
@@ -167,7 +60,7 @@
 <div class="page">
 
   <!-- ============================================================
-       HERO — UPDATED
+       HERO
   ============================================================ -->
   <section style="padding-top:160px; padding-bottom:80px; text-align:center;">
     <div class="eyebrow anim-slide-down">Everything You Need</div>
@@ -175,14 +68,14 @@
       Precision for<br><span class="text-blue">every transaction.</span>
     </h1>
     <p class="lead anim-fade-up d3" style="margin:0 auto; text-align:center; max-width:640px;">
-      Sales, stock, customer credit, and profit — all in one app. Works offline. Syncs itself. Looks good doing it. Available on Android and Windows.
+      Sales, stock, customer credit, and profit all in one app. Works offline. Syncs itself. Looks good doing it. Available on Android and Windows.
     </p>
   </section>
 
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 1 — Quick Sales (NEW)
+       FEATURE 1 - Quick Sales
   ============================================================ -->
   <section>
     <div class="grid-2" style="gap:80px; align-items:center;">
@@ -190,52 +83,82 @@
         <div class="eyebrow">Core Engine</div>
         <h2 class="display-lg" style="margin-bottom:20px;">Quick Sales<br>That Keep the <span class="text-blue">Queue Moving</span></h2>
         <p class="lead" style="margin-bottom:28px;">
-          Search as you type, select, done. KezPos auto-calculates the total, tracks change as the customer hands you cash, and handles debt sales, cart discounts, and per-item discounts — without slowing the queue.
+          Search as you type, select, done. KezPos auto-calculates the total, tracks change as the customer hands you cash, and handles debt sales, cart discounts, and per-item discounts without slowing the queue.
         </p>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Search-as-you-type</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Find products instantly as you type — no scrolling, no searching. Select and move to checkout in one motion.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Find products instantly as you type no scrolling, no searching. Select and move to checkout in one motion.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Auto Change Calculation</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Enter the amount the customer hands you — KezPos shows the change instantly. No mental math, no mistakes.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Enter the amount the customer hands you KezPos shows the change instantly. No mental math, no mistakes.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Cart &amp; Per-Item Discounts</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Apply a discount to the whole cart or individual items — percentage or flat amount. Flexible pricing for every scenario.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Apply a discount to the whole cart or individual items percentage or flat amount. Flexible pricing for every scenario.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Debt Sales at Checkout</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Sell on credit directly from the checkout — log it to a customer profile in one tap. No separate workflow.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Sell on credit directly from the checkout log it to a customer profile in one tap. No separate workflow.</p>
             </div>
           </li>
         </ul>
       </div>
 
       <div class="reveal reveal-delay-2" style="position:relative; display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 20vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/checkout.png" alt="KezPos Checkout Screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">Checkout</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View checkout on phone full size">
+                      <img data-kezpos-img="checkout" alt="KezPos Checkout Screen" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Checkout</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View checkout on PC full size">
+                      <img data-kezpos-img="laptopCheckout" alt="KezPos Checkout on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
         <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
@@ -246,23 +169,53 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 2 — Customer Credit (NEW)
+       FEATURE 2 - Customer Credit
   ============================================================ -->
   <section>
     <div class="grid-2" style="gap:80px; align-items:center;">
 
       <div class="reveal" style="position:relative; order:2; display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 20vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/people.png" alt="KezPos People Screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">People</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View people on phone full size">
+                      <img data-kezpos-img="people" alt="KezPos People Screen" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">People</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View people on PC full size">
+                      <img data-kezpos-img="laptopPeople" alt="KezPos People on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
         <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--amber-dim) 0%, transparent 70%);"></div>
@@ -272,21 +225,21 @@
         <div class="eyebrow">Relationships</div>
         <h2 class="display-lg" style="margin-bottom:20px;">Customer Credit<br><span class="text-amber">Without the Notebook</span></h2>
         <p class="lead" style="margin-bottom:28px;">
-          Save a customer's name and number once. Every debt sale is logged to their profile. Find them by name or number at checkout — no notebook, no guessing who owes what.
+          Save a customer's name and number once. Every debt sale is logged to their profile. Find them by name or number at checkout no notebook, no guessing who owes what.
         </p>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Named Customer Profiles</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Save name and phone number once. Every interaction — sales, payments, debt — is logged to their profile.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Save name and phone number once. Every interaction sales, payments, debt is logged to their profile.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Instant Customer Lookup</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Find any customer by name or number at checkout. See their balance instantly — no flipping through pages.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Find any customer by name or number at checkout. See their balance instantly no flipping through pages.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
@@ -300,7 +253,7 @@
             <span style="color:var(--amber); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Two-Tap Payment Collection</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Record a debt payment directly from the customer's profile. No navigating around — settle balances in two taps.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Record a debt payment directly from the customer's profile. No navigating around settle balances in two taps.</p>
             </div>
           </li>
         </ul>
@@ -311,7 +264,102 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 3 — Reports That Actually Tell You Something (NEW)
+       FEATURE 2.5 - Cashier Mode
+  ============================================================ -->
+  <section>
+    <div class="grid-2" style="gap:80px; align-items:center;">
+
+      <div class="reveal" style="order:1;">
+        <div class="eyebrow">Team &amp; Access</div>
+        <h2 class="display-lg" style="margin-bottom:20px;">Cashier Mode<br><span class="text-blue">Without the Risk</span></h2>
+        <p class="lead" style="margin-bottom:28px;">
+          Connect a cashier's device to your admin account over your local network. No internet needed, no shared logins. Cashiers see only what they need to work the till.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Local Network Pairing</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Connect a cashier device to the admin device by IP. Works entirely offline, no cloud round-trip required.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Read-Only by Default</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Cashiers can view inventory, customers, and sales history, but can't edit stock, prices, or settings.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Sales &amp; New Customers Only</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Cashiers can make sales and add new customers. The two things a till actually needs. Nothing else.</p>
+            </div>
+          </li>
+          <li style="display:flex; gap:14px; align-items:flex-start;">
+            <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
+            <div>
+              <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Admin Stays in Control</strong>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Full inventory management, reports, pricing, and settings remain admin-only on the admin device.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="reveal reveal-delay-2" style="position:relative; order:2; display:flex; justify-content:center;">
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View cashier mode on phone full size">
+                      <img data-kezpos-img="cashier" alt="KezPos Cashier Mode" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Cashier Mode</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
+            </div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View cashier mode on PC full size">
+                      <img data-kezpos-img="laptopCashier" alt="KezPos Cashier Mode on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
+          </div>
+        </div>
+        <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       FEATURE 3 - Reports
   ============================================================ -->
   <section>
     <div class="grid-2" style="gap:80px; align-items:center;">
@@ -319,14 +367,14 @@
         <div class="eyebrow">Growth Suite</div>
         <h2 class="display-lg" style="margin-bottom:20px;">Reports That Actually<br><span class="text-blue">Tell You Something</span></h2>
         <p class="lead" style="margin-bottom:28px;">
-          Hourly, daily, weekly, monthly, and yearly breakdowns. See profit, discounts, refunds, and stock value — filtered however you need. Export a detailed PDF or CSV covering your full inventory, debtors, and financials anytime.
+          Hourly, daily, weekly, monthly, and yearly breakdowns. See profit, discounts, refunds, and stock value filtered however you need. Export a detailed PDF or CSV covering your full inventory, debtors, and financials anytime.
         </p>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:14px;">
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Multi-Timeframe Reports</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Hourly, daily, weekly, monthly, and yearly breakdowns — see trends at a glance.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Hourly, daily, weekly, monthly, and yearly breakdowns see trends at a glance.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
@@ -340,31 +388,61 @@
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">PDF &amp; CSV Export</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Generate professional PDF reports or CSV exports — inventory, debtor lists, and full financials. Perfect for meetings, loans, or tax prep.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Generate professional PDF reports or CSV exports inventory, debtor lists, and full financials. Perfect for meetings, loans, or tax prep.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Custom Filters</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Filter reports by date range, product category, customer, or payment type — get exactly the data you need.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Filter reports by date range, product category, customer, or payment type get exactly the data you need.</p>
             </div>
           </li>
         </ul>
       </div>
 
       <div class="reveal reveal-delay-2" style="position:relative; display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 20vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/reports.png" alt="KezPos Reports Screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">Reports</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View reports on phone full size">
+                      <img data-kezpos-img="reports" alt="KezPos Reports Screen" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Reports</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View reports on PC full size">
+                      <img data-kezpos-img="laptopReports" alt="KezPos Reports on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
         <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
@@ -375,23 +453,53 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 4 — Inventory & Low Stock (NEW)
+       FEATURE 4 - Inventory & Low Stock
   ============================================================ -->
   <section>
     <div class="grid-2" style="gap:80px; align-items:center;">
 
       <div class="reveal" style="position:relative; order:2; display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 20vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/inventory.png" alt="KezPos Inventory Screen" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">Inventory</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View inventory on phone full size">
+                      <img data-kezpos-img="inventory" alt="KezPos Inventory Screen" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Inventory</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View inventory on PC full size">
+                      <img data-kezpos-img="laptopInventory" alt="KezPos Inventory on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
         <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--green-dim) 0%, transparent 70%);"></div>
@@ -408,14 +516,14 @@
             <span style="color:var(--green); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Customisable Low-Stock Alerts</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Set a custom threshold per product — get notified when stock drops below your chosen level, right on the dashboard.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Set a custom threshold per product get notified when stock drops below your chosen level, right on the dashboard.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
             <span style="color:var(--green); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">IMEI / Serial Number Tracking</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Track serial numbers, IMEI, warranty expiry, and condition per sale item — perfect for electronics and high-value goods.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Track serial numbers, IMEI, warranty expiry, and condition per sale item perfect for electronics and high-value goods.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
@@ -440,53 +548,83 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 5 — Receipts, Your Way (NEW)
+       FEATURE 5 - Receipts
   ============================================================ -->
   <section>
     <div style="text-align:center; margin-bottom:56px;" class="reveal">
       <div class="eyebrow">Hardware</div>
       <h2 class="display-lg">Receipts, <span class="text-blue">Your Way</span></h2>
       <p class="lead" style="margin:16px auto 0; text-align:center; max-width:600px;">
-        58mm or 80mm — pick your printer. Set your shop name, thank-you message, refund policy, signature space, and line spacing from settings. Your receipt, your brand.
+        58mm or 80mm pick your printer. Set your shop name, thank-you message, refund policy, signature space, and line spacing from settings. Your receipt, your brand.
       </p>
     </div>
 
-    <div class="grid-3" style="margin-bottom:40px;">
-      <div class="card reveal reveal-delay-1">
-        <div class="card-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 12H4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        </div>
-        <h3>58mm &amp; 80mm Support</h3>
-        <p>Works with standard thermal receipt printers. Choose your paper width in settings — KezPos formats receipts automatically.</p>
-      </div>
-      <div class="card reveal reveal-delay-2">
-        <div class="card-icon" style="background:var(--amber-pale); border-color:var(--amber-border); color:var(--amber);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v16h16"/><path d="M8 12h8"/><path d="M8 8h4"/><path d="M8 16h6"/></svg>
-        </div>
-        <h3>Fully Customisable</h3>
-        <p>Shop name, footer message, refund policy note, signature field, and line spacing — all adjustable from settings.</p>
-      </div>
-      <div class="card reveal reveal-delay-3">
-        <div class="card-icon" style="background:var(--green-pale); border-color:var(--green-border); color:var(--green);">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        </div>
-        <h3>Brand Your Receipts</h3>
-        <p>Every receipt carries your shop's identity — not KezPos's. Professional, branded, and customised for your business.</p>
-      </div>
+<div class="grid-3" style="margin-bottom:40px;">
+  <div class="card reveal reveal-delay-1">
+    <div class="card-icon">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
     </div>
+    <h3>One-Tap Share</h3>
+    <p>Every receipt renders as a shareable image. Send it straight to WhatsApp or any app on Android, or copy-paste it like any image on Windows.</p>
+  </div>
+  <div class="card reveal reveal-delay-2">
+    <div class="card-icon" style="background:var(--amber-pale); border-color:var(--amber-border); color:var(--amber);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4v16h16"/><path d="M8 12h8"/><path d="M8 8h4"/><path d="M8 16h6"/></svg>
+    </div>
+    <h3>Fully Customisable</h3>
+    <p>Shop name, footer message, refund policy note, signature field, and line spacing all adjustable from settings.</p>
+  </div>
+  <div class="card reveal reveal-delay-3">
+    <div class="card-icon" style="background:var(--green-pale); border-color:var(--green-border); color:var(--green);">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    </div>
+    <h3>Brand Your Receipts</h3>
+    <p>Every receipt carries your shop's identity not KezPos's. Professional, branded, and customised for your business.</p>
+  </div>
+</div>
 
     <div class="reveal reveal-delay-3" style="position:relative; display:flex; justify-content:center;">
-      <div class="phone-wrap" style="--phone-w: clamp(180px, 22vw, 260px);">
-        <div class="phone-glow"></div>
-        <div class="phone-shell">
-          <div class="phone-screen">
-            <img src="assets/sales.png" alt="KezPos Receipt" loading="lazy"
-                 onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-            <div class="phone-placeholder" style="display:none;">Receipt</div>
+      <div class="swap-stage" data-interval="4000">
+        <div class="swap-stage-frame">
+          <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+            <div class="phone-frame" style="--phone-w: clamp(180px, 22vw, 260px);">
+              <div class="phone-glow"></div>
+              <div class="phone-shell">
+                <div class="phone-camera-punch"></div>
+                <div class="phone-screen">
+                  <button class="swap-tap" data-lightbox aria-label="View receipt on phone full size">
+                    <img data-kezpos-img="receipt" alt="KezPos Receipt" loading="lazy"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                    <div class="phone-placeholder" style="display:none;">Receipt</div>
+                  </button>
+                </div>
+                <div class="phone-btn-power"></div>
+                <div class="phone-btn-vol-up"></div>
+                <div class="phone-btn-vol-dn"></div>
+              </div>
+            </div>
           </div>
-          <div class="phone-btn-power"></div>
-          <div class="phone-btn-vol-up"></div>
-          <div class="phone-btn-vol-dn"></div>
+          <div class="swap-layer swap-layer-laptop" data-view="laptop">
+            <div class="laptop-frame">
+              <div class="laptop-glow"></div>
+              <div class="laptop-lid">
+                <div class="laptop-camera"></div>
+                <div class="laptop-screen">
+                  <button class="swap-tap" data-lightbox aria-label="View receipt on PC full size">
+                    <img data-kezpos-img="laptopReceipt" alt="KezPos Receipt on PC" loading="lazy"
+                         onerror="this.style.display='none'">
+                  </button>
+                </div>
+              </div>
+              <div class="laptop-base"></div>
+              <div class="laptop-foot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="swap-stage-controls">
+          <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+          <span class="swap-stage-label">Phone view</span>
+          <button class="swap-arrow swap-next" aria-label="Next view">›</button>
         </div>
       </div>
     </div>
@@ -495,7 +633,7 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FEATURE 6 — Offline-First & Auto-Sync (NEW)
+       FEATURE 6 - Offline-First & Auto-Sync
   ============================================================ -->
   <section>
     <div class="grid-2" style="gap:80px; align-items:center;">
@@ -524,7 +662,7 @@
             <span style="color:var(--blue-light); font-size:1rem; margin-top:2px;">✓</span>
             <div>
               <strong style="color:var(--text); font-family:var(--font-display); font-size:0.95rem;">Multi-Device Sync</strong>
-              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Sign in on any Android phone or Windows PC and your full business — products, customers, sales — restores automatically.</p>
+              <p style="color:var(--text2); font-size:0.9rem; margin-top:2px;">Sign in on any Android phone or Windows PC and your full business products, customers, sales restores automatically.</p>
             </div>
           </li>
           <li style="display:flex; gap:14px; align-items:flex-start;">
@@ -538,17 +676,47 @@
       </div>
 
       <div class="reveal reveal-delay-2" style="position:relative; display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 20vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/app-home.png" alt="KezPos Sync" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">Sync</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 20vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View sync on phone full size">
+                      <img data-kezpos-img="appHome" alt="KezPos Sync" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">Sync</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View sync on PC full size">
+                      <img data-kezpos-img="laptopAppHome" alt="KezPos Sync on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
         <div style="position:absolute; inset:-20px; z-index:-1; background:radial-gradient(ellipse at center, var(--blue-pale) 0%, transparent 70%);"></div>
@@ -559,7 +727,7 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FULL FEATURE LIST — All Bullets (NEW)
+       FULL FEATURE LIST - All Bullets
   ============================================================ -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
@@ -567,9 +735,9 @@
       <h2 class="display-lg">Every feature,<br><span class="text-blue">no surprises.</span></h2>
     </div>
 
-    <div class="grid-2" style="gap:24px;">
-      <div class="card reveal reveal-delay-1">
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; padding:0; margin:0;">
+    <div class="grid-2" style="gap:24px; align-items:stretch;">
+      <div class="card reveal reveal-delay-1" style="display:flex; flex-direction:column; height:100%;">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; padding:0; margin:0; flex:1;">
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
             <span style="color:var(--text2); font-size:0.95rem;">Search-as-you-type sales with auto change calculation</span>
@@ -580,7 +748,11 @@
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
-            <span style="color:var(--text2); font-size:0.95rem;">Debt selling — log credit to a named customer profile</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Debt selling log credit to a named customer profile</span>
+          </li>
+          <li style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--blue-light);">✓</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Cashier mode with local network pairing, read-only access, sales &amp; new customers only</span>
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
@@ -588,7 +760,7 @@
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
-            <span style="color:var(--text2); font-size:0.95rem;">Export detailed PDF or CSV reports anytime — inventory, debtors, financials</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Export detailed PDF or CSV reports anytime inventory, debtors, financials</span>
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
@@ -596,11 +768,15 @@
           </li>
         </ul>
       </div>
-      <div class="card reveal reveal-delay-2">
-        <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; padding:0; margin:0;">
+      <div class="card reveal reveal-delay-2" style="display:flex; flex-direction:column; height:100%;">
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:12px; padding:0; margin:0; flex:1;">
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
-            <span style="color:var(--text2); font-size:0.95rem;">Fully customisable receipts — shop name, footer, refund policy, signature, paper width &amp; spacing</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Fully customisable receipts shop name, footer, refund policy, signature, paper width &amp; spacing</span>
+          </li>
+          <li style="display:flex; gap:12px; align-items:flex-start;">
+            <span style="color:var(--blue-light);">✓</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Share receipts as an image straight to WhatsApp or any app on Android, or copy-paste on Windows like any image</span>
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
@@ -608,7 +784,7 @@
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
-            <span style="color:var(--text2); font-size:0.95rem;">Responsive UI — mobile, split-view tablet, and full side-panel on PC</span>
+            <span style="color:var(--text2); font-size:0.95rem;">Responsive UI mobile, split-view tablet, and full side-panel on PC</span>
           </li>
           <li style="display:flex; gap:12px; align-items:flex-start;">
             <span style="color:var(--blue-light);">✓</span>
@@ -626,18 +802,15 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       CTA — UPDATED pricing
+       CTA
   ============================================================ -->
   <section style="text-align:center;" class="reveal">
     <div class="eyebrow">Get Started Today</div>
     <h2 class="display-lg" style="margin-bottom:16px;">
       Ready to run your shop<br>like a <span class="text-gradient-blue">pro</span>?
     </h2>
-    <p class="lead" id="featuresPricingText" style="margin:0 auto 16px; text-align:center;">
-      Free to start. Ksh 800/month when you're ready.
-    </p>
-    <p style="color:var(--text3); font-size:0.95rem; margin:0 auto 36px; text-align:center; max-width:500px;">
-      Set up your shop for free — no card, no commitment. Use the full app. If it's not for you, just delete it. Subscription pricing kicks in later; right now setup is on us.
+    <p class="lead" style="margin:0 auto 16px; text-align:center;">
+      One week free trial. Upgrade when you're ready.
     </p>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
       <a href="#" data-kezpos="navInstall" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
@@ -646,7 +819,7 @@
       <a href="install.html" class="btn btn-ghost">Installation guide →</a>
     </div>
     <p style="color:var(--text3); font-size:0.78rem; margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <span>✦ Android &amp; Windows — full app on both</span>
+      <span>✦ Android &amp; Windows full app on both</span>
       <span>✦ Responsive UI for any screen size</span>
       <span>✦ Works offline</span>
       <span>✦ Auto cloud sync</span>
@@ -670,7 +843,6 @@
 <script src="config.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Fallback if config.js fails to load
     if (typeof KEZPOS === 'undefined') {
       window.KEZPOS = {
         pricing: { monthly: 800, currency: 'Ksh', period: '/month' },
@@ -692,7 +864,6 @@
 
     var isFeatures = window.location.pathname.indexOf('features.html') > -1;
 
-    // Patch kezpos data attributes
     document.querySelectorAll('[data-kezpos]').forEach(function(el) {
       var path = el.getAttribute('data-kezpos');
       var value;
@@ -713,7 +884,6 @@
       }
     });
 
-    // Nav
     var navLinks = document.getElementById('navLinks');
     KEZPOS.nav.forEach(function(item) {
       var li = document.createElement('li');
@@ -725,7 +895,6 @@
       navLinks.appendChild(li);
     });
 
-    // Mobile drawer
     var drawer = document.getElementById('navDrawer');
     KEZPOS.nav.forEach(function(item) {
       var a = document.createElement('a');
@@ -740,7 +909,6 @@
     drawerCta.textContent = '↓ Download';
     drawer.appendChild(drawerCta);
 
-    // Footer
     var footerLinks = document.getElementById('footerLinks');
     KEZPOS.footer.forEach(function(item) {
       var li = document.createElement('li');
@@ -767,5 +935,7 @@
   });
 </script>
 <script src="assets/theme.js"></script>
+<script src="assets/interactive.js"></script>
+<script src="config.js"></script>
 </body>
 </html>
