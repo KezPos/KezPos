@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service — KezPos</title>
-  <meta name="description" content="KezPos Terms of Service — rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
+  <title>Terms of Service KezPos</title>
+  <meta name="description" content="KezPos Terms of Service rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
 
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Terms of Service — KezPos">
-  <meta property="og:description" content="KezPos Terms of Service — rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
+  <meta property="og:title"       content="Terms of Service KezPos">
+  <meta property="og:description" content="KezPos Terms of Service rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
   <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
   <meta property="og:url"         content="https://kezpos.co.ke/terms.html">
   <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="Terms of Service — KezPos">
-  <meta name="twitter:description" content="KezPos Terms of Service — rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
+  <meta name="twitter:title"      content="Terms of Service KezPos">
+  <meta name="twitter:description" content="KezPos Terms of Service rules for using the app, your rights, data ownership, and governing law under the Republic of Kenya.">
   <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
 
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <link rel="stylesheet" href="assets/frames.css">
   <script>
   (function() {
     document.documentElement.style.visibility = 'hidden';
@@ -142,20 +143,20 @@
 
       <div class="section-anchor" id="data-ownership"></div>
       <h2>5. Data Ownership</h2>
-      <p>You own all business data you enter into KezPos — including your inventory, customer records, sales transactions, discounts, and refunds. KezPos does not claim ownership over your business data.</p>
+      <p>You own all business data you enter into KezPos including your inventory, customer records, sales transactions, discounts, and refunds. KezPos does not claim ownership over your business data.</p>
       <p>By using the App, you grant KezPos a limited licence to store and sync your data solely for the purpose of providing the service to you.</p>
 
       <div class="section-anchor" id="disclaimers"></div>
-      <h2>6. Disclaimers &amp; Limitation of Liability</h2>
+      <h2>6. Disclaimers & Limitation of Liability</h2>
       <p>KezPos is provided "as is" without warranties of any kind. We do not guarantee that the App will be error-free or uninterrupted.</p>
       <p>To the maximum extent permitted by Kenyan law, KezPos shall not be liable for any indirect, incidental, or consequential loss arising from your use of the App, including but not limited to loss of business data or revenue.</p>
       <div class="legal-callout">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        We strongly recommend regularly exporting your data using the built-in <strong>Export Database</strong> feature (Settings → Backup &amp; Data) as a backup precaution.
+        We strongly recommend regularly exporting your data using the built-in <strong>Export Database</strong> feature (Settings → Backup & Data) as a backup precaution.
       </div>
 
       <div class="section-anchor" id="modifications"></div>
-      <h2>7. Modifications to the App &amp; Terms</h2>
+      <h2>7. Modifications to the App & Terms</h2>
       <p>KezPos reserves the right to modify, update, or discontinue any feature of the App at any time. We will notify users of significant changes through the App or via email.</p>
       <p>Your continued use of KezPos after changes are made constitutes acceptance of the updated Terms.</p>
 
@@ -196,7 +197,6 @@
 <script src="assets/theme.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Fallback if config.js fails to load
     if (typeof KEZPOS === 'undefined') {
       window.KEZPOS = {
         version: 'v1.0.0',
@@ -218,7 +218,6 @@
 
     var isTerms = window.location.pathname.indexOf('terms.html') > -1;
 
-    // Patch kezpos data attributes
     document.querySelectorAll('[data-kezpos]').forEach(function(el) {
       var path = el.getAttribute('data-kezpos');
       var prefix = el.getAttribute('data-kezpos-prefix') || '';
@@ -240,7 +239,6 @@
       }
     });
 
-    // Nav
     var navLinks = document.getElementById('navLinks');
     KEZPOS.nav.forEach(function(item) {
       var li = document.createElement('li');
@@ -252,7 +250,6 @@
       navLinks.appendChild(li);
     });
 
-    // Mobile drawer
     var drawer = document.getElementById('navDrawer');
     KEZPOS.nav.forEach(function(item) {
       var a = document.createElement('a');
@@ -267,7 +264,6 @@
     drawerCta.textContent = '↓ Download';
     drawer.appendChild(drawerCta);
 
-    // Footer
     var footerLinks = document.getElementById('footerLinks');
     KEZPOS.footer.forEach(function(item) {
       var li = document.createElement('li');
@@ -288,7 +284,6 @@
       '© ' + new Date().getFullYear() + ' KezPos · Built for Kenyan businesses · ' +
       '<a href="mailto:' + KEZPOS.email + '" style="color:var(--text3);">' + KEZPOS.email + '</a>';
 
-    // Scroll spy for sidebar
     var sidebarLinks = document.querySelectorAll('.legal-sidebar a');
     var anchors = document.querySelectorAll('.section-anchor');
 
