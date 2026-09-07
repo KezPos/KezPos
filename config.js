@@ -21,13 +21,13 @@ pricingPlans: [
     apk: {
       label: 'Android APK',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.2.0/KezPos-v1.2.0.apk',
-      size: '36 MB',
+      size: '33 MB',
       badge: 'Android 8+',
     },
     windows: {
       label: 'Windows App',
       url: 'https://github.com/KezPos/KezPos/releases/download/v1.2.0/KezPos-v1.2.0-setup.exe',
-      size: '35 MB',
+      size: '34 MB',
       badge: 'Windows',
     },
   },
