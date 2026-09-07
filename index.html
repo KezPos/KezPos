@@ -70,18 +70,18 @@
   align-items: stretch;
 }
 
-/* Base = dark card, used when the page itself is in LIGHT mode */
 .pricing-card {
-  background: #14161c;
-  color: #f4f5f7;
+  background: #ffd08b;  /* Warm yellowish/brownish base */
+  color: #1a1a1a;
   padding: 44px 24px 32px;
   text-align: center;
   position: relative;
-  transition: transform var(--t-slow) var(--ease), filter var(--t-slow) var(--ease);
+  transition: transform var(--t-slow) var(--ease), filter var(--t-slow) var(--ease), box-shadow var(--t-slow) var(--ease);
   display: flex;
   flex-direction: column;
   align-items: center;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.12)) drop-shadow(0 30px 50px rgba(0,0,0,0.08));
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
   clip-path: polygon(
     0% 0px, 5% 7px, 10% 0px, 15% 7px, 20% 0px, 25% 7px,
     30% 0px, 35% 7px, 40% 0px, 45% 7px, 50% 0px, 55% 7px,
@@ -98,18 +98,45 @@
 }
 
 .pricing-card *::selection {
-  background: rgba(61,130,255,0.35);
-  color: #f4f5f7;
+  background: rgba(61,130,255,0.3);
+  color: #0f172a;
 }
 
 .pricing-card:hover {
   transform: translateY(-6px);
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)) drop-shadow(0 40px 60px rgba(0,0,0,0.12));
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -2px rgba(0,0,0,0.04);
 }
 
 .pricing-card.featured {
-  background: #17191f;
-  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.35)) drop-shadow(0 34px 60px rgba(26,107,255,0.45));
+  background: #ffc878;  /* Slightly deeper golden-brown for featured in light mode */
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,0.15)) drop-shadow(0 34px 60px rgba(26,107,255,0.20));
   transform: scale(1.02);
+  border: 2px solid rgba(0, 51, 255, 0.15);
+  position: relative;
+}
+
+.pricing-card.featured::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, #0033ff, #6b4cff);
+  opacity: 0.08;
+  z-index: -1;
+  clip-path: polygon(
+    0% 0px, 5% 7px, 10% 0px, 15% 7px, 20% 0px, 25% 7px,
+    30% 0px, 35% 7px, 40% 0px, 45% 7px, 50% 0px, 55% 7px,
+    60% 0px, 65% 7px, 70% 0px, 75% 7px, 80% 0px, 85% 7px,
+    90% 0px, 95% 7px, 100% 0px,
+    100% calc(100% - 7px), 95% 100%, 90% calc(100% - 7px),
+    85% 100%, 80% calc(100% - 7px), 75% 100%,
+    70% calc(100% - 7px), 65% 100%, 60% calc(100% - 7px),
+    55% 100%, 50% calc(100% - 7px), 45% 100%,
+    40% calc(100% - 7px), 35% 100%, 30% calc(100% - 7px),
+    25% 100%, 20% calc(100% - 7px), 15% 100%,
+    10% calc(100% - 7px), 5% 100%, 0% calc(100% - 7px)
+  );
 }
 
 .pricing-card.featured:hover {
@@ -123,17 +150,18 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #fff;
-  background: #0033ff;
+  background: linear-gradient(135deg, #0033ff, #4a7fff);
   padding: 4px 14px;
   border-radius: var(--r-full);
   margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 51, 255, 0.25);
 }
 
 .pricing-name {
   font-family: var(--font-display);
   font-size: 1.1rem;
   font-weight: 700;
-  color: #f4f5f7;
+  color: #1a1a1a;
   margin-bottom: 4px;
   letter-spacing: 0.02em;
 }
@@ -142,21 +170,22 @@
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
   font-size: 2.3rem;
   font-weight: 800;
-  color: #f4f5f7;
+  color: #0f172a;
   letter-spacing: -0.02em;
   line-height: 1.1;
   padding-bottom: 12px;
   margin-bottom: 12px;
-  border-bottom: 1px dashed rgba(255,255,255,0.18);
+  border-bottom: 2px dashed rgba(0,0,0,0.12);
   width: 100%;
 }
 
 .pricing-permonth {
   font-size: 0.72rem;
   font-family: ui-monospace, 'SFMono-Regular', Consolas, monospace;
-  color: #7a8092;
+  color: #6b5a3e;
   margin-top: -6px;
   margin-bottom: 10px;
+  font-weight: 500;
 }
 
 .pricing-period {
@@ -165,30 +194,35 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #7eb3ff;
-  background: rgba(26,107,255,0.14);
+  color: #0033ff;
+  background: rgba(0, 51, 255, 0.10);
   padding: 3px 10px;
   border-radius: var(--r-full);
   margin-bottom: 14px;
+  border: 1px solid rgba(0, 51, 255, 0.08);
 }
 
 .pricing-divider {
   width: 100%;
-  border-bottom: 1px dashed rgba(255,255,255,0.18);
+  border-bottom: 1px dashed rgba(0,0,0,0.10);
   margin: 0 0 14px;
 }
 
 .pricing-save {
   font-size: 0.72rem;
-  color: #4ade80;
+  color: #1a7f37;
   font-weight: 700;
   margin-top: -6px;
   margin-bottom: 10px;
+  background: rgba(26, 127, 55, 0.08);
+  padding: 2px 12px;
+  border-radius: var(--r-full);
+  display: inline-block;
 }
 
 .pricing-comment {
   font-size: 0.85rem;
-  color: #9ba3b2;
+  color: #4a3f30;
   line-height: 1.6;
   margin-bottom: 20px;
   min-height: 2.8em;
@@ -201,14 +235,28 @@
 }
 
 .pricing-card .btn-ghost {
-  background: #1e2128 !important;
-  border: 1px solid rgba(255,255,255,0.12) !important;
-  color: #f4f5f7 !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 2px solid rgba(0,0,0,0.08) !important;
+  color: #1a1a1a !important;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
 }
 
 .pricing-card .btn-ghost:hover {
-  background: #262a33 !important;
-  border-color: rgba(255,255,255,0.2) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-color: rgba(0, 51, 255, 0.3) !important;
+  transform: scale(1.02);
+}
+
+.pricing-card .btn-primary {
+  background: linear-gradient(135deg, #0033ff, #4a7fff) !important;
+  border: none !important;
+  box-shadow: 0 4px 12px rgba(0, 51, 255, 0.3);
+}
+
+.pricing-card .btn-primary:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 51, 255, 0.4);
 }
 
 @media (max-width: 768px) {
@@ -319,13 +367,6 @@
           <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
           <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
         </div>
-        <p class="anim-fade-up d5" style="color:var(--text3); font-size:0.78rem; margin-top:16px; display:flex; gap:16px; flex-wrap:wrap;">
-          <span>✦ Android &amp; Windows, full app on both</span>
-          <span>✦ Responsive UI for any screen size</span>
-          <span>✦ Works offline</span>
-          <span>✦ Auto cloud sync</span>
-          <span>✦ Cashier mode with local network pairing</span>
-        </p>
       </div>
 
       <div style="width:100%; display:flex; justify-content:center; align-items:center; box-sizing:border-box;">
@@ -335,7 +376,7 @@
             <div class="laptop-frame">
               <div class="laptop-glow"></div>
               <div class="laptop-lid">
-                <div class="laptop-camera"></div>
+
                 <div class="laptop-screen">
                   <button class="swap-tap" data-lightbox aria-label="View laptop dashboard full size" style="width:100%;height:100%;">
                     <img data-kezpos-img="laptopSales" alt="KezPos dashboard on laptop"
@@ -351,7 +392,6 @@
               <div class="phone-frame">
                 <div class="phone-glow"></div>
                 <div class="phone-shell">
-                  <div class="phone-camera-punch"></div>
                   <div class="phone-screen">
                     <button class="swap-tap" data-lightbox aria-label="View phone Reports full size" style="width:100%;height:100%;">
                       <img data-kezpos-img="reports" alt="KezPos Reports on phone"
@@ -515,7 +555,7 @@
               <div class="laptop-frame">
                 <div class="laptop-glow"></div>
                 <div class="laptop-lid">
-                  <div class="laptop-camera"></div>
+  
                   <div class="laptop-screen">
                     <button class="swap-tap" aria-label="View reports on PC full size">
                       <img data-kezpos-img="laptopReports" alt="Reports analytics on PC" loading="lazy"
@@ -606,7 +646,7 @@
                   <div class="laptop-frame">
                     <div class="laptop-glow"></div>
                     <div class="laptop-lid">
-                      <div class="laptop-camera"></div>
+      
                       <div class="laptop-screen">
                         <button class="swap-tap" aria-label="View Quick Sales on PC full size">
                           <img data-kezpos-img="laptopSales" alt="Quick Sales on PC" loading="lazy" onerror="this.style.display='none'">
@@ -627,7 +667,7 @@
           </div>
 
           <div class="phone-carousel-slide" data-slide="1" data-caption="Inventory" style="display:none; width:100%;">
-            <div class="swap-stage" data-interval="40">
+            <div class="swap-stage" data-interval="4000">
               <div class="swap-stage-frame">
                 <div class="swap-layer swap-layer-phone is-active" data-view="phone">
                   <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
@@ -651,7 +691,7 @@
                   <div class="laptop-frame">
                     <div class="laptop-glow"></div>
                     <div class="laptop-lid">
-                      <div class="laptop-camera"></div>
+      
                       <div class="laptop-screen">
                         <button class="swap-tap" aria-label="View Inventory on PC full size">
                           <img data-kezpos-img="laptopInventory" alt="Inventory on PC" loading="lazy" onerror="this.style.display='none'">
@@ -672,7 +712,7 @@
           </div>
 
           <div class="phone-carousel-slide" data-slide="2" data-caption="Customers" style="display:none; width:100%;">
-            <div class="swap-stage" data-interval="40">
+            <div class="swap-stage" data-interval="4000">
               <div class="swap-stage-frame">
                 <div class="swap-layer swap-layer-phone is-active" data-view="phone">
                   <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
@@ -696,7 +736,7 @@
                   <div class="laptop-frame">
                     <div class="laptop-glow"></div>
                     <div class="laptop-lid">
-                      <div class="laptop-camera"></div>
+      
                       <div class="laptop-screen">
                         <button class="swap-tap" aria-label="View Customers on PC full size">
                           <img data-kezpos-img="laptopPeople" alt="Customers on PC" loading="lazy" onerror="this.style.display='none'">
@@ -717,7 +757,7 @@
           </div>
 
           <div class="phone-carousel-slide" data-slide="3" data-caption="Checkout" style="display:none; width:100%;">
-            <div class="swap-stage" data-interval="40">
+            <div class="swap-stage" data-interval="4000">
               <div class="swap-stage-frame">
                 <div class="swap-layer swap-layer-phone is-active" data-view="phone">
                   <div class="phone-frame phone-center" style="--phone-w:clamp(140px,30vw,220px);">
@@ -741,7 +781,7 @@
                   <div class="laptop-frame">
                     <div class="laptop-glow"></div>
                     <div class="laptop-lid">
-                      <div class="laptop-camera"></div>
+      
                       <div class="laptop-screen">
                         <button class="swap-tap" aria-label="View Checkout on PC full size">
                           <img data-kezpos-img="laptopCheckout" alt="Checkout on PC" loading="lazy" onerror="this.style.display='none'">
@@ -848,6 +888,9 @@
     <div class="pricing-grid" id="pricingGrid">
       <!-- Cards will be rendered by JavaScript from config.js -->
     </div>
+    <p style="text-align:center; margin-top:24px; color:var(--text2); font-size:0.9rem;">
+      Free service included in all subscriptions plans.
+    </p>
   </section>
 
   <div class="divider"></div>
@@ -867,13 +910,6 @@
       <a href="#" data-kezpos="navInstall" class="btn btn-primary btn-lg">↓ &nbsp;Download KezPos</a>
       <a href="features.html" class="btn btn-ghost btn-lg">See Features →</a>
     </div>
-    <p style="color:var(--text3); font-size:0.78rem; margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <span>✦ Android &amp; Windows, full app on both</span>
-      <span>✦ Responsive UI for any screen size</span>
-      <span>✦ Works offline</span>
-      <span>✦ Auto cloud sync</span>
-      <span>✦ Cashier mode with local network pairing</span>
-    </p>
   </section>
 
 </div>
@@ -976,6 +1012,12 @@ function renderPricing() {
     var savingsPct = Math.round((1 - plan.price / fullPriceAtBase) * 100);
     var badgeHtml = isFeatured ? '<span class="pricing-badge">Most Popular</span>' : '';
 
+    // Only show savings badge if savings > 0
+    var savingsHtml = '';
+    if (savingsPct > 0) {
+      savingsHtml = '<div class="pricing-save">Save ' + savingsPct + '% vs monthly</div>';
+    }
+
     html += `
       <div class="pricing-card ${isFeatured ? 'featured' : ''}">
         ${badgeHtml}
@@ -985,8 +1027,7 @@ function renderPricing() {
         <div class="pricing-period">${periodLabel(plan.months)}</div>
         <div class="pricing-divider"></div>
         <div class="pricing-comment">${plan.comment || ''}</div>
-        ${savingsPct > 0 ? `<div class="pricing-save">Save ${savingsPct}% vs monthly</div>` : '<div class="pricing-save">&nbsp;</div>'}
-        <a href="#" data-kezpos="navInstall" class="btn ${isFeatured ? 'btn-primary' : 'btn-ghost'} btn-sm">Get Started →</a>
+        ${savingsHtml}
       </div>
     `;
   });
