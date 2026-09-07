@@ -15,7 +15,7 @@ window.KEZPOS = {
 pricingPlans: [
   { name: 'Starter',      months: 1,  price: 700,  comment: 'Try it risk-free. Cancel anytime, no questions asked.' },
   { name: '', months: 3,  price: 1700, comment: 'Best for growing shops. Skip the monthly hassle.' },
-  { name: 'Pro',          months: 12, price: 6,700, comment: 'Lock in a year and forget about billing.' },
+  { name: 'Pro',          months: 12, price: 6700, comment: 'Lock in a year and forget about billing.' },
 ],
   downloads: {
     apk: {
