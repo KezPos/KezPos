@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Install KezPos — Download & Setup Guide</title>
+  <title>Install KezPos Download & Setup Guide</title>
   <meta name="description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
 
   <meta property="og:type"        content="website">
-  <meta property="og:title"       content="Install KezPos — Download & Setup Guide">
+  <meta property="og:title"       content="Install KezPos Download & Setup Guide">
   <meta property="og:description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
   <meta property="og:image"       content="https://kezpos.co.ke/assets/og-preview.png">
   <meta property="og:url"         content="https://kezpos.co.ke/install.html">
   <meta name="twitter:card"       content="summary_large_image">
-  <meta name="twitter:title"      content="Install KezPos — Download & Setup Guide">
+  <meta name="twitter:title"      content="Install KezPos Download & Setup Guide">
   <meta name="twitter:description" content="Download KezPos for Android and Windows. Step-by-step installation guide for Samsung, Tecno, Infinix, Xiaomi and more.">
   <meta name="twitter:image"      content="https://kezpos.co.ke/assets/og-preview.png">
 
   <link rel="icon" type="image/png" href="assets/kezpos.png">
   <link rel="apple-touch-icon" href="assets/kezpos.png">
   <link rel="stylesheet" id="themeStylesheet" href="assets/style-light.css">
+  <link rel="stylesheet" href="assets/frames.css">
   <script>
   (function() {
     document.documentElement.style.visibility = 'hidden';
@@ -30,116 +31,7 @@
   })();
 </script>
   <style>
-    /* ── Phone mockup (no camera dot) ────────────────────────────────── */
-    .phone-wrap {
-      --phone-w: 260px;
-      --phone-r: calc(var(--phone-w) * 0.082);
-      --phone-border: 3px;
-      --phone-button-w: 4px;
-
-      position: relative;
-      width: var(--phone-w);
-      flex-shrink: 0;
-    }
-
-    .phone-shell {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9 / 19.5;
-      border-radius: var(--phone-r);
-      background: linear-gradient(160deg, #2a2a2e 0%, #1c1c1e 60%, #111113 100%);
-      border: var(--phone-border) solid rgba(255,255,255,0.13);
-      box-shadow:
-        inset 1px 1px 0 rgba(255,255,255,0.09),
-        inset -1px -1px 0 rgba(0,0,0,0.45),
-        0 32px 64px -16px rgba(0,0,0,0.6),
-        0 12px 24px -8px rgba(0,0,0,0.38);
-      overflow: visible;
-      will-change: transform;
-      transform: translateZ(0);
-    }
-
-    .phone-screen {
-      position: absolute;
-      inset: 1px var(--phone-border) var(--phone-border);
-      border-radius: calc(var(--phone-r) - var(--phone-border));
-      overflow: hidden;
-      background: #000;
-    }
-
-    .phone-screen img,
-    .phone-screen .phone-placeholder {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      background: #000;
-    }
-
-    .phone-screen::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, transparent 45%);
-      pointer-events: none;
-      border-radius: inherit;
-      z-index: 5;
-    }
-
-    .phone-btn-power {
-      position: absolute;
-      right: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      top: 26%;
-      width: var(--phone-button-w);
-      height: 11%;
-      background: linear-gradient(to right, #2a2a2e, #1c1c1e);
-      border-radius: 0 2px 2px 0;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-left: none;
-    }
-
-    .phone-btn-vol-up,
-    .phone-btn-vol-dn {
-      position: absolute;
-      left: calc(-1 * var(--phone-button-w) - var(--phone-border));
-      width: var(--phone-button-w);
-      height: 8%;
-      background: linear-gradient(to left, #2a2a2e, #1c1c1e);
-      border-radius: 2px 0 0 2px;
-      border: var(--phone-border) solid rgba(255,255,255,0.10);
-      border-right: none;
-    }
-    .phone-btn-vol-up { top: 20%; }
-    .phone-btn-vol-dn { top: 31%; }
-
-    .phone-glow {
-      position: absolute;
-      inset: -30%;
-      background: radial-gradient(
-        ellipse at 50% 60%,
-        var(--blue-glow, rgba(26,107,255,0.18)) 0%,
-        transparent 70%
-      );
-      z-index: -1;
-      pointer-events: none;
-      filter: blur(20px);
-      will-change: auto;
-    }
-
-    .phone-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--text3, #60697a);
-      font-size: 0.7rem;
-      text-align: center;
-      padding: 20px;
-      background: var(--bg2, #0d1117);
-    }
-
+    /* No phone/laptop frame styles - all moved to frames.css */
     @media (max-width: 880px) {
       .grid-2 {
         grid-template-columns: 1fr !important;
@@ -173,7 +65,7 @@
 <div class="page">
 
   <!-- ============================================================
-       HERO + DOWNLOAD — UPDATED
+       HERO + DOWNLOAD
   ============================================================ -->
   <section id="download" style="padding-top:160px; padding-bottom:80px;">
     <div class="grid-2" style="gap:80px; align-items:center;">
@@ -184,7 +76,7 @@
         Interested?<br><span class="text-blue">Get started in minutes.</span>
       </h1>
         <p class="lead anim-fade-up d3" style="margin-bottom:36px;">
-          Sales, stock, customer credit, and profit — all in one app. Works offline. Syncs itself. Download KezPos for Android or Windows and get started free.
+          Sales, stock, customer credit, and profit all in one app. Works offline. Syncs itself. Download KezPos for Android or Windows and get started free.
         </p>
 
         <div class="anim-fade-up d4">
@@ -209,42 +101,122 @@
             </span>
             <span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              Safe to install — see our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a>
+              Safe to install see our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a>
             </span>
           </div>
         </div>
       </div>
 
       <div class="anim-float-in d3" style="display:flex; justify-content:center;">
-        <div class="phone-wrap" style="--phone-w: clamp(180px, 22vw, 260px);">
-          <div class="phone-glow"></div>
-          <div class="phone-shell">
-            <div class="phone-screen">
-              <img src="assets/app-home.png" alt="KezPos App" loading="lazy"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
-              <div class="phone-placeholder" style="display:none;">KezPos Home</div>
+        <div class="swap-stage" data-interval="4000">
+          <div class="swap-stage-frame">
+            <div class="swap-layer swap-layer-phone is-active" data-view="phone">
+              <div class="phone-frame" style="--phone-w: clamp(180px, 22vw, 260px);">
+                <div class="phone-glow"></div>
+                <div class="phone-shell">
+                  <div class="phone-camera-punch"></div>
+                  <div class="phone-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View KezPos app on phone full size">
+                      <img data-kezpos-img="appHome" alt="KezPos App on phone" loading="lazy"
+                           onerror="this.style.display='none'; this.nextElementSibling.style.removeProperty('display')">
+                      <div class="phone-placeholder" style="display:none;">KezPos Home</div>
+                    </button>
+                  </div>
+                  <div class="phone-btn-power"></div>
+                  <div class="phone-btn-vol-up"></div>
+                  <div class="phone-btn-vol-dn"></div>
+                </div>
+              </div>
             </div>
-            <div class="phone-btn-power"></div>
-            <div class="phone-btn-vol-up"></div>
-            <div class="phone-btn-vol-dn"></div>
+            <div class="swap-layer swap-layer-laptop" data-view="laptop">
+              <div class="laptop-frame">
+                <div class="laptop-glow"></div>
+                <div class="laptop-lid">
+                  <div class="laptop-camera"></div>
+                  <div class="laptop-screen">
+                    <button class="swap-tap" data-lightbox aria-label="View KezPos app on PC full size">
+                      <img data-kezpos-img="laptopInventory" alt="KezPos App on PC" loading="lazy"
+                           onerror="this.style.display='none'">
+                    </button>
+                  </div>
+                </div>
+                <div class="laptop-base"></div>
+                <div class="laptop-foot"></div>
+              </div>
+            </div>
+          </div>
+          <div class="swap-stage-controls">
+            <button class="swap-arrow swap-prev" aria-label="Previous view">‹</button>
+            <span class="swap-stage-label">Phone view</span>
+            <button class="swap-arrow swap-next" aria-label="Next view">›</button>
           </div>
         </div>
       </div>
 
+    </div>
+    <div style="text-align:center; margin-top:32px;" class="anim-fade-up d4">
+      <a href="index.html#pricing" class="btn btn-ghost btn-sm">View Pricing →</a>
     </div>
   </section>
 
   <div class="divider"></div>
 
   <!-- ============================================================
-       STEP BY STEP — UPDATED with "Free to start" messaging
+       SYSTEM REQUIREMENTS
+  ============================================================ -->
+  <section>
+    <div style="text-align:center; margin-bottom:48px;" class="reveal">
+      <div class="eyebrow">Before You Install</div>
+      <h2 class="display-lg">System Requirements</h2>
+    </div>
+
+    <div class="grid-2" style="gap:40px; align-items:stretch;">
+
+  <div class="card reveal reveal-delay-1" style="display:flex; flex-direction:column; height:100%;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue-hover)" stroke-width="1.8"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h3 style="font-size:1.1rem; margin:0;">Windows</h3>
+    </div>
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; padding:0; margin:0; color:var(--text2); flex:1;">
+      <li><strong style="color:var(--text);">OS:</strong> Windows 10 (64-bit) or later</li>
+      <li><strong style="color:var(--text);">Graphics:</strong> Updated graphics driver</li>
+      <li><strong style="color:var(--text);">Storage:</strong> 100 MB free space</li>
+      <li><strong style="color:var(--text);">RAM:</strong> 2 GB minimum</li>
+    </ul>
+    <div style="margin-top:12px; padding:12px 16px; background:var(--amber-pale); border-radius:var(--r-sm); border-left:3px solid var(--amber); font-size:0.85rem; color:var(--text2);">
+      <strong style="color:var(--amber);">Tip:</strong> Most laptops from the last 8–10 years work out of the box. If KezPos doesn't open after installing, your graphics driver is the most common cause. Update it via Device Manager → Display adapters → right-click your graphics card → Update driver, or download it directly from your laptop manufacturer's support page.
+    </div>
+  </div>
+
+  <div class="card reveal reveal-delay-2" style="display:flex; flex-direction:column; height:100%;">
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--blue-hover)" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      <h3 style="font-size:1.1rem; margin:0;">Android</h3>
+    </div>
+    <ul style="list-style:none; display:flex; flex-direction:column; gap:8px; padding:0; margin:0; color:var(--text2); flex:1;">
+      <li><strong style="color:var(--text);">OS:</strong> Android 7.0 (Nougat) or later</li>
+      <li><strong style="color:var(--text);">Storage:</strong> 50 MB free space</li>
+      <li><strong style="color:var(--text);">RAM:</strong> 1 GB minimum</li>
+    </ul>
+    <div style="margin-top:12px; padding:12px 16px; background:var(--blue-pale); border-radius:var(--r-sm); border-left:3px solid var(--blue); font-size:0.85rem; color:var(--text2);">
+      <strong style="color:var(--blue-hover);">Works offline:</strong> KezPos runs completely offline once installed. No internet required for daily operations.
+    </div>
+  </div>
+
+</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ============================================================
+       STEP BY STEP
   ============================================================ -->
   <section>
     <div style="margin-bottom:56px;" class="reveal">
       <div class="eyebrow">Step-by-Step</div>
       <h2 class="display-lg">How to install KezPos<br>on your device.</h2>
       <p class="lead" style="margin:16px auto 0; text-align:center; max-width:560px;">
-        Free to start. Ksh 800/month when you're ready. Set up your shop for free — no card, no commitment.
+        Free to start. Upgrade when you're ready.
       </p>
     </div>
 
@@ -277,7 +249,7 @@
             </div>
             <div class="tip" style="margin-top:8px;">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle; margin-right:4px;"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-              <strong>Windows users:</strong> just double-click the .exe and follow the setup wizard — no extra steps needed.
+              <strong>Windows users:</strong> just double-click the .exe and follow the setup wizard no extra steps needed.
             </div>
           </div>
         </div>
@@ -407,7 +379,7 @@
   <div class="divider"></div>
 
   <!-- ============================================================
-       FAQ — UPDATED with pricing clarity
+       FAQ
   ============================================================ -->
   <section>
     <div style="text-align:center; margin-bottom:48px;" class="reveal">
@@ -419,27 +391,27 @@
 
       <div class="card">
         <h3 style="margin-bottom:8px; font-size:1rem;">How much does KezPos cost?</h3>
-        <p style="font-size:0.9rem;"><strong>Free to start.</strong> Ksh 800/month when you're ready. Set up your shop for free — no card, no commitment. Use the full app. If it's not for you, just delete it. Subscription pricing kicks in later; right now setup is on us.</p>
+        <p style="font-size:0.9rem;"><strong>Free to start.</strong> Ksh 800/month when you're ready. Set up your shop for free no card, no commitment. Use the full app. If it's not for you, just delete it. Subscription pricing kicks in later; right now setup is on us. <a href="index.html#pricing" style="color:var(--blue-hover);">View full pricing →</a></p>
       </div>
 
       <div class="card">
         <h3 style="margin-bottom:8px; font-size:1rem;">Why isn't it on the Play Store?</h3>
-        <p style="font-size:0.9rem;">KezPos is in active development and distributed directly so updates reach you faster. It's safe — check our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a> for details on what data we collect (spoiler: very little).</p>
+        <p style="font-size:0.9rem;">KezPos is in active development and distributed directly so updates reach you faster. It's safe check our <a href="privacy.html" style="color:var(--blue-hover);">Privacy Policy</a> for details on what data we collect (spoiler: very little).</p>
       </div>
 
       <div class="card">
         <h3 style="margin-bottom:8px; font-size:1rem;">What if I lose my phone or PC?</h3>
-        <p style="font-size:0.9rem;">No problem. Sign in with the same email on any new device and all your data — products, customers, sales history — restores automatically from the cloud.</p>
+        <p style="font-size:0.9rem;">No problem. Sign in with the same email on any new device and all your data products, customers, sales history restores automatically from the cloud.</p>
       </div>
 
       <div class="card">
         <h3 style="margin-bottom:8px; font-size:1rem;">Does it work without internet?</h3>
-        <p style="font-size:0.9rem;">Yes. KezPos is offline-first on all platforms. Make sales, add stock, record transactions — all without a connection. Everything syncs automatically when you reconnect.</p>
+        <p style="font-size:0.9rem;">Yes. KezPos is offline-first on all platforms. Make sales, add stock, record transactions all without a connection. Everything syncs automatically when you reconnect.</p>
       </div>
 
       <div class="card">
         <h3 style="margin-bottom:8px; font-size:1rem;">Can I use it on both my phone and PC?</h3>
-        <p style="font-size:0.9rem;">Absolutely. Install on both, sign in with the same account, and your data syncs between them. Manage inventory on your PC, make sales on your phone — it all stays in sync.</p>
+        <p style="font-size:0.9rem;">Absolutely. Install on both, sign in with the same account, and your data syncs between them. Manage inventory on your PC, make sales on your phone it all stays in sync.</p>
       </div>
 
       <div class="card">
@@ -452,11 +424,16 @@
         <p style="font-size:0.9rem;">No. Cloud sync is included in your subscription at no extra cost. Your data is always backed up and available across all your devices.</p>
       </div>
 
+      <div class="card">
+        <h3 style="margin-bottom:8px; font-size:1rem;">KezPos won't open on my Windows PC. It just does nothing.</h3>
+        <p style="font-size:0.9rem;">This almost always means your graphics driver is outdated or missing. KezPos will show a message telling you this if it happens. To fix it: open Device Manager → Display adapters → right-click your graphics card → Update driver. If Windows can't find an update, check your laptop manufacturer's support site (Acer, HP, Dell, etc.) for the correct driver for your exact model.</p>
+      </div>
+
     </div>
   </section>
 
   <!-- ============================================================
-       CTA — UPDATED
+       CTA
   ============================================================ -->
   <div class="divider"></div>
 
@@ -466,19 +443,15 @@
       Ready to run your shop<br>like a <span class="text-gradient-blue">pro</span>?
     </h2>
     <p class="lead" style="margin:0 auto 16px; text-align:center;">
-      Free to start. Ksh 800/month when you're ready.
-    </p>
-    <p style="color:var(--text3); font-size:0.95rem; margin:0 auto 36px; text-align:center; max-width:500px;">
-      Set up your shop for free — no card, no commitment. Use the full app. If it's not for you, just delete it. Subscription pricing kicks in later; right now setup is on us.
+      One week free trial. Upgrade when you're ready.
     </p>
     <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <a href="#" data-kezpos="navInstall" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
-        ↓ &nbsp;Download KezPos
+      <a href="index.html#pricing" class="btn btn-primary" style="font-size:1rem; padding:16px 36px;">
+        View Pricing →
       </a>
-      <a href="install.html#download" class="btn btn-ghost">Installation guide →</a>
     </div>
     <p style="color:var(--text3); font-size:0.78rem; margin-top:20px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-      <span>✦ Android &amp; Windows — full app on both</span>
+      <span>✦ Android &amp; Windows full app on both</span>
       <span>✦ Responsive UI for any screen size</span>
       <span>✦ Works offline</span>
       <span>✦ Auto cloud sync</span>
@@ -502,7 +475,6 @@
 <script src="config.js"></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Fallback if config.js fails to load
     if (typeof KEZPOS === 'undefined') {
       window.KEZPOS = {
         pricing: { monthly: 800, currency: 'Ksh', period: '/month' },
@@ -528,7 +500,6 @@
 
     var isInstall = window.location.pathname.indexOf('install.html') > -1;
 
-    // Patch kezpos data attributes
     document.querySelectorAll('[data-kezpos]').forEach(function(el) {
       var path = el.getAttribute('data-kezpos');
       var prefix = el.getAttribute('data-kezpos-prefix') || '';
@@ -550,7 +521,6 @@
       }
     });
 
-    // Nav
     var navLinks = document.getElementById('navLinks');
     KEZPOS.nav.forEach(function(item) {
       var li = document.createElement('li');
@@ -562,7 +532,6 @@
       navLinks.appendChild(li);
     });
 
-    // Mobile drawer
     var drawer = document.getElementById('navDrawer');
     KEZPOS.nav.forEach(function(item) {
       var a = document.createElement('a');
@@ -577,7 +546,6 @@
     drawerCta.textContent = '↓ Download';
     drawer.appendChild(drawerCta);
 
-    // Footer
     var footerLinks = document.getElementById('footerLinks');
     KEZPOS.footer.forEach(function(item) {
       var li = document.createElement('li');
@@ -604,5 +572,6 @@
   });
 </script>
 <script src="assets/theme.js"></script>
+<script src="assets/interactive.js"></script>
 </body>
 </html>
