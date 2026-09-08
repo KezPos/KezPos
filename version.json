@@ -11,6 +11,6 @@
   "allowPay": false,
   "payDisabledMessage": "Payments are paused for scheduled maintenance.",
   "baseUrl": "https://kezpos.github.io/KezPos",
-  "sha256": "30171d69c248bf3569de37e9c216985102fc6d0606eb584a8df8d2ca6077e11a",
+  "sha256": "59942b6ca616af51712225b93ac943c717c910f2ca168b09e0dd5c0cccbb51e9",
   "sha256Windows": "ac2f19c7ab63ceb747206b3eddd7736c62929b67f45903ce8b3fd4fc926f61bf"
 }
