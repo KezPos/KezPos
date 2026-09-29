@@ -8,6 +8,19 @@
     { "code": "D", "label": "Non-VAT",        "rate": 0  },
     { "code": "E", "label": "Standard 8%",    "rate": 8  }
   ],
+  "credit_note_reasons": [
+  { "code": "01", "label": "Missing quantity" },
+  { "code": "02", "label": "Missing item" },
+  { "code": "03", "label": "Damaged" },
+  { "code": "04", "label": "Wasted" },
+  { "code": "05", "label": "Raw material shortage" },
+  { "code": "06", "label": "Refund" },
+  { "code": "07", "label": "Wrong quantity" },
+  { "code": "08", "label": "Wrong item" },
+  { "code": "09", "label": "Wrong price" },
+  { "code": "10", "label": "Cancelled sale" },
+  { "code": "11", "label": "Other" }
+],
   "item_class_codes": [
     { "code": "50000000", "name": "Food Beverage and Tobacco Products", "level": 1 },
     { "code": "50100000", "name": "Nuts and seeds", "level": 2 },
