@@ -8,14 +8,13 @@
     { "code": "D", "label": "Non-VAT",        "rate": 0  },
     { "code": "E", "label": "Standard 8%",    "rate": 8  }
   ],
-  "credit_note_reasons": [
-  { "code": "01", "label": "Wrong product" },
-  { "code": "02", "label": "Wrong price" },
+"credit_note_reasons": [
+  { "code": "01", "label": "Missing quantity" },
+  { "code": "02", "label": "Missing data / wrong details" },
   { "code": "03", "label": "Damaged goods" },
-  { "code": "04", "label": "Wrong customer invoiced" },
-  { "code": "05", "label": "Duplicated invoice" },
-  { "code": "06", "label": "Excess supplies" },
-  { "code": "07", "label": "Refund" }
+  { "code": "04", "label": "Wasted" },
+  { "code": "05", "label": "Raw material shortage" },
+  { "code": "06", "label": "Refund" }
 ],
   "item_class_codes": [
     { "code": "50000000", "name": "Food Beverage and Tobacco Products", "level": 1 },
