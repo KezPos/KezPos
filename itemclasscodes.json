@@ -15,7 +15,7 @@
   { "code": "04", "label": "Wrong customer invoiced" },
   { "code": "05", "label": "Duplicated invoice" },
   { "code": "06", "label": "Excess supplies" },
-  { "code": "07", "label": "Other" }
+  { "code": "07", "label": "Refund" }
 ],
   "item_class_codes": [
     { "code": "50000000", "name": "Food Beverage and Tobacco Products", "level": 1 },
