@@ -1,17 +1,16 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SiteShell } from "@/components/site/shell";
-import { Page, Heading, Chapter, btn, TextLink } from "@/components/site/ui";
 import { KEZPOS, pageHead } from "@/components/site/config";
-import { Download, Smartphone, Monitor, ArrowRight, MessageCircle } from "lucide-react";
+import { SiteShell } from "@/components/site/shell";
+import { btn, Chapter, Heading, Page, TextLink } from "@/components/site/ui";
+import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight, Download, MessageCircle, Monitor, Smartphone } from "lucide-react";
 
 const faqs = [
-  ["How much does KezPos cost?", "Starter costs Ksh 700 for one month, three months costs Ksh 1,700, and Pro costs Ksh 6,700 for twelve months. Every plan includes the full app and cloud sync."],
+  ["Is there a free trial?", "Yes. You can try KezPos free for 7 days, with every feature included, before choosing a plan."],
+    ["How much does KezPos cost?", `Plans start at Ksh ${KEZPOS.plans[0].price.toLocaleString()} for ${KEZPOS.plans[0].months === 1 ? "one month" : `${KEZPOS.plans[0].months} months`}. Longer plans cost less per month: ${KEZPOS.plans.slice(1).map((p) => `Ksh ${p.price.toLocaleString()} for ${p.months} months`).join(" or ")}. Every plan includes the full app and cloud sync, and you can try it free for 7 days first.`],
   ["Why isn’t it on the Play Store?", "KezPos is in active development and distributed directly so updates can reach you faster. Download the APK using the official link above."],
   ["Does it work without internet?", "Yes. Make sales, add stock and record transactions offline. Your data syncs automatically when you reconnect."],
   ["Can I use my phone and PC together?", "Yes. Install on both and sign in with the same account. Your products, customers and sales sync across your devices."],
   ["What if I lose my device?", "Sign in with the same email on a new device to restore your cloud-synced data. Regularly export your local database as an extra backup."],
-  ["Does KezPos support KRA eTIMS?", "Yes. KezPos integrates with KRA eTIMS through DigiTax. Send us your business and KRA details and we will set it up for you. Receipts and refunds are then submitted automatically, and anything made offline is retried once you are back online."],
-  ["Can I accept M-Pesa in KezPos?", "Yes. You can send an STK push to a customer from the sale, or view payments you have received and attach them to a sale. Share your M-Pesa details with us and we will set it up for you. Your credentials are stored securely on our servers, not on your device."],
   ["Which printers are supported?", "Standard 58mm and 80mm Bluetooth thermal printers. The app scans for nearby printers when you connect."],
   ["KezPos won’t open on Windows. What should I do?", "Check your graphics driver. Open Device Manager → Display adapters → right-click your graphics card → Update driver. You can also download a driver from your laptop manufacturer’s support site."],
 ];
