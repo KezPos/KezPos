@@ -26,9 +26,7 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # Site lives at https://<user>.github.io/<repo>/ so assets need the repo name as a prefix.
-          # If you use a custom domain or a <user>.github.io repo, change this to "/".
-          VITE_BASE: /
+          VITE_BASE: /${{ github.event.repository.name }}/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
