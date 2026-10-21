@@ -1,0 +1,387 @@
+{
+  "privacy": [
+    {
+      "title": "1. Introduction",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos (\"we\", \"us\" or \"our\") is committed to protecting your personal information. This Privacy Policy explains what data we collect, how we use it, who we share it with, and the rights you have over it."
+        },
+        {
+          "kind": "p",
+          "text": "This policy applies to all users of the KezPos application on Android and Windows and is prepared in line with the Kenya Data Protection Act, 2019."
+        }
+      ]
+    },
+    {
+      "title": "2. Information We Collect",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We collect the information needed to provide the KezPos service:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Account information: your email address and shop name",
+            "Business data you enter into the App: inventory, sales, refunds, receipts, payment history and customer records (such as customer names, phone numbers and balances)",
+            "Payment data, if you use M-Pesa: transaction references, amounts, payment times and the phone number associated with a payment",
+            "Tax data, if you use KRA eTIMS: the invoice and refund details submitted for each sale, and your business tax registration details",
+            "Business details you share with us so we can set up KRA eTIMS or M-Pesa for your shop",
+            "A device notification token, if you allow notifications"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "3. How We Use Your Information",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We use this information to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Create and manage your KezPos account",
+            "Sync your business data across your Android and Windows devices and restore it when you sign in on a new device",
+            "Submit receipts and refunds to KRA through eTIMS, where you have enabled it",
+            "Send M-Pesa payment requests and show payments you have received, where you have enabled it",
+            "Send notifications, such as low-stock alerts and important account or service messages",
+            "Maintain, secure and improve the App"
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "We do not sell or rent your personal data, and we do not share it for marketing purposes."
+        }
+      ]
+    },
+    {
+      "title": "4. Notifications",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "The App may ask for permission to send notifications. Notifications are optional. You can allow or block them at any time in your device settings, and the core features of the App continue to work without them."
+        }
+      ]
+    },
+    {
+      "title": "5. KRA eTIMS and M-Pesa Integrations",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos can submit sales and refunds to the Kenya Revenue Authority (KRA) through eTIMS, using DigiTax as our integration provider. KezPos can also connect to M-Pesa, provided by Safaricom, to send payment requests and to show payments you have received."
+        },
+        {
+          "kind": "p",
+          "text": "These integrations are set up for you by KezPos. You provide the business details required, and we configure the connection on your behalf. The credentials needed to operate these integrations are stored encrypted on our secure servers. They are not stored on your device and are not displayed in the App."
+        },
+        {
+          "kind": "p",
+          "text": "When you use these features, the relevant transaction data is shared with the providers involved so the service can work. This includes invoice and refund details sent to KRA through DigiTax, and payment details exchanged with Safaricom for M-Pesa. If you are offline when a sale or refund is made, it is queued on your device and sent when you reconnect."
+        },
+        {
+          "kind": "p",
+          "text": "If you do not wish to use these integrations, you can choose not to enable them."
+        }
+      ]
+    },
+    {
+      "title": "6. Data Storage & Security",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Your data is stored in two places:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Locally on your device, for offline access and performance (Android and Windows)",
+            "On Supabase cloud servers, used for backup, cross-device sync and the secure storage of integration credentials"
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "We use industry-standard safeguards, including encrypted transmission (HTTPS/TLS) and secure authentication. Integration credentials are held in encrypted secrets storage with restricted access."
+        }
+      ]
+    },
+    {
+      "title": "7. Data Retention & Deletion",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Your data is kept for as long as your account is active. You can delete all your data at any time from the App:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Go to Settings → Backup & Data → Delete All Data",
+            "This permanently deletes your data from your device and from our cloud servers"
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "You can also request account deletion by contacting us at kezposapp@gmail.com. We will process deletion requests within 30 days."
+        },
+        {
+          "kind": "p",
+          "text": "Some records may be retained where we are required to do so by law, for example tax records already submitted to KRA, which are held by KRA under its own policies."
+        }
+      ]
+    },
+    {
+      "title": "8. Your Rights",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "Under the Kenya Data Protection Act, 2019, you have the right to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Access: request a copy of the personal data we hold about you",
+            "Correction: request correction of inaccurate data",
+            "Deletion: request erasure of your personal data",
+            "Portability: export your data at any time using the App's Export Database feature",
+            "Objection: object to the processing of your data in certain circumstances"
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "To exercise any of these rights, contact us at kezposapp@gmail.com."
+        }
+      ]
+    },
+    {
+      "title": "9. Third-Party Services",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos relies on the following service providers to operate:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Supabase: database, authentication and secure secrets storage. Your data is processed in line with Supabase's privacy policy.",
+            "DigiTax: integration with KRA eTIMS, used only if you enable tax compliance.",
+            "Safaricom (M-Pesa): payment requests and payment records, used only if you enable M-Pesa.",
+            "KRA: the tax authority that receives eTIMS submissions."
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "We do not use advertising networks, and we do not share your data with third parties for marketing. Each provider processes data under its own terms and privacy policy."
+        }
+      ]
+    },
+    {
+      "title": "10. Children's Privacy",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos is designed for business use and is not intended for anyone under the age of 18. We do not knowingly collect personal data from minors."
+        }
+      ]
+    },
+    {
+      "title": "11. Changes to This Policy",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "We may update this Privacy Policy from time to time. When we do, we will change the \"Last updated\" date at the top of this page and notify you in the App or by email if the changes are significant."
+        }
+      ]
+    },
+    {
+      "title": "12. Contact Us",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "For privacy questions, data requests or concerns, please contact us:"
+        },
+        {
+          "kind": "p",
+          "text": "Email: kezposapp@gmail.com"
+        }
+      ]
+    }
+  ],
+  "terms": [
+    {
+      "title": "1. Acceptance of Terms",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "By downloading, installing or using KezPos (\"the App\"), you agree to be bound by these Terms of Service (\"Terms\"). If you do not agree, please do not use the App."
+        },
+        {
+          "kind": "p",
+          "text": "These Terms apply to all users of KezPos on Android and Windows, including wholesalers, retailers and any business owners using the App to manage their operations."
+        }
+      ]
+    },
+    {
+      "title": "2. Description of Service",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos is a business management tool for wholesalers and retailers. It enables users to:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Track inventory, organise products into categories and manage stock levels",
+            "Record sales and refunds, and link refunds to the original sale",
+            "Manage customer records, credit and payment history",
+            "Generate digital receipts, and sales, profit, product and customer reports",
+            "Set up cashier devices with limited access",
+            "Submit receipts and refunds to KRA eTIMS through DigiTax, where enabled",
+            "Send M-Pesa payment requests and view received payments, where enabled",
+            "Synchronise business data to the cloud across devices",
+            "Connect to Bluetooth thermal printers for physical receipts"
+          ]
+        },
+        {
+          "kind": "p",
+          "text": "KezPos is a digital replacement for the paper ledger, receipt book and debt notebook."
+        }
+      ]
+    },
+    {
+      "title": "3. User Accounts",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "To use KezPos you must create an account with a valid email address. You are responsible for:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Keeping your password confidential",
+            "All activity that occurs under your account, including activity by cashiers you authorise",
+            "Keeping your account information accurate and up to date"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "4. Acceptable Use",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "You agree to use KezPos only for lawful business purposes. You must not:"
+        },
+        {
+          "kind": "list",
+          "items": [
+            "Use the App for any illegal or fraudulent activity, including submitting false or misleading tax or payment information",
+            "Attempt to reverse-engineer, copy or modify the App",
+            "Share your account credentials with unauthorised persons",
+            "Attempt to disrupt or interfere with the App's servers or security"
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. KRA eTIMS and M-Pesa Integrations",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KRA eTIMS and M-Pesa integrations are optional and are set up by KezPos on your request. To enable them, you must give us accurate and complete information and, where required, hold the relevant registrations (for example, a KRA PIN and an M-Pesa Paybill or Till number)."
+        },
+        {
+          "kind": "p",
+          "text": "KezPos is a software provider. We are not a bank or payment service provider, we do not hold or move your funds, and we are not the Kenya Revenue Authority. M-Pesa is provided by Safaricom and eTIMS by KRA, and eTIMS submissions are made through DigiTax. Your use of those services remains subject to their own terms and any fees they charge."
+        },
+        {
+          "kind": "p",
+          "text": "Your tax obligations remain your responsibility. KezPos helps submit the information you record, but you are responsible for its accuracy and for meeting your obligations under Kenyan law."
+        },
+        {
+          "kind": "p",
+          "text": "These integrations depend on third-party systems. We cannot guarantee that they will always be available, and delays or failures on the part of KRA, DigiTax or Safaricom are outside our control. Sales and refunds made while you are offline are queued and submitted when you reconnect."
+        },
+        {
+          "kind": "p",
+          "text": "Integration credentials are stored securely on our servers and are not stored on your device. We may suspend or remove an integration if it is being misused or if the underlying provider withdraws or changes its service."
+        }
+      ]
+    },
+    {
+      "title": "6. Notifications",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "The App may send you notifications, such as stock alerts and service messages. You can disable notifications at any time in your device settings."
+        }
+      ]
+    },
+    {
+      "title": "7. Data Ownership",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "You own all business data you enter into KezPos, including inventory, customer records, sales, discounts and refunds. KezPos does not claim ownership of your business data."
+        },
+        {
+          "kind": "p",
+          "text": "By using the App, you grant KezPos a limited licence to store, sync and transmit your data solely to provide the service to you, including submitting information to KRA and M-Pesa where you have enabled those features."
+        },
+        {
+          "kind": "p",
+          "text": "Our handling of personal data is described in our Privacy Policy."
+        }
+      ]
+    },
+    {
+      "title": "8. Disclaimers & Limitation of Liability",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos is provided \"as is\" without warranties of any kind. We do not guarantee that the App will be error-free or uninterrupted."
+        },
+        {
+          "kind": "p",
+          "text": "To the maximum extent permitted by Kenyan law, KezPos is not liable for indirect, incidental or consequential loss arising from your use of the App. This includes loss of data or revenue, failed or delayed tax or payment submissions, and penalties arising from the information you record or submit."
+        }
+      ]
+    },
+    {
+      "title": "9. Modifications to the App & Terms",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "KezPos may modify, update or discontinue any feature of the App at any time. We will notify users of significant changes through the App or by email."
+        },
+        {
+          "kind": "p",
+          "text": "Your continued use of KezPos after changes are made means you accept the updated Terms."
+        }
+      ]
+    },
+    {
+      "title": "10. Governing Law",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "These Terms are governed by the laws of the Republic of Kenya. Any disputes arising from these Terms are subject to the jurisdiction of the courts of Kenya."
+        }
+      ]
+    },
+    {
+      "title": "11. Contact Us",
+      "blocks": [
+        {
+          "kind": "p",
+          "text": "If you have questions about these Terms, please contact us:"
+        },
+        {
+          "kind": "p",
+          "text": "Email: kezposapp@gmail.com"
+        }
+      ]
+    }
+  ]
+}
