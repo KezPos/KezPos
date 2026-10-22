@@ -285,10 +285,14 @@
 .book-spread { position: relative; background: var(--card); box-shadow: var(--shadow-page); border-radius: 8px; }
 .book-spread::before { content: ""; position: absolute; inset: 0 auto 0 50%; width: 1px; background: var(--border); }
 .ledger-margin { border-left: 1px solid var(--primary-soft); }
-.phone-frame { position: relative; padding: 3px; background: var(--device); border: 1px solid var(--device-edge); border-radius: 24px; box-shadow: var(--shadow-device); }
-.phone-frame img { width: 100%; height: auto; display: block; border-radius: 21px; }
-.laptop-frame { padding: 9px 9px 13px; background: var(--device); border: 1px solid var(--device-edge); border-radius: 12px 12px 4px 4px; box-shadow: var(--shadow-device); }
-.laptop-frame img { display: block; width: 100%; height: auto; border-radius: 4px; }
-.laptop-base { height: 12px; width: 107%; margin-left: -3.5%; background: var(--device-edge); border-radius: 2px 2px 14px 14px; }
+
+/* Device frames scale with the device: sizes use cqw (1% of the figure's width). */
+.device-fig { container-type: inline-size; }
+.phone-frame { position: relative; padding: max(1px, 1cqw); background: var(--device); border: max(1.5px, 1.5cqw) solid var(--device-edge); border-radius: 13cqw; box-shadow: var(--shadow-device); }
+.phone-frame img { width: 100%; height: auto; display: block; border-radius: 10cqw; }
+.laptop-frame { padding: 1.3cqw 1.3cqw 1.9cqw; background: var(--device); border: max(1px, 0.15cqw) solid var(--device-edge); border-radius: 1.8cqw 1.8cqw 0.6cqw 0.6cqw; box-shadow: var(--shadow-device); }
+.laptop-frame img { display: block; width: 100%; height: auto; border-radius: 0.6cqw; }
+.laptop-base { height: 1.8cqw; width: 107%; margin-left: -3.5%; background: var(--device-edge); border-radius: 0.3cqw 0.3cqw 2cqw 2cqw; }
+
 .receipt-paper { background: var(--receipt); box-shadow: var(--shadow-page); border-radius: 4px 4px 0 0; border-top: 3px solid var(--primary); }
 @media (max-width: 767px) { .book-spread::before { display: none; } }
