@@ -249,30 +249,6 @@ const ratKeyframes = `
     100% { transform: ${ratPose(RAT_IN, 1)}; }
   }`;
 
-/** Time (as a % of the walk) at which CSS "ease-in-out" has covered `f` of the distance. */
-function easeInOutAt(f: number) {
-  let lo = 0, hi = 1;
-  for (let i = 0; i < 30; i++) {
-    const m = (lo + hi) / 2;
-    if (3 * (1 - m) * m * m + m ** 3 < f) lo = m; else hi = m;
-  }
-  const m = (lo + hi) / 2;
-  return 3 * (1 - m) ** 2 * m * 0.42 + 3 * (1 - m) * m * m * 0.58 + m ** 3;
-}
-
-// The rat has to pass IN FRONT of the box edge when it is outside and BEHIND it when inside.
-// So there are two copies: one under the box (always there) and one on top of it that is
-// only visible while the rat's nose is outside the opening. These are the switch moments (%).
-const SPAN = RAT_IN[0] - RAT_OUT[0];
-const GOES_OUT = 8 + 22 * easeInOutAt((RAT_IN[0] - RAT_LEN / 2) / SPAN); // nose crosses the lip, heading out
-const GOES_IN = 56 + 22 * easeInOutAt((-RAT_LEN / 2 - RAT_OUT[0]) / SPAN); // nose crosses the lip, heading in
-const ratFrontKeyframes = `
-  @keyframes nf-rat-front {
-    0%, ${GOES_OUT.toFixed(2)}% { opacity: 0; }
-    ${(GOES_OUT + 0.02).toFixed(2)}%, ${GOES_IN.toFixed(2)}% { opacity: 1; }
-    ${(GOES_IN + 0.02).toFixed(2)}%, 100% { opacity: 0; }
-  }`;
-
 // The spider hangs from the top edge of the opening.
 const SPIDER_ANCHOR = P([0, 150, H - T]);
 const THREAD = 46;
@@ -354,12 +330,6 @@ function BoxScene() {
         <Spider />
       </g>
 
-      {/* the rat, under the box edge (this copy is what you see while it is inside) */}
-      <g className="nf-rat">
-        <ellipse cx="0" cy="1" rx="26" ry="5" fill="#000" fillOpacity="0.32" filter="url(#nf-blur)" />
-        <Rat />
-      </g>
-
       {/* labelled side */}
       <polygon points={pts(reportFace)} fill={BOX} />
       <polygon points={pts(reportFace)} fill="url(#nf-face-shade)" />
@@ -391,8 +361,9 @@ function BoxScene() {
         </g>
       ))}
 
-      {/* the rat again, on top of the box: only shown while it is outside, so the box edge never cuts across it */}
-      <g className="nf-rat nf-rat-front">
+      {/* the rat: drawn above everything, so it walks over the lip of the box and never sinks behind it */}
+      <g className="nf-rat">
+        <ellipse cx="0" cy="1" rx="26" ry="5" fill="#000" fillOpacity="0.32" filter="url(#nf-blur)" />
         <Rat />
       </g>
     </svg>
@@ -404,17 +375,15 @@ export function NotFound() {
     <div className="relative min-h-screen overflow-x-clip">
       <style>{`
         ${ratKeyframes}
-        ${ratFrontKeyframes}
         @keyframes nf-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
         @keyframes nf-thread { 0% { transform: scaleY(0.45); } 100% { transform: scaleY(1.2); } }
         @keyframes nf-spider { 0% { transform: translateY(${(-THREAD * 0.55).toFixed(1)}px); } 100% { transform: translateY(${(THREAD * 0.2).toFixed(1)}px); } }
         /* resting pose (also used when the visitor prefers reduced motion): rat beside the paper */
         .nf-rat { transform: ${ratPose(RAT_OUT, 1)}; animation: nf-rat-run 16s ease-in-out infinite; }
-        .nf-rat-front { animation: nf-rat-run 16s ease-in-out infinite, nf-rat-front 16s linear infinite; }
         .nf-bob { animation: nf-bob 0.42s ease-in-out infinite; }
         .nf-thread { transform-box: fill-box; transform-origin: 50% 0%; transform: scaleY(0.8); animation: nf-thread 2.8s ease-in-out infinite alternate; }
         .nf-spider-body { animation: nf-spider 2.8s ease-in-out infinite alternate; }
-        @media (prefers-reduced-motion: reduce) { .nf-rat, .nf-rat-front, .nf-bob, .nf-thread, .nf-spider-body { animation: none; } }
+        @media (prefers-reduced-motion: reduce) { .nf-rat, .nf-bob, .nf-thread, .nf-spider-body { animation: none; } }
       `}</style>
       <div aria-hidden className="desk-grid pointer-events-none fixed inset-0 -z-50" />
       <div aria-hidden className="desk-vignette pointer-events-none fixed inset-0 -z-40" />
