@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
 function Index() {
   return <SiteShell>
     <section className="mx-auto w-full max-w-6xl px-3 pt-7 pb-2 sm:px-6 sm:pt-10">
-      <div className="flex items-center justify-between gap-4 border-b border-dashed pb-4 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground"><span>A shopkeeper’s companion</span><span>Master ledger · Vol. 01</span></div>
+      <div className="flex items-center justify-between gap-4 border-b border-dashed pb-4 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground"><span>A shopkeeper’s companion</span><span>Master ledger · 01</span></div>
       <div className="relative pt-8 text-center sm:pt-10">
         <p className="mb-3 flex items-center justify-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-good" /> Built for Kenyan retail</p>
         <h1 className="font-display text-[56px] leading-none font-medium sm:text-[80px]">KezPos<span className="text-primary">.</span></h1>
