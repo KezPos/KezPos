@@ -1,16 +1,19 @@
-import home from "@/assets/app-home.png.asset.json";
-import checkout from "@/assets/checkout.png.asset.json";
-import receipt from "@/assets/elecreceipt.png.asset.json";
-import inventory from "@/assets/inventory.png.asset.json";
-import cashier from "@/assets/laptop_cashier.png.asset.json";
-import sales from "@/assets/laptop_sales.png.asset.json";
-import reports from "@/assets/reports.png.asset.json";
 import { cn } from "@/lib/utils";
 import { Maximize2, Monitor, Smartphone, X } from "lucide-react";
 import { useState } from "react";
 import { Button } from "./button";
 
-export const images = { home: home.url, checkout: checkout.url, receipt: receipt.url, reports: reports.url, inventory: inventory.url, sales: sales.url, cashier: cashier.url };
+const img = (file: string) => `${import.meta.env.BASE_URL}images/${file}`;
+export const images = {
+  home: img("app-home.png"),
+  checkout: img("checkout.png"),
+  receipt: img("elecreceipt.png"),
+  reports: img("reports.png"),
+  inventory: img("inventory.png"),
+  sales: img("laptop_sales.png"),
+  cashier: img("laptop_cashier.png"),
+  mpesa: img("mpesa_c2b.png"),
+};
 
 export function Device({ src, label, kind = "phone", className }: { src: string; label: string; kind?: "phone" | "laptop"; className?: string }) {
   const [open, setOpen] = useState(false);
