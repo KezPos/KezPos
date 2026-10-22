@@ -5,7 +5,7 @@ import { Chapter, Heading, btn } from "./ui";
 
 export function Pricing() {
   return <section className="mx-auto w-full max-w-6xl px-3 py-8 sm:px-6">
-    <Chapter n="05">A fair price</Chapter>
+    <Chapter n="06">A fair price</Chapter>
     <div className="mt-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><Heading>Simple plans.<br />No fine print.</Heading><p className="max-w-xs text-sm leading-7 text-muted-foreground">Start with a 7-day free trial. All plans include the full KezPos experience, so you only choose how long you stay.</p></div>
     <div className="mt-10 grid gap-6 md:grid-cols-3">
       {KEZPOS.plans.map((plan, i) => <Reveal key={plan.months} delay={i * 70}>
