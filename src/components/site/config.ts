@@ -1,5 +1,5 @@
 export const KEZPOS = {
-  version: "v1.4.0",
+  version: "v1.4.2",
   email: "kezposapp@gmail.com",
   whatsapp: "254745105755",
   plans: [
@@ -8,8 +8,8 @@ export const KEZPOS = {
     { name: "Pro", months: 12, price: 6500, comment: "Lock in a year and forget about billing." },
   ],
   downloads: [
-    { platform: "Android", label: "Download APK", url: "https://github.com/KezPos/KezPos/releases/download/v1.4.0/KezPos-v1.4.0.apk", size: "36 MB", requirement: "Android 8+" },
-    { platform: "Windows", label: "Download for Windows", url: "https://github.com/KezPos/KezPos/releases/download/v1.4.0/KezPos-v1.4.0-setup.exe", size: "35 MB", requirement: "Windows" },
+    { platform: "Android", label: "Download APK", url: "https://github.com/KezPos/KezPos/releases/download/v1.4.2/KezPos-v1.4.2.apk", size: "36 MB", requirement: "Android 8+" },
+    { platform: "Windows", label: "Download for Windows", url: "https://github.com/KezPos/KezPos/releases/download/v1.4.2/KezPos-v1.4.2-setup.exe", size: "35 MB", requirement: "Windows" },
   ],
 } as const;
 
