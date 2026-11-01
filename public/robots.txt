@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://kezpos.github.io/KezPos/sitemap.xml
+Sitemap: https://kezpos.co.ke/sitemap.xml
