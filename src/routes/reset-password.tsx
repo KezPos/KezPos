@@ -1,12 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type FormEvent } from "react";
-import { ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
-import { SiteShell } from "@/components/site/shell";
 import { AuthPage, Field, Notice, Success, Working } from "@/components/site/auth";
 import { pageHead } from "@/components/site/config";
+import { SiteShell } from "@/components/site/shell";
 import { btn } from "@/components/site/ui";
-import { cn } from "@/lib/utils";
 import { supabase } from "@/lib/supabase";
+import { cn } from "@/lib/utils";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ArrowRight, Eye, EyeOff, Loader2 } from "lucide-react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/reset-password")({
   validateSearch: (s: Record<string, unknown>) => ({
@@ -181,23 +181,26 @@ function ResetPassword() {
           </form>
         )}
 
-        {phase === "done" && (
-          <div className="space-y-6">
-            <Success title="Password updated">You can now sign in to KezPos with your new password.</Success>
-            <p className="text-sm leading-7 text-muted-foreground">
-              For safety, this browser session has been closed, so you&apos;ll be asked to sign in again on
-              every device.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/install" className={btn.primary}>
-                Open KezPos <ArrowRight className="size-4" />
-              </Link>
-              <Link to="/" className={btn.ghost}>
-                Back to home
-              </Link>
-            </div>
-          </div>
-        )}
+{phase === "done" && (
+  <div className="space-y-6">
+    <Success title="Password updated">You can now sign in to KezPos with your new password.</Success>
+    <p className="text-sm leading-7 text-muted-foreground">
+      For safety, this browser session has been closed, so you&apos;ll be asked to sign in again on
+      every device.
+    </p>
+    <div className="flex flex-wrap gap-3">
+      <a href="kezpos://auth/login" className={btn.primary}>
+        Open KezPos <ArrowRight className="size-4" />
+      </a>
+      <Link to="/" className={btn.ghost}>
+        Back to home
+      </Link>
+    </div>
+    <p className="text-xs leading-6 text-muted-foreground">
+      Button not opening the app? Make sure KezPos is installed on this phone, or open it yourself and sign in.
+    </p>
+  </div>
+)}
       </AuthPage>
     </SiteShell>
   );
