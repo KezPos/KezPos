@@ -1,11 +1,11 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { SiteShell } from "@/components/site/shell";
 import { AuthPage, Notice, Success, Working } from "@/components/site/auth";
 import { pageHead } from "@/components/site/config";
+import { SiteShell } from "@/components/site/shell";
 import { btn } from "@/components/site/ui";
 import { supabase } from "@/lib/supabase";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const OTP_TYPES = ["signup", "invite", "magiclink", "email_change", "email"] as const;
 type OtpType = (typeof OTP_TYPES)[number];
@@ -113,19 +113,22 @@ function VerifyEmail() {
       <AuthPage eyebrow={copy.eyebrow} title={copy.title}>
         {phase === "checking" && <Working label="Confirming your link…" />}
 
-        {phase === "done" && (
-          <div className="space-y-6">
-            <Success title={copy.done}>{copy.body}</Success>
-            <div className="flex flex-wrap gap-3">
-              <Link to="/install" className={btn.primary}>
-                Open KezPos <ArrowRight className="size-4" />
-              </Link>
-              <Link to="/" className={btn.ghost}>
-                Back to home
-              </Link>
-            </div>
-          </div>
-        )}
+{phase === "done" && (
+  <div className="space-y-6">
+    <Success title={copy.done}>{copy.body}</Success>
+    <div className="flex flex-wrap gap-3">
+      <a href="kezpos://auth/verified" className={btn.primary}>
+        Open KezPos <ArrowRight className="size-4" />
+      </a>
+      <Link to="/" className={btn.ghost}>
+        Back to home
+      </Link>
+    </div>
+    <p className="text-xs leading-6 text-muted-foreground">
+      Button not opening the app? Make sure KezPos is installed on this phone, or open it yourself and sign in.
+    </p>
+  </div>
+)}
 
         {phase === "invalid" && (
           <div className="space-y-6">
