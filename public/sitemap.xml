@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-       <loc>https://kezpos.co.ke/</loc>
-       <lastmod>2026-11-01T09:00:41+00:00</lastmod>
-       <priority>1.0000</priority>
+    <loc>https://kezpos.co.ke/</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://kezpos.co.ke/features</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://kezpos.co.ke/install</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://kezpos.co.ke/privacy</loc>
+    <lastmod>2026-11-03</lastmod>
+  </url>
+  <url>
+    <loc>https://kezpos.co.ke/terms</loc>
+    <lastmod>2026-11-03</lastmod>
   </url>
 </urlset>
