@@ -2,7 +2,7 @@
   "versionCode": 4028,
   "versionName": "1.4.5",
   "minSupportedVersionCode": 4025,
-  "minSupportedVersionName": "1.4.5",
+  "minSupportedVersionName": "1.4.3",
   "releaseDate": "2026-11-9",
   "whatsNew": "- Added Cashier mode: Admins can now connect multiple devices locally without requiring an internet connection. All data stays on-site.\n Added Oversell option. When toggled on, user can sell items even after stock quantity reaches zero.\n User can now receive payments or send an STK push via M-Pesa\n Added option to enable or disable eTIMs",
   "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.4.5/KezPos-v1.4.5.apk",
