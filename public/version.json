@@ -1,19 +1,19 @@
 {
-  "versionCode": 4027,
-  "versionName": "1.4.4",
+  "versionCode": 4028,
+  "versionName": "1.4.5",
   "minSupportedVersionCode": 4025,
-  "minSupportedVersionName": "1.4.4",
+  "minSupportedVersionName": "1.4.5",
   "releaseDate": "2026-11-9",
   "whatsNew": "- Added Cashier mode: Admins can now connect multiple devices locally without requiring an internet connection. All data stays on-site.\n Added Oversell option. When toggled on, user can sell items even after stock quantity reaches zero.\n User can now receive payments or send an STK push via M-Pesa\n Added option to enable or disable eTIMs",
-  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.4.4/KezPos-v1.4.4.apk",
-  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.4.4/KezPos-v1.4.4-setup.exe",
+  "downloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.4.5/KezPos-v1.4.5.apk",
+  "windowsDownloadUrl": "https://github.com/KezPos/KezPos/releases/download/v1.4.5/KezPos-v1.4.5-setup.exe",
   "linuxDownloadUrl": null,
   "macosDownloadUrl": null,
   "forceUpdate": false,
   "allowPay": false,
   "payDisabledMessage": "Payments are paused for scheduled maintenance.",
   "baseUrl": "https://kezpos.co.ke",
-  "sha256": "64f0f1abf6ffe516fcd0e37d19fb5a0241de1d72ca5a8b1bf18941550399962e",
-  "sha256Windows": "505c22027e7070c96dcb154ca3e6ac7f67bec066c3bbe5e06dc2d93be246ba9d",
-  "signature": "vRi2+yUXjca1SszUPLP8wyXIf8TNdMv8elkaFhlBbLv+j8QYBX7qtGbQGSoDbDnNwGm1fAORsBt/nfHXPJ1gBg=="
+  "sha256": "4d2c8fb47b3b4ee7168be6ae52d08271ffbbea258f93f9819ad27d665a03d107",
+  "sha256Windows": "48fc26137a160ba49253280deab5342d6c4e78e66c3954b3ab66e05d542e0705",
+  "signature": "CgpMTHDvmv1TKyBljxB1rFUbHa07OZJuv+COQlpmJZFKUf1IUZAdaekya168ZaHa06B/3yRKZsSvM33zDmOxBw=="
 }
