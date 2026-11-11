@@ -57,7 +57,7 @@ export const Route = createFileRoute("/verify")({
     }
   },
   head: () => {
-    const { meta } = pageHead("Confirm your email — KezPos", "Confirm the email address on your KezPos account.");
+    const { meta } = pageHead("Confirm your email | KezPos", "Confirm the email address on your KezPos account.");
     return { meta: [...meta, { name: "robots", content: "noindex, nofollow" }] };
   },
   component: VerifyEmail,

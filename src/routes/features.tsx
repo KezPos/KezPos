@@ -68,7 +68,7 @@ const Bullets = ({ items }: { items: readonly string[] }) => (
 );
 
 export const Route = createFileRoute("/features")({
-  head: () => pageHead("Features — KezPos", "Sales and refunds, inventory, customer credit, reports, cashier mode, KRA eTIMS and M-Pesa in KezPos for Android and Windows."),
+  head: () => pageHead("Features | KezPos", "Sales and refunds, inventory, customer credit, reports, cashier mode, KRA eTIMS and M-Pesa in KezPos for Android and Windows."),
   component: () => (
     <SiteShell>
       <section className="mx-auto w-full max-w-6xl px-5 pt-10 pb-5 text-center">

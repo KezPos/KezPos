@@ -9,7 +9,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight, Check, Download, FileCheck2, ScanLine, ShieldCheck, Smartphone, Users, WifiOff } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  head: () => pageHead("KezPos — The back office for Kenyan retail", "Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."),
+  head: () => pageHead("KezPos: The back office for Kenyan retail", "Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."),
   component: Index,
 });
 

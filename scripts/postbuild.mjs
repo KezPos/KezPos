@@ -3,19 +3,20 @@
 // fallback for any other path.
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 
+// Titles must match the pageHead() title in each src/routes/*.tsx file, so the
+// static HTML crawlers read and the browser tab the router sets agree.
 const routes = {
-  features: "Features",
-  install: "Install",
-  privacy: "Privacy Policy",
-  terms: "Terms of Service",
-  "reset-password": "Reset password",
-  verify: "Verify",
+  features: "Features | KezPos",
+  install: "Download & Install | KezPos",
+  privacy: "Privacy Policy | KezPos",
+  terms: "Terms of Service | KezPos",
+  "reset-password": "Reset your password | KezPos",
+  verify: "Confirm your email | KezPos",
 };
 
 const base = readFileSync("dist/index.html", "utf8");
 
-for (const [route, label] of Object.entries(routes)) {
-  const title = `${label} - KezPos`;
+for (const [route, title] of Object.entries(routes)) {
   const html = base
     .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
     .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${title}$2`)

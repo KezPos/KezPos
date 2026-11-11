@@ -50,7 +50,7 @@ export function Page({
       <div aria-hidden className="absolute inset-x-12 -bottom-4 -z-20 h-6 rounded-b-3xl bg-card/40 shadow-soft" />
       {children}
       {folio && (
-        <span className="absolute right-6 bottom-5 font-mono text-[11px] text-faint sm:right-10">— {folio} —</span>
+        <span className="absolute right-6 bottom-5 font-mono text-[11px] text-faint sm:right-10">No. {folio}</span>
       )}
     </section>
   );

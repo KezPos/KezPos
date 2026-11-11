@@ -14,7 +14,7 @@ export const Route = createFileRoute("/reset-password")({
   }),
   head: () => {
     const { meta } = pageHead(
-      "Reset your password — KezPos",
+      "Reset your password | KezPos",
       "Choose a new password for your KezPos account.",
     );
     return { meta: [...meta, { name: "robots", content: "noindex, nofollow" }] };
