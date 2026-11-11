@@ -14,6 +14,6 @@
   "payDisabledMessage": "Payments are paused for scheduled maintenance.",
   "baseUrl": "https://kezpos.co.ke",
   "sha256": "4d2c8fb47b3b4ee7168be6ae52d08271ffbbea258f93f9819ad27d665a03d107",
-  "sha256Windows": "48fc26137a160ba49253280deab5342d6c4e78e66c3954b3ab66e05d542e0705",
-  "signature": "CgpMTHDvmv1TKyBljxB1rFUbHa07OZJuv+COQlpmJZFKUf1IUZAdaekya168ZaHa06B/3yRKZsSvM33zDmOxBw=="
+  "sha256Windows": "30c7f9f42952c23dbf530ace9517b91c707f61a7bab65552b791f48e57f6e25e",
+  "signature": "XEkXkcUAA3YZovepK7kktghkfx/54Q8XQHXeZiW2+EqellzDNKdqOlhQftXomPOuAJL33xUFygG/EEcfyKofAA=="
 }
