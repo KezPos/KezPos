@@ -6,7 +6,10 @@
 
     <!-- Standard SEO. Keep in sync with src/routes/index.tsx -->
     <title>KezPos: The back office for Kenyan retail</title>
-    <meta name="description" content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail." />
+    <meta
+      name="description"
+      content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."
+    />
     <meta name="author" content="KezPos" />
     <link rel="canonical" href="https://kezpos.co.ke/" />
 
@@ -14,31 +17,67 @@
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="KezPos" />
     <meta property="og:url" content="https://kezpos.co.ke/" />
-    <meta property="og:title" content="KezPos: The back office for Kenyan retail" />
-    <meta property="og:description" content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail." />
+    <meta
+      property="og:title"
+      content="KezPos: The back office for Kenyan retail"
+    />
+    <meta
+      property="og:description"
+      content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."
+    />
     <meta property="og:image" content="https://kezpos.co.ke/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="KezPos: run your shop like it has a back office." />
+    <meta
+      property="og:image:alt"
+      content="KezPos: run your shop like it has a back office."
+    />
 
     <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="KezPos: The back office for Kenyan retail" />
-    <meta name="twitter:description" content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail." />
+    <meta
+      name="twitter:title"
+      content="KezPos: The back office for Kenyan retail"
+    />
+    <meta
+      name="twitter:description"
+      content="Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."
+    />
     <meta name="twitter:image" content="https://kezpos.co.ke/og-image.jpg" />
-    <meta name="twitter:image:alt" content="KezPos: run your shop like it has a back office." />
+    <meta
+      name="twitter:image:alt"
+      content="KezPos: run your shop like it has a back office."
+    />
 
     <!-- Icon -->
     <link rel="icon" href="%BASE_URL%kezpos.png" type="image/png" />
 
+    <!-- Site name structured data for Google -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "KezPos",
+        "url": "https://kezpos.co.ke/"
+      }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;500;600&family=Lexend:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
 
     <!-- Theme -->
-    <script>try{if(localStorage.getItem('kez-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
+    <script>
+      try {
+        if (localStorage.getItem("kez-theme") === "dark")
+          document.documentElement.classList.add("dark");
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>
