@@ -1,0 +1,30 @@
+{
+  "/": {
+    "title": "KezPos: The back office for Kenyan businesses",
+    "description": "Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan shops and wholesalers."
+  },
+  "features": {
+    "title": "Features | KezPos",
+    "description": "Sales and refunds, inventory with multi-unit pricing, customer credit, reports, cashier mode, KRA eTIMS and M-Pesa in KezPos for Android and Windows."
+  },
+  "install": {
+    "title": "Download & Install | KezPos",
+    "description": "Download KezPos for Android and Windows. Official downloads, device requirements, installation steps and answers to common questions."
+  },
+  "privacy": {
+    "title": "Privacy Policy | KezPos",
+    "description": "How KezPos collects, stores and protects your business data, and your rights under the Kenya Data Protection Act, 2019."
+  },
+  "terms": {
+    "title": "Terms of Service | KezPos",
+    "description": "The terms for using KezPos on Android and Windows, including accounts, data ownership and Kenyan governing law."
+  },
+  "reset-password": {
+    "title": "Reset your password | KezPos",
+    "description": "Choose a new password for your KezPos account."
+  },
+  "verify": {
+    "title": "Confirm your email | KezPos",
+    "description": "Confirm the email address on your KezPos account."
+  }
+}
