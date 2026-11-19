@@ -97,7 +97,7 @@ function Footer() {
       <div className="flex flex-col gap-6 border-t border-dashed pt-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <Logo />
-          <p className="mt-2 text-sm text-muted-foreground">The back office for Kenyan retail.</p>
+          <p className="mt-2 text-sm text-muted-foreground">The back office for Kenyan businesses.</p>
         </div>
         <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <Link to="/features" className="hover:text-foreground">Features</Link>

@@ -5,6 +5,7 @@ import { pageHead } from "@/components/site/config";
 import { Device, images } from "@/components/site/devices";
 import { Check, WifiOff, Users, Printer, Palette, ReceiptText } from "lucide-react";
 import { ClosingCTA } from "@/components/site/cta";
+import seo from "@/seo.json";
 
 const chapters = [
   {
@@ -25,7 +26,7 @@ const chapters = [
     n: "02",
     tag: "Inventory",
     title: "Organised stock, accurate records.",
-    text: "Group products into categories, set tax once per category, and see at a glance what is running low or has run out. Electronics get the extra detail they need.",
+    text: "Group products into categories, set tax once per category, and see at a glance what is running low or has run out. Sell one item in several units, like bottle, pack or crate, each with its own price. Electronics get the extra detail they need.",
     src: images.inventory,
     label: "KezPos inventory",
     items: [
@@ -33,6 +34,7 @@ const chapters = [
       "Low-stock and out-of-stock tracking",
       "Condition (new, used or refurbished), IMEI or serial number, and notes",
       "Tax per item, or follow the category",
+      "Multiple units per item, with a separate price for each",
       "Margin shown automatically when cost and price are entered",
     ],
   },
@@ -68,7 +70,7 @@ const Bullets = ({ items }: { items: readonly string[] }) => (
 );
 
 export const Route = createFileRoute("/features")({
-  head: () => pageHead("Features | KezPos", "Sales and refunds, inventory, customer credit, reports, cashier mode, KRA eTIMS and M-Pesa in KezPos for Android and Windows."),
+  head: () => pageHead(seo.features.title, seo.features.description),
   component: () => (
     <SiteShell>
       <section className="mx-auto w-full max-w-6xl px-5 pt-10 pb-5 text-center">

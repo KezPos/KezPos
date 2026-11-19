@@ -1,4 +1,5 @@
 import { pageHead } from "@/components/site/config";
+import seo from "@/seo.json";
 import { ClosingCTA } from "@/components/site/cta";
 import { Device, DeviceShowcase, images } from "@/components/site/devices";
 import { Pricing } from "@/components/site/pricing";
@@ -6,10 +7,10 @@ import { Reveal } from "@/components/site/reveal";
 import { SiteShell } from "@/components/site/shell";
 import { Chapter, Heading, Page, btn } from "@/components/site/ui";
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, ArrowUpRight, Check, Download, FileCheck2, ScanLine, ShieldCheck, Smartphone, Users, WifiOff } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Boxes, Check, Download, FileCheck2, ShieldCheck, Smartphone, Users, WifiOff } from "lucide-react";
 
 export const Route = createFileRoute("/")({
-  head: () => pageHead("KezPos: The back office for Kenyan retail", "Sales, stock, customers and profit in one offline-first app for Android and Windows, with KRA eTIMS and M-Pesa built in. Made for Kenyan retail."),
+  head: () => pageHead(seo["/"].title, seo["/"].description),
   component: Index,
 });
 
@@ -18,7 +19,7 @@ function Index() {
     <section className="mx-auto w-full max-w-6xl px-3 pt-7 pb-2 sm:px-6 sm:pt-10">
       <div className="flex items-center justify-between gap-4 border-b border-dashed pb-4 font-mono text-[10px] uppercase tracking-[0.15em] text-muted-foreground"><span>A shopkeeper’s companion</span><span>Master ledger · 01</span></div>
       <div className="relative pt-8 text-center sm:pt-10">
-        <p className="mb-3 flex items-center justify-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-good" /> Built for Kenyan retail</p>
+        <p className="mb-3 flex items-center justify-center gap-2 text-xs text-muted-foreground"><span className="size-1.5 rounded-full bg-good" /> Built for Kenyan businesses</p>
         <h1 className="font-display text-[56px] leading-none font-medium sm:text-[80px]">KezPos<span className="text-primary">.</span></h1>
         <p className="mx-auto mt-5 max-w-xl font-display text-2xl leading-tight sm:text-3xl">Run your shop like it has a back office.</p>
         <p className="mx-auto mt-4 max-w-lg text-sm leading-7 text-muted-foreground">Sales, stock, customers and profit in one app, with KRA eTIMS and M-Pesa built in.<br className="hidden sm:block" /> Works offline and syncs when you reconnect.</p>
@@ -37,7 +38,7 @@ function Index() {
         { icon: ShieldCheck, title: "Cashier mode", text: "Give your team limited access to make sales and manage customers. Stock, pricing and settings stay with you.", color: "text-primary" },
         { icon: FileCheck2, title: "KRA eTIMS", text: "Receipts and refunds are submitted through DigiTax automatically. If you are offline, they are queued and retried.", color: "text-primary" },
         { icon: Smartphone, title: "M-Pesa", text: "Send an STK push from the sale, or attach a payment you have already received.", color: "text-good" },
-        { icon: ScanLine, title: "Built for electronics", text: "Record condition, IMEI or serial number, and notes for each unit, and see your margin as you price it.", color: "text-primary" },
+        { icon: Boxes, title: "Sell in any unit", text: "Stock an item once, then sell it by the bottle, pack or crate, each with its own price. Electronics also get IMEI and serial tracking.", color: "text-primary" },
         { icon: WifiOff, title: "Works offline", text: "Keep selling without a connection. Your data stays on your device and syncs when you are back online.", color: "text-warn" },
       ].map((item, i) => <Reveal key={item.title} delay={i * 60}><div className="flex items-start gap-4 border-t pt-6"><item.icon className={`mt-1 size-6 shrink-0 ${item.color}`} /><div><h3 className="font-display text-xl">{item.title}</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">{item.text}</p></div></div></Reveal>)}</div>
     </Page>

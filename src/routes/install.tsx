@@ -3,6 +3,7 @@ import { SiteShell } from "@/components/site/shell";
 import { btn, Chapter, Heading, Page, TextLink } from "@/components/site/ui";
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Download, MessageCircle, Monitor, Smartphone } from "lucide-react";
+import seo from "@/seo.json";
 
 const faqs = [
   ["Is there a free trial?", "Yes. You can try KezPos free for 7 days, with every feature included, before choosing a plan."],
@@ -16,7 +17,7 @@ const faqs = [
 ];
 
 export const Route = createFileRoute("/install")({
-  head: () => pageHead("Download & Install | KezPos", `Download KezPos ${KEZPOS.version} for Android and Windows. Official downloads, device requirements, installation steps and answers to common questions.`),
+  head: () => pageHead(seo.install.title, seo.install.description),
   component: () => (
     <SiteShell>
       <section className="mx-auto w-full max-w-6xl px-5 pt-10 pb-3 text-center"><p className="font-mono text-xs uppercase tracking-[0.15em] text-primary">KezPos {KEZPOS.version}</p><h1 className="mt-5 font-display text-4xl sm:text-6xl">Your next chapter starts here.</h1><p className="mx-auto mt-5 max-w-lg text-sm leading-7 text-muted-foreground">Download KezPos, set up your shop, and make your first sale.<br />On Android. On Windows. Online or off.</p></section>
@@ -27,7 +28,7 @@ export const Route = createFileRoute("/install")({
         ["Download for your device", "Use the official Android APK or Windows installer above. You’ll find the file in your Downloads folder."],
         ["Allow the installation", "On Android, allow your browser or Files app to install unknown apps when prompted. Usually: Settings → Apps → Special app access → Install unknown apps. Turn that permission off again after installation. On Windows, open the installer and follow the setup wizard."],
         ["Open the downloaded file", `Tap KezPos-${KEZPOS.version}.apk on Android and select Install. On Windows, run KezPos-${KEZPOS.version}-setup.exe and follow the installer prompts.`],
-        ["Set up your shop", "Open KezPos, create your account with your email and shop name, then add your first product. Use the same account on your other devices to restore synced data."],
+        ["Set up your business", "Open KezPos, create your account with your email and business name, then add your first product. Use the same account on your other devices to restore synced data."],
       ].map(([title, text], i) => <li key={title} className="flex gap-5 border-t pt-6"><span className="font-display text-3xl text-primary">0{i + 1}</span><div><h3 className="font-display text-xl">{title}</h3><p className="mt-3 max-w-2xl text-sm leading-7 text-muted-foreground">{text}</p></div></li>)}</ol><p className="mt-8 border-t border-dashed pt-5 text-sm text-muted-foreground">Keep an extra copy of your records: Settings → Backup & Data → Export Database.</p></Page>
       <section className="mx-auto w-full max-w-4xl px-5 py-7"><Chapter n="03">Common questions</Chapter><Heading className="mt-6 mb-8">Good to know.</Heading><div className="divide-y border-y">{faqs.map(([q, a]) => <details key={q} className="group py-5"><summary className="cursor-pointer text-sm font-medium marker:text-primary">{q}</summary><p className="mt-4 pl-4 text-sm leading-7 text-muted-foreground">{a}</p></details>)}</div><div className="mt-10 flex flex-col justify-between gap-6 sm:flex-row sm:items-center"><div><h3 className="font-display text-2xl">Need a hand?</h3><a className="mt-2 inline-block text-sm text-primary" href={`mailto:${KEZPOS.email}`}>{KEZPOS.email}</a></div><a href={`https://wa.me/${KEZPOS.whatsapp}`} target="_blank" rel="noreferrer" className={btn.ghost}><MessageCircle className="size-4" /> Chat with us <ArrowRight className="size-4" /></a></div></section>
     </SiteShell>

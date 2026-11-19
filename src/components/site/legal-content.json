@@ -23,11 +23,11 @@
         {
           "kind": "list",
           "items": [
-            "Account information: your email address and shop name",
+            "Account information: your email address and business name",
             "Business data you enter into the App: inventory, sales, refunds, receipts, payment history and customer records (such as customer names, phone numbers and balances)",
             "Payment data, if you use M-Pesa: transaction references, amounts, payment times and the phone number associated with a payment",
             "Tax data, if you use KRA eTIMS: the invoice and refund details submitted for each sale, and your business tax registration details",
-            "Business details you share with us so we can set up KRA eTIMS or M-Pesa for your shop",
+            "Business details you share with us so we can set up KRA eTIMS or M-Pesa for your business",
             "A device notification token, if you allow notifications"
           ]
         }
